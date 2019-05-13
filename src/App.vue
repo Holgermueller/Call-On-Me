@@ -11,7 +11,7 @@
 <script>
 import Header from "./components/Layout/Header";
 import ClassInput from "./components/AddClass";
-import ClassList from "./components/ClassDisplay"
+import ClassList from "./components/ClassDisplay";
 import Footer from "./components/Layout/Footer";
 
 export default {
@@ -24,7 +24,8 @@ export default {
   },
   data() {
     return {
-      msg: "hello!"
+      msg:
+        "Use this app to call on one of your students without worrying about who to choose!"
     };
   }
 };
