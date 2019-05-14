@@ -10,16 +10,20 @@
 <script>
 import Header from "./components/Layout/Header";
 import Home from "./components/Home";
-import ClassDisplay from "./components/ClassDisplay";
+import Register from "./components/Register";
+import ClassDisplay from "./components/ClassListDisplay";
 import StudentList from "./components/StudentList";
 import Footer from "./components/Layout/Footer";
+import SignIn from "./components/SignIn"
 
 export default {
   name: "app",
   components: {
     Header,
     Home,
+    Register,
     ClassDisplay,
+    SignIn,
     StudentList,
     Footer
   },
