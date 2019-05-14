@@ -2,24 +2,25 @@
   <div id="app">
     <Header/>
     {{msg}}
-    <ClassInput/>
-    <ClassList/>
+    <router-view></router-view>
     <Footer/>
   </div>
 </template>
 
 <script>
 import Header from "./components/Layout/Header";
-import ClassInput from "./components/AddClass";
-import ClassList from "./components/ClassDisplay";
+import Home from "./components/Home";
+import ClassDisplay from "./components/ClassDisplay";
+import StudentList from "./components/StudentList";
 import Footer from "./components/Layout/Footer";
 
 export default {
   name: "app",
   components: {
     Header,
-    ClassInput,
-    ClassList,
+    Home,
+    ClassDisplay,
+    StudentList,
     Footer
   },
   data() {

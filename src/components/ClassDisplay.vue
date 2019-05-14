@@ -1,5 +1,9 @@
 <template>
   <div>
+    <form action>
+      <input type="text" name id placeholder="Class name here...">
+      <input type="submit" value="SUBMIT">
+    </form>
     <h3>Select from your list of classes</h3>
     <ul>
       <li>
@@ -19,6 +23,19 @@ export default {
 </script>
 
 <style scoped>
+form {
+  display: flex;
+}
+
+input[type="text"] {
+  flex: 10;
+  padding: 5px;
+}
+
+input[type="submit"] {
+  flex: 2;
+}
+
 ul {
   text-decoration: none;
 }
