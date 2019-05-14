@@ -2,13 +2,18 @@
   <div>
     <h3>Add a class:</h3>
     <div class="row">
-      <form action="#" class="col s12">
+      <form @submit.prevent="saveClass" class="col s12">
         <div class="row">
           <div class="input-field col s6">
-            <input type="text" name id="class_name" placeholder="Ex.: Multicultural Lit T-Th">
+            <input
+              type="text"
+              v-model="class_name"
+              name
+              id="class_name"
+              placeholder="Ex.: Multicultural Lit T-Th"
+            >
           </div>
         </div>
-
         <button type="submit" class="waves-effect waves-light btn-large">ADD CLASS</button>
       </form>
     </div>
@@ -26,12 +31,32 @@
 </template>
 
 <script>
+import db from "./Firebase/FirebaseInit";
+import { constants } from "crypto";
 export default {
-  name: "ClassDisplay"
+  name: "ClassDisplay",
+  data() {
+    return {
+      class_name: null
+    };
+  },
+  methods: {
+    saveClass() {
+      db.collection("classes")
+        .add({
+          class_name: this.class_name
+        })
+        .then(docRef => {
+          console.log("Class added: ", docRef.id);
+        })
+        .catch(err => {
+          console.error("Error adding class: ", err);
+        });
+    }
+  }
 };
 </script>
 
 <style scoped>
-
 </style>
 
