@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "@components/Home";
-import ClassDisplay from "@components/ClassDisplay";
-import StudentList from "@components/StudentList";
+import Home from "../components/Home";
+import ClassDisplay from "../components/ClassDisplay";
+import StudentList from "../components/StudentList";
 
 Vue.use(VueRouter);
 
