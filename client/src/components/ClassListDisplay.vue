@@ -42,16 +42,7 @@ export default {
   },
   methods: {
     saveClass() {
-      db.collection("classes")
-        .add({
-          class_name: this.class_name
-        })
-        .then(docRef => {
-          console.log("Class added: ", docRef.id);
-        })
-        .catch(err => {
-          console.error("Error adding class: ", err);
-        });
+
     }
   }
 };
