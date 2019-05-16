@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const db = require("../models");
 const instructor = require("../models/instructors");
 const classes = require("../models/classes");
@@ -19,5 +18,7 @@ module.exports = {
 
   get_all_students: (req, res) => {},
 
-  delete_student: (req, res) => {}
+  delete_student: (req, res) => {},
+
+  delete_account: (req, res) => {}
 };
