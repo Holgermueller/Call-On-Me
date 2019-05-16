@@ -16,6 +16,8 @@ module.exports = {
 
   edit_student: (req, res) => {},
 
+  remove_student: (req, res) => {},
+
   get_all_students: (req, res) => {},
 
   delete_student: (req, res) => {},

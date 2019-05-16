@@ -20,6 +20,16 @@ APP.use(BODYPARSER.urlencoded({ extended: true }));
 APP.use(BODYPARSER.json());
 APP.use(COMPRESSION());
 
+MONGOOSE.Promise = global.Promise;
+MONGOOSE.connect(
+  process.env.MONGODB_URI || "mongodb://localhost:27017/callOnMeDB",
+  { useNewUrlParser: true }
+);
+const CONNECTION = MONGOOSE.connection;
+CONNECTION.once("open", () => {
+  console.log("db connection!");
+});
+
 APP.get("*", (req, res) => {
   res.sendFile(PATH.resolve(__dirname, "./client/build", "index.html"));
 });

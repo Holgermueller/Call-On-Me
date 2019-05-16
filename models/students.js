@@ -5,6 +5,8 @@ const studentSchema = new Schema({
   firstName: { type: String },
   lastName: { type: String },
   preferredName: { type: String },
+  class: {},
+  instructor: {},
   timesCalledOn: { type: Number }
 });
 

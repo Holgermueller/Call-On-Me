@@ -31,8 +31,6 @@
 </template>
 
 <script>
-import db from "./Firebase/FirebaseInit";
-import { constants } from "crypto";
 export default {
   name: "ClassDisplay",
   data() {
@@ -42,7 +40,7 @@ export default {
   },
   methods: {
     saveClass() {
-
+      console.log('click')
     }
   }
 };
