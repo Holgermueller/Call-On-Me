@@ -2,25 +2,31 @@
   <div>
     <h2>Register Here:</h2>
     <div class="row">
-      <form action="#" class="col s12">
+      <form @submit.prevent="saveNewUser" class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <input type="text" placeholder="Username" required>
+            <input type="text" v-model="username_input" value placeholder="Username" required>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input type="text" placeholder="Email" required>
+            <input type="text" v-model="email_input" value placeholder="Email" required>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input type="password" placeholder="Password" required>
+            <input type="password" v-model="password_input" value placeholder="Password" required>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input type="password" placeholder="Confirm Password" required>
+            <input
+              type="password"
+              v-model="password_check_input"
+              value
+              placeholder="Confirm Password"
+              required
+            >
           </div>
         </div>
         <router-link to="/" class="waves-effect waves-light btn-large">BACK</router-link>
@@ -32,7 +38,26 @@
 
 <script>
 export default {
-  name: "Register"
+  name: "Register",
+  data() {
+    return {
+      username_input: null,
+      email_input: null,
+      password_input: null,
+      password_check_input: null
+    };
+  },
+  methods: {
+    saveNewUser: function() {
+      const new_user = {
+        name: this.username_input,
+        email: this.email_input,
+        password: this.password_input,
+        password_to_check: this.password_check_input
+      }
+      console.log(new_user);
+    }
+  }
 };
 </script>
 

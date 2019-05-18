@@ -8,6 +8,7 @@
             <input
               type="text"
               v-model="class_name"
+              value="class_name"
               name
               id="class_name"
               placeholder="Ex.: Multicultural Lit T-Th"

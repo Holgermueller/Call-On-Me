@@ -4,7 +4,12 @@ const classes = require("../models/classes");
 const student = require("../models/students");
 
 module.exports = {
-  register_instructor: (req, res) => {},
+  register_instructor: (req, res) => {
+    db.instructor
+      .create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
 
   login_instructor: (req, res) => {},
 
