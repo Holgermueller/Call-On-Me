@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import API from "../utils/API";
 export default {
   name: "Register",
   data() {
@@ -54,6 +55,11 @@ export default {
         password: this.password_input,
         password_to_check: this.password_check_input
       };
+      API.registerUser({
+        new_user: new_user
+      })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
       console.log(new_user);
     }
   }

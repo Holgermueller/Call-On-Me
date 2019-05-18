@@ -1,14 +1,18 @@
 const db = require("../models");
-const instructor = require("../models/instructors");
-const classes = require("../models/classes");
-const student = require("../models/students");
 
 module.exports = {
   register_instructor: (req, res) => {
-    db.instructor
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+    db.Instructor.find({ email: req.body.email }).then(instructor => {
+      if (instructor.length >= 1) {
+        return res.status(409).json({
+          message: "Email exists."
+        });
+      } else {
+        db.Instructor.create(req.body)
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+      }
+    });
   },
 
   login_instructor: (req, res) => {},
