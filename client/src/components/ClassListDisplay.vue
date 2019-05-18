@@ -8,8 +8,6 @@
             <input
               type="text"
               v-model="class_name"
-              value="class_name"
-              name
               id="class_name"
               placeholder="Ex.: Multicultural Lit T-Th"
             >
@@ -40,8 +38,9 @@ export default {
     };
   },
   methods: {
-    saveClass() {
-      console.log('click')
+    saveClass: function() {
+      const class_name = this.class_name;
+      console.log(class_name);
     }
   }
 };

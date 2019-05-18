@@ -5,17 +5,17 @@
       <form @submit.prevent="saveNewUser" class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <input type="text" v-model="username_input" value placeholder="Username" required>
+            <input type="text" v-model="username_input" placeholder="Username" required>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input type="text" v-model="email_input" value placeholder="Email" required>
+            <input type="text" v-model="email_input" placeholder="Email" required>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input type="password" v-model="password_input" value placeholder="Password" required>
+            <input type="password" v-model="password_input" placeholder="Password" required>
           </div>
         </div>
         <div class="row">
@@ -23,7 +23,6 @@
             <input
               type="password"
               v-model="password_check_input"
-              value
               placeholder="Confirm Password"
               required
             >
@@ -54,7 +53,7 @@ export default {
         email: this.email_input,
         password: this.password_input,
         password_to_check: this.password_check_input
-      }
+      };
       console.log(new_user);
     }
   }
