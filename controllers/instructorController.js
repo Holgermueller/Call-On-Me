@@ -1,18 +1,10 @@
-const db = require("../models");
+const db = require("../models/instructorModel");
 
 module.exports = {
-  register_instructor: function(req, res) {
-    db.Instructor.find({ email: req.body.email }).then(instructor => {
-      if (instructor.length >= 1) {
-        return res.status(409).json({
-          message: "Email exists."
-        });
-      } else {
-        db.Instructor.create(req.body)
-          .then(dbModel => res.json(dbModel))
-          .catch(err => res.status(422).json(err));
-      }
-    });
+  register_user: function(req, res) {
+    db.Instructor.create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   },
 
   login_instructor: (req, res) => {},

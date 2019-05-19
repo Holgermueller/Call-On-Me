@@ -1,6 +1,6 @@
 const ROUTER = require("express").Router();
-const callOnMeRoutes = require("./routes");
+const instructorRoutes = require("./routes");
 
-ROUTER.use("/callOnMeRoutes", callOnMeRoutes);
+ROUTER.use("/instructorRoutes", instructorRoutes);
 
 module.exports = ROUTER;

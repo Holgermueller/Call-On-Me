@@ -49,15 +49,12 @@ export default {
   },
   methods: {
     registerUser: function() {
-      const new_user = {
+      API.registerUser({
         instructor_name: this.username_input,
         email: this.email_input,
-        password: this.password_input,
-      };
-      API.registerUser({
-        new_user: new_user
+        password: this.password_input
       })
-        .then(res => console.log(res))
+        .then(res => console.log(res.data))
         .catch(err => console.log(err));
     }
   }

@@ -7,4 +7,4 @@ const instructorSchema = new Schema({
   password: { type: String }
 });
 
-module.exports = mongoose.model("instructor", instructorSchema);
+module.exports = mongoose.model("Instructor", instructorSchema);

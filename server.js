@@ -5,7 +5,7 @@ const CORS = require("cors");
 const PATH = require("path");
 const MORGAN = require("morgan");
 const MONGOOSE = require("mongoose");
-const ROUTES = require("./routes");
+const instructorRoutes = require("./routes");
 
 const APP = EXPRESS();
 const PORT = process.env.PORT || 8081;
@@ -31,7 +31,7 @@ CONNECTION.once("open", () => {
   console.log("db connection!");
 });
 
-APP.use("/", ROUTES);
+APP.use("/", instructorRoutes);
 
 APP.get("*", (req, res) => {
   res.sendFile(PATH.resolve(__dirname, "./client/build", "index.html"));
