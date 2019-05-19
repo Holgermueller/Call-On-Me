@@ -2,7 +2,7 @@
   <div>
     <h2>Register Here:</h2>
     <div class="row">
-      <form @submit.prevent="saveNewUser" class="col s12">
+      <form @submit.prevent="registerUser" class="col s12">
         <div class="row">
           <div class="input-field col s12">
             <input type="text" v-model="username_input" placeholder="Username" required>
@@ -48,19 +48,17 @@ export default {
     };
   },
   methods: {
-    saveNewUser: function() {
+    registerUser: function() {
       const new_user = {
-        name: this.username_input,
+        instructor_name: this.username_input,
         email: this.email_input,
         password: this.password_input,
-        password_to_check: this.password_check_input
       };
       API.registerUser({
         new_user: new_user
       })
         .then(res => console.log(res))
         .catch(err => console.log(err));
-      console.log(new_user);
     }
   }
 };

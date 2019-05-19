@@ -9,6 +9,7 @@ import SignIn from "../components/SignIn";
 Vue.use(VueRouter);
 
 export default new VueRouter({
+  mode: "history",
   routes: [
     {
       path: "/",

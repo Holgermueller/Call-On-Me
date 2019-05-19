@@ -1,7 +1,7 @@
 const db = require("../models");
 
 module.exports = {
-  register_instructor: (req, res) => {
+  register_instructor: function(req, res) {
     db.Instructor.find({ email: req.body.email }).then(instructor => {
       if (instructor.length >= 1) {
         return res.status(409).json({

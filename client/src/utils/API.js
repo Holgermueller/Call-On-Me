@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const API = {
-  registerUser: function(newUser) {
-    return axios.post("/api/comRoutes", newUser);
+  registerUser: function(new_user) {
+    return axios.post("/api/callOnMeRoutes", new_user);
   },
 
   logUserIn: function() {
