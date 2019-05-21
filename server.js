@@ -10,7 +10,7 @@ const instructorRoutes = require("./routes");
 const APP = EXPRESS();
 const PORT = process.env.PORT || 8081;
 
-APP.use(MORGAN("tiny"));
+APP.use(MORGAN("dev"));
 
 if (process.env.NODE_ENV === "production") {
   APP.use(EXPRESS.static(PATH.join(__dirname, "client/build")));
@@ -31,7 +31,7 @@ CONNECTION.once("open", () => {
   console.log("db connection!");
 });
 
-APP.use("/", instructorRoutes);
+APP.use("/instructor", instructorRoutes);
 
 APP.get("*", (req, res) => {
   res.sendFile(PATH.resolve(__dirname, "./client/build", "index.html"));
