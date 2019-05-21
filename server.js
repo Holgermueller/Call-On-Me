@@ -5,7 +5,7 @@ const CORS = require("cors");
 const PATH = require("path");
 const MORGAN = require("morgan");
 const MONGOOSE = require("mongoose");
-const instructorRoutes = require("./routes");
+const instructorRoutes = require("./routes/instructorRoutes");
 
 const APP = EXPRESS();
 const PORT = process.env.PORT || 8081;
