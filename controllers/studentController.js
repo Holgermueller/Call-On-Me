@@ -13,14 +13,10 @@ module.exports = {
     student
       .save(req.body)
       .then(result => {
-        res.status(200).json({
-          message: "Student added!"
-        });
+        res.status(200).json(result);
       })
       .catch(err => {
-        res.status(422).json({
-          error: err
-        });
+        res.status(422).json(err);
       });
   },
 
@@ -39,20 +35,20 @@ module.exports = {
 
   find_student_by_id: (req, res) => {
     Student.findById(req.params.id)
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => res.status(200).json(dbModel))
       .catch(err => res.status(422).json(err));
   },
 
   edit_student_info: (req, res) => {
     Student.findOneAndUpdate({ _id: req.params.id }, req.body, { upsert: true })
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => res.status(200).json(dbModel))
       .catch(err => res.status(422).json(err));
   },
 
   remove_student: (req, res) => {
     Student.findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => res.status(200).json(dbModel))
       .catch(err => res.status(422).json(err));
   }
 };

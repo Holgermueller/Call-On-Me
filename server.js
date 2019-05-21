@@ -7,6 +7,7 @@ const MORGAN = require("morgan");
 const MONGOOSE = require("mongoose");
 const instructorRoutes = require("./routes/instructorRoutes");
 const studentRoutes = require("./routes/studentRoutes");
+const classRoutes = require("./routes/classRoutes");
 
 const APP = EXPRESS();
 const PORT = process.env.PORT || 8081;
@@ -34,6 +35,7 @@ CONNECTION.once("open", () => {
 
 APP.use("/instructor", instructorRoutes);
 APP.use("/student", studentRoutes);
+APP.use("/class", classRoutes);
 
 APP.get("*", (req, res) => {
   res.sendFile(PATH.resolve(__dirname, "./client/build", "index.html"));
