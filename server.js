@@ -5,7 +5,7 @@ const CORS = require("cors");
 const PATH = require("path");
 const MORGAN = require("morgan");
 const MONGOOSE = require("mongoose");
-const instructorRoutes = require("./routes/instructorRoutes");
+const instructorRoutes = require("./routes/instructor");
 const studentRoutes = require("./routes/studentRoutes");
 const classRoutes = require("./routes/classRoutes");
 

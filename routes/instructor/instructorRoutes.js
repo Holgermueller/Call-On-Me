@@ -1,5 +1,5 @@
 const ROUTER = require("express").Router();
-const instructorControllers = require("../controllers/instructorController");
+const instructorControllers = require("../../controllers/instructorController");
 
 ROUTER.route("/").post(instructorControllers.register_user);
 

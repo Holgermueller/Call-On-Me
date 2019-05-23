@@ -5,17 +5,17 @@
       <form @submit.prevent="registerUser" class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <input type="text" v-model="username_input" placeholder="Username" required>
+            <input type="text" v-model="username_input" placeholder="Username" >
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input type="text" v-model="email_input" placeholder="Email" required>
+            <input type="text" v-model="email_input" placeholder="Email" >
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input type="password" v-model="password_input" placeholder="Password" required>
+            <input type="password" v-model="password_input" placeholder="Password" >
           </div>
         </div>
         <div class="row">
@@ -24,7 +24,7 @@
               type="password"
               v-model="password_check_input"
               placeholder="Confirm Password"
-              required
+              
             >
           </div>
         </div>
