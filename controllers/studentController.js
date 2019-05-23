@@ -13,7 +13,10 @@ module.exports = {
     student
       .save(req.body)
       .then(result => {
-        res.status(200).json(result);
+        res.status(201).json({
+          message: "Student added!",
+          createdStudent: student
+        });
       })
       .catch(err => {
         res.status(422).json(err);

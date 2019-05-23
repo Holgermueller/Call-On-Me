@@ -2,14 +2,13 @@ const Class = require("../models/classesModel");
 
 module.exports = {
   add_class: (req, res) => {
-    const newClass = new Class({
-
-    });
+    const newClass = new Class({});
     newClass
       .save(req.body)
       .then(result => {
-        res.status(200).json({
-          message: "Class added!"
+        res.status(201).json({
+          message: "Class added!",
+          createdClass: newClass
         });
       })
       .catch(err => {

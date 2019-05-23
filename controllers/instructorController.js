@@ -10,8 +10,9 @@ module.exports = {
     instructor
       .save(req.body)
       .then(result => {
-        res.status(200).json({
-          message: "User added!"
+        res.status(201).json({
+          message: "User added!",
+          createdInstructor: instructor
         });
       })
       .catch(err => {

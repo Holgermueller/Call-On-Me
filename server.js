@@ -5,7 +5,7 @@ const CORS = require("cors");
 const PATH = require("path");
 const MORGAN = require("morgan");
 const MONGOOSE = require("mongoose");
-const instructorRoutes = require("./routes/instructor");
+const instructorRoutes = require("./routes/instructorRoutes");
 const studentRoutes = require("./routes/studentRoutes");
 const classRoutes = require("./routes/classRoutes");
 
@@ -36,6 +36,21 @@ CONNECTION.once("open", () => {
 APP.use("/instructor", instructorRoutes);
 APP.use("/student", studentRoutes);
 APP.use("/class", classRoutes);
+
+APP.use((req, res, next) => {
+  const error = new Error("Not found");
+  error.status = 404;
+  next(error);
+});
+
+APP.use((error, req, res, next) => {
+  res.status(err.status || 500);
+  res.json({
+    error: {
+      message: error.message
+    }
+  });
+});
 
 APP.get("*", (req, res) => {
   res.sendFile(PATH.resolve(__dirname, "./client/build", "index.html"));
