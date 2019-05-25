@@ -1,21 +1,21 @@
 const Student = require("../models/studentsModel");
+const mongoose = require("mongoose");
 
 module.exports = {
-  add_student: (req, res) => {
+  add_student: (req, res, next) => {
     const student = new Student({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      preferredName: req.body.preferredName,
-      class: req.body.class,
-      instructor: req.body.instructor,
-      timesCalledOn: req.body.timesCalledOn
+      _id: new mongoose.Types.ObjectId(),
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      preferred_name: req.body.preferred_name
     });
     student
-      .save(req.body)
+      .save()
       .then(result => {
+        console.log(result);
         res.status(201).json({
           message: "Student added!",
-          createdStudent: student
+          createdStudent: result
         });
       })
       .catch(err => {
@@ -38,7 +38,7 @@ module.exports = {
 
   find_student_by_id: (req, res) => {
     Student.findById(req.params.id)
-      .then(dbModel => res.status(200).json(dbModel))
+      .then(doc => res.status(200).json(doc))
       .catch(err => res.status(422).json(err));
   },
 

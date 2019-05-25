@@ -1,8 +1,10 @@
 const Instructor = require("../models/instructorModel");
+const mongoose = require("mongoose");
 
 module.exports = {
   register_user: (req, res) => {
     const instructor = new Instructor({
+      _id: mongoose.Types.ObjectId(),
       instructor_name: req.body.instructor_name,
       email: req.body.email,
       password: req.body.password
@@ -10,6 +12,7 @@ module.exports = {
     instructor
       .save(req.body)
       .then(result => {
+        console.log(result);
         res.status(201).json({
           message: "User added!",
           createdInstructor: instructor

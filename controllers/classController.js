@@ -1,8 +1,12 @@
 const Class = require("../models/classesModel");
+const mongoose = require("mongoose");
 
 module.exports = {
   add_class: (req, res) => {
-    const newClass = new Class({});
+    const newClass = new Class({
+      _id: mongoose.Types.ObjectId(),
+      class_name: req.body.class_name
+    });
     newClass
       .save(req.body)
       .then(result => {
