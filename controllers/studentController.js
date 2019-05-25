@@ -2,7 +2,21 @@ const Student = require("../models/studentsModel");
 const mongoose = require("mongoose");
 
 module.exports = {
-  add_student: (req, res, next) => {
+  get_all_students: (req, res) => {
+    Student.find({
+      _id: req.params.id
+    })
+      .sort({ date: -1 })
+      .exec()
+      .then(dbModel => {
+        res.status(200).json(dbModel);
+      })
+      .catch(err => {
+        res.status(422).json(err);
+      });
+  },
+
+  add_student: (req, res) => {
     const student = new Student({
       _id: new mongoose.Types.ObjectId(),
       first_name: req.body.first_name,
@@ -10,29 +24,23 @@ module.exports = {
       preferred_name: req.body.preferred_name
     });
     student
-      .save()
+      .save(req.body)
       .then(result => {
         console.log(result);
         res.status(201).json({
           message: "Student added!",
-          createdStudent: result
+          createdStudent: {
+            first_name: result.first_name,
+            last_name: result.last_name,
+            preferred_name: result.preferred_name
+          }
         });
       })
       .catch(err => {
-        res.status(422).json(err);
-      });
-  },
-
-  get_all_students: (req, res) => {
-    Student.find({
-      _id: req.params.id
-    })
-      .sort({ date: -1 })
-      .then(dbModel => {
-        res.status(200).json(dbModel);
-      })
-      .catch(err => {
-        res.status(422).json(err);
+        console.log(err);
+        res.status(422).json({
+          error: err
+        });
       });
   },
 
