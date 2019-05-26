@@ -3,9 +3,7 @@ const mongoose = require("mongoose");
 
 module.exports = {
   get_all_students: (req, res) => {
-    Student.find({
-      _id: req.params.id
-    })
+    Student.find()
       .sort({ date: -1 })
       .exec()
       .then(dbModel => {
@@ -30,6 +28,7 @@ module.exports = {
         res.status(201).json({
           message: "Student added!",
           createdStudent: {
+            _id: result.id,
             first_name: result.first_name,
             last_name: result.last_name,
             preferred_name: result.preferred_name
@@ -45,19 +44,19 @@ module.exports = {
   },
 
   find_student_by_id: (req, res) => {
-    Student.findById(req.params.id)
+    Student.findById(req.params.studentId)
       .then(doc => res.status(200).json(doc))
       .catch(err => res.status(422).json(err));
   },
 
   edit_student_info: (req, res) => {
-    Student.findOneAndUpdate({ _id: req.params.id }, req.body, { upsert: true })
+    Student.findOneAndUpdate({ _id: req.params.studentId }, req.body, { upsert: true })
       .then(dbModel => res.status(200).json(dbModel))
       .catch(err => res.status(422).json(err));
   },
 
   remove_student: (req, res) => {
-    Student.findById({ _id: req.params.id })
+    Student.findById({ _id: req.params.studentId })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.status(200).json(dbModel))
       .catch(err => res.status(422).json(err));

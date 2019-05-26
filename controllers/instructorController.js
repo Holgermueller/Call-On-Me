@@ -27,7 +27,7 @@ module.exports = {
 
   delete_account: (req, res) => {
     Instructor.remove({
-      _id: req.params.id
+      _id: req.params.instructorId
     }).then(result => {
       res
         .status(200)
