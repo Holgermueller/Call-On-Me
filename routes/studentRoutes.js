@@ -7,7 +7,7 @@ router.route("/")
 
 router.route("/:studentId")
   .get(studentController.find_student_by_id)
-  .put(studentController.edit_student_info)
+  .patch(studentController.edit_student_info)
   .delete(studentController.remove_student);
 
 module.exports = router;

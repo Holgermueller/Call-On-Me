@@ -5,7 +5,6 @@ module.exports = {
   get_all_students: (req, res) => {
     Student.find()
       .sort({ date: -1 })
-      .exec()
       .then(dbModel => {
         res.status(200).json(dbModel);
       })
@@ -22,7 +21,7 @@ module.exports = {
       preferred_name: req.body.preferred_name
     });
     student
-      .save(req.body)
+      .save()
       .then(result => {
         console.log(result);
         res.status(201).json({
@@ -44,21 +43,42 @@ module.exports = {
   },
 
   find_student_by_id: (req, res) => {
-    Student.findById(req.params.studentId)
+    Student.findById({ _id: req.params.studentId })
       .then(doc => res.status(200).json(doc))
       .catch(err => res.status(422).json(err));
   },
 
   edit_student_info: (req, res) => {
-    Student.findOneAndUpdate({ _id: req.params.studentId }, req.body, { upsert: true })
-      .then(dbModel => res.status(200).json(dbModel))
-      .catch(err => res.status(422).json(err));
+    Student.findOneAndUpdate({ _id: req.params.studentId }, req.body, {
+      upsert: true
+    })
+      .then(result => {
+        console.log(result);
+        res.status(200).json({
+          message: "Student info updated.",
+          updatedStudent: {
+            _id: result.id,
+            first_name: result.first_name,
+            last_name: result.last_name,
+            preferred_name: result.preferred_name
+          }
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(422).json({ err: err });
+      });
   },
 
   remove_student: (req, res) => {
     Student.findById({ _id: req.params.studentId })
       .then(dbModel => dbModel.remove())
-      .then(dbModel => res.status(200).json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .then(dbModel => {
+        console.log(dbModel);
+        res.status(200).json({
+          message: "Student deleted."
+        });
+      })
+      .catch(err => res.status(422).json({ err: err }));
   }
 };

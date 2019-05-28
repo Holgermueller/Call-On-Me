@@ -24,6 +24,7 @@ APP.use(BODYPARSER.json());
 APP.use(COMPRESSION());
 
 MONGOOSE.Promise = global.Promise;
+MONGOOSE.set('useFindAndModify', false);
 MONGOOSE.connect(
   process.env.MONGODB_URI || "mongodb://localhost:27017/callOnMeDB",
   { useNewUrlParser: true }

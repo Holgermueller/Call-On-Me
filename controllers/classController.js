@@ -8,7 +8,7 @@ module.exports = {
       class_name: req.body.class_name
     });
     newClass
-      .save(req.body)
+      .save()
       .then(result => {
         res.status(201).json({
           message: "Class added!",
@@ -45,7 +45,12 @@ module.exports = {
   remove_class: (req, res) => {
     Class.findById({ _id: req.params.classId })
       .then(dbModel => dbModel.remove())
-      .then(dbModel => res.status(200).json(dbModel))
+      .then(dbModel => {
+        console.log(dbModel);
+        res.status(200).json({
+          message: "Class deleted."
+        });
+      })
       .catch(err => res.status(422).json(err));
   }
 };

@@ -10,7 +10,7 @@ module.exports = {
       password: req.body.password
     });
     instructor
-      .save(req.body)
+      .save()
       .then(result => {
         console.log(result);
         res.status(201).json({
@@ -28,13 +28,20 @@ module.exports = {
   delete_account: (req, res) => {
     Instructor.remove({
       _id: req.params.instructorId
-    }).then(result => {
-      res
-        .status(200)
-        .json(result)
-        .catch(err => {
-          res.status(422).json(err);
-        });
-    });
+    })
+      .exec()
+      .then(result => {
+        res
+          .status(200)
+          .json({
+            message: "Instructor deleted."
+          })
+          .catch(err => {
+            console.log(err);
+            res.status(422).json({
+              err: err
+            });
+          });
+      });
   }
 };
