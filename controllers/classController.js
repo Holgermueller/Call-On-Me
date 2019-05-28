@@ -46,7 +46,6 @@ module.exports = {
     Class.findById({ _id: req.params.classId })
       .then(dbModel => dbModel.remove())
       .then(dbModel => {
-        console.log(dbModel);
         res.status(200).json({
           message: "Class deleted."
         });

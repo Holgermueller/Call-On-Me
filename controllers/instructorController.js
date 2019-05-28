@@ -12,7 +12,6 @@ module.exports = {
     instructor
       .save()
       .then(result => {
-        console.log(result);
         res.status(201).json({
           message: "User added!",
           createdInstructor: instructor
@@ -37,7 +36,6 @@ module.exports = {
             message: "Instructor deleted."
           })
           .catch(err => {
-            console.log(err);
             res.status(422).json({
               err: err
             });

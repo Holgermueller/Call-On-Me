@@ -23,7 +23,6 @@ module.exports = {
     student
       .save()
       .then(result => {
-        console.log(result);
         res.status(201).json({
           message: "Student added!",
           createdStudent: {
@@ -35,7 +34,6 @@ module.exports = {
         });
       })
       .catch(err => {
-        console.log(err);
         res.status(422).json({
           error: err
         });
@@ -53,7 +51,6 @@ module.exports = {
       upsert: true
     })
       .then(result => {
-        console.log(result);
         res.status(200).json({
           message: "Student info updated.",
           updatedStudent: {
@@ -65,7 +62,6 @@ module.exports = {
         });
       })
       .catch(err => {
-        console.log(err);
         res.status(422).json({ err: err });
       });
   },
@@ -74,7 +70,6 @@ module.exports = {
     Student.findById({ _id: req.params.studentId })
       .then(dbModel => dbModel.remove())
       .then(dbModel => {
-        console.log(dbModel);
         res.status(200).json({
           message: "Student deleted."
         });
