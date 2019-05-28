@@ -6,7 +6,11 @@ module.exports = {
     Student.find()
       .sort({ date: -1 })
       .then(dbModel => {
-        res.status(200).json(dbModel);
+        res.status(200).json({
+          message: "Student list retrieved.",
+          count: dbModel.length,
+          roster: dbModel
+        });
       })
       .catch(err => {
         res.status(422).json(err);
@@ -42,7 +46,14 @@ module.exports = {
 
   find_student_by_id: (req, res) => {
     Student.findById({ _id: req.params.studentId })
-      .then(doc => res.status(200).json(doc))
+      .then(doc => {
+        if (!doc) {
+          return res.status(404).json({
+            message: "Student not found"
+          });
+        }
+        res.status(200).json(doc);
+      })
       .catch(err => res.status(422).json(err));
   },
 

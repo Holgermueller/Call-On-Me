@@ -5,7 +5,8 @@ module.exports = {
   add_class: (req, res) => {
     const newClass = new Class({
       _id: mongoose.Types.ObjectId(),
-      class_name: req.body.class_name
+      class_name: req.body.class_name,
+      students: req.body.studentId
     });
     newClass
       .save()
@@ -27,9 +28,12 @@ module.exports = {
 
   get_all_classes: (req, res) => {
     Class.find()
-      .sort({ date: -1 })
       .then(dbModel => {
-        res.status(200).json(dbModel);
+        res.status(200).json({
+          message: "Class list retrieved.",
+          count: dbModel.length,
+          class_list: dbModel
+        });
       })
       .catch(err => {
         res.status(422).json(err);
@@ -38,7 +42,14 @@ module.exports = {
 
   get_one_class: (req, res) => {
     Class.findById(req.params.classId)
-      .then(dbModel => res.status(200).json(dbModel))
+      .then(dbModel => {
+        if (!dbModel) {
+          return res.status(404).json({
+            message: "Class not found"
+          });
+        }
+        res.status(200).json(dbModel);
+      })
       .catch(err => res.status(422).json(err));
   },
 
