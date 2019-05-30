@@ -1,25 +1,44 @@
 const Instructor = require("../models/instructorModel");
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 module.exports = {
   register_user: (req, res) => {
-    const instructor = new Instructor({
-      _id: mongoose.Types.ObjectId(),
-      instructor_name: req.body.instructor_name,
-      email: req.body.email,
-      password: req.body.password,
-      classes: req.body.classId
-    });
-    instructor
-      .save()
-      .then(result => {
-        res.status(201).json({
-          message: "Instructor added.",
-          createdInstructor: instructor
-        });
-      })
-      .catch(err => {
-        res.status(422).json(err);
+    Instructor.find({ email: req.body.email })
+      .exec()
+      .then(instructor => {
+        if (instructor.length >= 1) {
+          return res.status(409).json({
+            message: "Email already exists in database."
+          });
+        } else {
+          bcrypt.hash(req.body.password, 10, (err, hash) => {
+            if (err) {
+              return res.status(500).json({
+                error: err
+              });
+            } else {
+              const instructor = new Instructor({
+                _id: mongoose.Types.ObjectId(),
+                instructor_name: req.body.instructor_name,
+                email: req.body.email,
+                password: hash,
+                classes: req.body.classId
+              });
+              instructor
+                .save()
+                .then(result => {
+                  res.status(201).json({
+                    message: "Instructor added.",
+                    createdInstructor: instructor
+                  });
+                })
+                .catch(err => {
+                  res.status(422).json(err);
+                });
+            }
+          });
+        }
       });
   },
 
