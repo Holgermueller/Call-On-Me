@@ -1,6 +1,7 @@
 const Instructor = require("../models/instructorModel");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
   register_user: (req, res) => {
@@ -51,9 +52,39 @@ module.exports = {
             message: "Auth failed."
           });
         }
+        bcrypt.compare(
+          req.body.password,
+          instructor[0].password,
+          (err, result) => {
+            if (err) {
+              return res.status(401).json({
+                message: "Auth failed."
+              });
+            }
+            if (result) {
+              jwt.sign(
+                {
+                  email: instructor[0].email,
+                  userId: instructor[0]._id
+                },
+                process.env.JWT_KEY,
+                {
+                  expiresIn: "1h"
+                }
+              );
+              return res.status(200).json({
+                message: "Auth successful",
+                token: token
+              });
+            }
+            res.status(401).json({
+              message: " Auth failed"
+            });
+          }
+        );
       })
       .catch(err => {
-        res.status(422).json({
+        res.status(500).json({
           err: err
         });
       });
