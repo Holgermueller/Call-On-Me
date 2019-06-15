@@ -42,7 +42,22 @@ module.exports = {
       });
   },
 
-  // login_instructor: (req, res) => {},
+  login_instructor: (req, res) => {
+    Instructor.findOne({ email: req.body.email })
+      .exec()
+      .then(instructor => {
+        if (instructor.length < 1) {
+          return res.status(401).json({
+            message: "Auth failed."
+          });
+        }
+      })
+      .catch(err => {
+        res.status(422).json({
+          err: err
+        });
+      });
+  },
 
   delete_account: (req, res) => {
     Instructor.remove({
