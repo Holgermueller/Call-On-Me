@@ -1,12 +1,13 @@
 const router = require("express").Router();
 const classController = require("../controllers/classController");
+const checkAuth = require("../auth/checkAuth");
 
-router.route("/")
-  .post(classController.add_class)
-  .get(classController.get_all_classes);
+router.get("/", checkAuth, classController.get_all_classes);
 
-router.route("/:classId")
-  .get(classController.get_one_class)
-  .delete(classController.remove_class);
+router.post("/", checkAuth, classController.add_class);
+
+router.get("/:classId", checkAuth, classController.get_one_class);
+
+router.delete("/:classId", checkAuth, classController.remove_class);
 
 module.exports = router;
