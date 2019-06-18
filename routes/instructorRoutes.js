@@ -2,10 +2,14 @@ const router = require("express").Router();
 const instructorController = require("../controllers/instructorController");
 const checkAuth = require("../auth/checkAuth");
 
-router.post("/register", instructorController.register_user);
+router.route("/register").post(instructorController.register_user);
 
-router.post("/login", instructorController.user_login);
+router.post("/login", function(req, res) {
+  instructorController.user_login;
+});
 
-router.delete("/:instructorId", checkAuth, instructorController.delete_account);
+router
+  .route("/:instructorId")
+  .delete(checkAuth, instructorController.delete_account);
 
 module.exports = router;
