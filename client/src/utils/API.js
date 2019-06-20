@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API = {
   registerUser: function(new_user) {
-    return axios.post("/instructorAPI/instructor/register", new_user);
+    return axios.post("/instructor/register", new_user);
   },
 
   logUserIn: function() {

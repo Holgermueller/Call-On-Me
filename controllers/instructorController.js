@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 module.exports = {
-  register_user: (req, res) => {
+  register_instructor: (req, res) => {
     Instructor.find({ email: req.body.email })
       .exec()
       .then(instructor => {
@@ -90,7 +90,7 @@ module.exports = {
       });
   },
 
-  delete_account: (req, res) => {
+  delete_instructor: (req, res) => {
     Instructor.remove({
       _id: req.params.instructorId
     })
