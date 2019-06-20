@@ -67,7 +67,7 @@ module.exports = {
                   email: instructor[0].email,
                   userId: instructor[0]._id
                 },
-                process.env.JWT_KEY,
+                "secret",
                 {
                   expiresIn: "1h"
                 }
