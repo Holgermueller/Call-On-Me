@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const instructorController = require("../controllers/instructorController");
-const checkAuth = require("../auth/checkAuth");
+const instructorController = require("../../controllers/instructorController");
+const checkAuth = require("../../auth/checkAuth");
 
 router.route("/register").post(instructorController.register_instructor);
 
