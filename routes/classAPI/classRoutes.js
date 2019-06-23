@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const classController = require("../controllers/classController");
-const checkAuth = require("../auth/checkAuth");
+const classController = require("../../controllers/classController");
+const checkAuth = require("../../auth/checkAuth");
 
 router
   .route("/")

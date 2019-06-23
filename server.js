@@ -5,9 +5,7 @@ const CORS = require("cors");
 const PATH = require("path");
 const MORGAN = require("morgan");
 const MONGOOSE = require("mongoose");
-const instructorRoutes = require("./routes");
-const studentRoutes = require("./routes/studentRoutes");
-const classRoutes = require("./routes/classRoutes");
+const routes = require("./routes");
 
 const APP = EXPRESS();
 const PORT = process.env.PORT || 8081;
@@ -35,9 +33,7 @@ CONNECTION.once("open", () => {
   console.log("db connection!");
 });
 
-APP.use("/instructor", instructorRoutes);
-APP.use("/student", studentRoutes);
-APP.use("/class", classRoutes);
+APP.use("/", routes);
 
 APP.use((req, res, next) => {
   const error = new Error("Not found");
