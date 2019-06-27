@@ -22,6 +22,7 @@ export default {
 
 <style scoped>
 .row {
+  padding: 8px;
   text-align: center;
   margin: 3px auto;
 }

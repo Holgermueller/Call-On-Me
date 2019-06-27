@@ -14,7 +14,7 @@ import Register from "./components/Register";
 import ClassDisplay from "./components/ClassListDisplay";
 import StudentList from "./components/StudentList";
 import Footer from "./components/Layout/Footer";
-import SignIn from "./components/SignIn"
+import SignIn from "./components/SignIn";
 
 export default {
   name: "app",
@@ -28,10 +28,7 @@ export default {
     Footer
   },
   data() {
-    return {
-      msg:
-        "Use this app to call on one of your students without worrying about who to choose!"
-    };
+    return {};
   }
 };
 </script>

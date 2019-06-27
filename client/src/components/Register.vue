@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h2>Register Here:</h2>
+    <h2 class="form-header">Register Here:</h2>
     <div class="row">
       <form @submit.prevent="checkForm" class="col s12">
-        <div class="row" v-if="errors.length">
+        <div class="row errors" v-if="errors.length">
           <b>Please fix the following error(s):</b>
-          <ul>
-            <li v-for="error in errors">{{ error }}</li>
+          <ul class="error-list">
+            <li v-for="(error, index) in errors" v-bind:key="index">{{ error }}</li>
           </ul>
         </div>
         <div class="row">
@@ -29,8 +29,10 @@
             <input type="password" v-model="password_check_input" placeholder="Confirm Password">
           </div>
         </div>
-        <router-link to="/" class="waves-effect waves-light btn-large">BACK</router-link>
-        <button type="submit" class="waves-effect waves-light btn-large">REGISTER</button>
+        <div class="link-button">
+          <router-link to="/" class="waves-effect waves-light btn-large">BACK</router-link>
+          <button type="submit" class="waves-effect waves-light btn-large">REGISTER</button>
+        </div>
       </form>
     </div>
   </div>
@@ -54,7 +56,7 @@ export default {
       e.preventDefault();
       this.errors = [];
       if (!this.username_input) {
-        this.errors.push("Name required.");
+        this.errors.push("Username required.");
       }
       if (!this.email_input) {
         this.errors.push("Email required.");
@@ -89,4 +91,21 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.form-header {
+  text-align: center;
+}
+.link-button {
+  text-align: center;
+}
+.errors {
+  text-align: center;
+  color: red;
+}
+.error-list {
+  text-align: left;
+}
+</style>
+
 
