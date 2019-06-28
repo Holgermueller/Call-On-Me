@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <Header/>
-    {{msg}}
     <router-view></router-view>
     <Footer/>
   </div>

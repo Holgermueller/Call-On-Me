@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2 class="form-header">Register Here:</h2>
+    <h6 class="form-subheader">Please fill out all of the fields.</h6>
     <div class="row">
       <form @submit.prevent="checkForm" class="col s12">
         <div class="row errors" v-if="errors.length">
@@ -21,7 +22,11 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input type="password" v-model="password_input" placeholder="Password">
+            <input
+              type="password"
+              v-model="password_input"
+              placeholder="Password (Must have at least one capital letter, one symbol, and one number.)"
+            >
           </div>
         </div>
         <div class="row">
@@ -52,32 +57,39 @@ export default {
     };
   },
   methods: {
-    checkForm: function(e) {
-      e.preventDefault();
+    checkForm: function() {
       this.errors = [];
-      if (!this.username_input) {
+      if (
+        !this.username_input &&
+        !this.email_input &&
+        !this.password_input &&
+        !this.password_check_input
+      ) {
+        this.errors.push("Please fill out all of the fields.");
+      } else if (!this.username_input) {
         this.errors.push("Username required.");
-      }
-      if (!this.email_input) {
+      } else if (!this.email_input) {
         this.errors.push("Email required.");
       } else if (!this.checkValidEmail(this.email_input)) {
         this.errors.push("Valid email required");
-      }
-      if (!this.password_input) {
+      } else if (!this.password_input) {
         this.errors.push("Password required.");
-      }
-      if (!this.password_check_input) {
+      } else if (!this.password_check_input) {
         this.errors.push("Password confirmation required.");
+      } else if (this.password_input !== this.password_check_input) {
+        this.errors.push("Passwords do not match.");
+      } else {
+        this.registerUser();
+        //router.push("/");
       }
     },
     checkValidEmail: function(email_input) {
       const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
       return regex.test(email_input);
     },
-    confirmPassword: function() {
-      if (this.password_input !== this.password_check_input) {
-        this.errors.push("Passwords do not match.");
-      }
+    checkPassword: function(password_input) {
+      const weakRegex = ;
+      const strongRegex = ;
     },
     registerUser: function() {
       API.registerUser({
@@ -87,6 +99,7 @@ export default {
       })
         .then(res => console.log(res.data))
         .catch(err => console.log(err));
+        this.errors.push("User already exists.");
     }
   }
 };
@@ -94,6 +107,9 @@ export default {
 
 <style scoped>
 .form-header {
+  text-align: center;
+}
+.form-subheader {
   text-align: center;
 }
 .link-button {
