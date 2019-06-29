@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../components/Home";
-import ClassDisplay from "../components/ClassListDisplay";
-import StudentList from "../components/StudentList";
+import InstructorProfile from "../components/InstructorProfile";
+import ClassRoster from "../components/ClassRoster";
 import Register from "../components/Register";
 import SignIn from "../components/SignIn";
 
@@ -27,14 +27,14 @@ export default new VueRouter({
       component: SignIn
     },
     {
-      path: "/:class_display_id",
-      name: "ClassDisplay",
-      component: ClassDisplay
+      path: "/:instructor_profile_id",
+      name: "InstructorProfile",
+      component: InstructorProfile
     },
     {
-      path: "/:student_list_id",
-      name: "StudentList",
-      component: StudentList
+      path: "/:class_roster_id",
+      name: "ClassRoster",
+      component: ClassRoster
     }
   ]
 });

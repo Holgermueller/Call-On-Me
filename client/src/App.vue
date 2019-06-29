@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Header/>
+    <Header />
     <router-view></router-view>
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
@@ -10,8 +10,8 @@
 import Header from "./components/Layout/Header";
 import Home from "./components/Home";
 import Register from "./components/Register";
-import ClassDisplay from "./components/ClassListDisplay";
-import StudentList from "./components/StudentList";
+import InstructorProfile from "./components/InstructorProfile";
+import ClassRoster from "./components/ClassRoster";
 import Footer from "./components/Layout/Footer";
 import SignIn from "./components/SignIn";
 
@@ -21,9 +21,9 @@ export default {
     Header,
     Home,
     Register,
-    ClassDisplay,
+    InstructorProfile,
     SignIn,
-    StudentList,
+    ClassRoster,
     Footer
   },
   data() {

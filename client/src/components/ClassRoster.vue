@@ -12,14 +12,13 @@
         <button type="submit" class="waves-effect waves-light btn-large">SUBMIT</button>
       </form>
     </div>
-
     <router-link to="/editClass" class="waves-effect waves-light btn-large">Edit Roster</router-link>
   </div>
 </template>
 
 <script>
 export default {
-  name: "StudentList",
+  name: "ClassRoster",
   data() {
     return {
       student_name: null
@@ -29,6 +28,15 @@ export default {
     addStudentToClass: function() {
       const studentName = this.student_name;
       console.log(studentName);
+    },
+    displayStudentsInClass: function() {
+
+    },
+    editStudentInfo: function() {
+
+    },
+    removeStudentFromClass: function() {
+
     }
   }
 };

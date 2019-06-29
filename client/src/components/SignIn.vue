@@ -11,7 +11,7 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input type="text" v-model="username_login" placeholder="Username">
+            <input type="text" v-model="username_login" placeholder="Username or email">
           </div>
         </div>
         <div class="row">
@@ -42,7 +42,7 @@ export default {
     verifyUserLogin: function() {
       this.errors = [];
       if (!this.username_login) {
-        this.errors.push("Username required.");
+        this.errors.push("Username or email required.");
       }
       if (!this.password_login) {
         this.errors.push("Password required.");

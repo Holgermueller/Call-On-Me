@@ -33,7 +33,7 @@
 
 <script>
 export default {
-  name: "ClassDisplay",
+  name: "InstructorProfile",
   data() {
     return {
       class_name: null
@@ -43,6 +43,15 @@ export default {
     saveClass: function() {
       const class_name = this.class_name;
       console.log(class_name);
+    },
+    displayListofClasses: function() {
+
+    },
+    editClassName: function() {
+
+    },
+    deleteClass: function() {
+
     }
   }
 };

@@ -80,7 +80,7 @@ export default {
         this.errors.push("Passwords do not match.");
       } else {
         this.registerUser();
-        this.$router.push("/:class_display_id");
+        this.$router.push("/:instructor_profile_id");
       }
     },
     checkValidEmail: function(email_input) {
