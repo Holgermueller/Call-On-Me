@@ -80,7 +80,7 @@ export default {
         this.errors.push("Passwords do not match.");
       } else {
         this.registerUser();
-        //router.push("/");
+        this.$router.push("/:class_display_id");
       }
     },
     checkValidEmail: function(email_input) {
@@ -88,8 +88,7 @@ export default {
       return regex.test(email_input);
     },
     checkPassword: function(password_input) {
-      const weakRegex = ;
-      const strongRegex = ;
+      //const pwd_regex = ;
     },
     registerUser: function() {
       API.registerUser({
