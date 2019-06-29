@@ -12,12 +12,12 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input type="text" v-model="username_input" placeholder="Username">
+            <input type="text" v-model="username_input" placeholder="Username" />
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input type="text" v-model="email_input" placeholder="Email">
+            <input type="text" v-model="email_input" placeholder="Email" />
           </div>
         </div>
         <div class="row">
@@ -26,12 +26,12 @@
               type="password"
               v-model="password_input"
               placeholder="Password (Must have at least one capital letter, one symbol, and one number.)"
-            >
+            />
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input type="password" v-model="password_check_input" placeholder="Confirm Password">
+            <input type="password" v-model="password_check_input" placeholder="Confirm Password" />
           </div>
         </div>
         <div class="link-button">
@@ -80,7 +80,6 @@ export default {
         this.errors.push("Passwords do not match.");
       } else {
         this.registerUser();
-        this.$router.push("/:instructor_profile_id");
       }
     },
     checkValidEmail: function(email_input) {
@@ -89,6 +88,7 @@ export default {
     },
     checkPassword: function(password_input) {
       //const pwd_regex = ;
+      // return pwd_regex.test(password_input);
     },
     registerUser: function() {
       API.registerUser({
@@ -96,9 +96,14 @@ export default {
         email: this.email_input,
         password: this.password_input
       })
-        .then(res => console.log(res.data))
-        .catch(err => console.log(err));
-        this.errors.push("User already exists.");
+        .then(res => {
+          console.log(res.data);
+          this.$router.push("/:instructor_profile_id");
+        })
+        .catch(err => {
+          console.log(err);
+          this.errors.push("User already exists.");
+        });
     }
   }
 };
