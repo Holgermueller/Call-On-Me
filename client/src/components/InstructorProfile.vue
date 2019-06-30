@@ -10,7 +10,7 @@
               v-model="class_name"
               id="class_name"
               placeholder="Ex.: Multicultural Lit T-Th 9-9:50"
-            >
+            />
           </div>
         </div>
         <div class="button">
@@ -28,6 +28,10 @@
         <a href>Class names will go here</a>
       </li>
     </ul>
+    <form @submit.prevent="toRosterPage" class="col s12"><button
+        type="submit"
+          class="waves-effect waves-light btn-large"
+        >to roster page</button></form>
   </div>
 </template>
 
@@ -44,14 +48,12 @@ export default {
       const class_name = this.class_name;
       console.log(class_name);
     },
-    displayListofClasses: function() {
-
-    },
-    editClassName: function() {
-
-    },
-    deleteClass: function() {
-
+    displayListofClasses: function() {},
+    editClassName: function() {},
+    deleteClass: function() {},
+    toRosterPage: function() {
+      console.log("click")
+      this.$router.push("/:class_roster_id");
     }
   }
 };

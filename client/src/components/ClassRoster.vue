@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h2>Student name will go here.</h2>
+    <button>Talk</button>
     <h5>list of students in class will go here</h5>
     <div class="row">
       <form @submit.prevent="addStudentToClass" class="col s12">

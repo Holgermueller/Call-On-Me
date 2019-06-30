@@ -1,8 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../components/Home";
-import InstructorProfile from "../components/InstructorProfile";
 import ClassRoster from "../components/ClassRoster";
+import InstructorProfile from "../components/InstructorProfile";
+
 import Register from "../components/Register";
 import SignIn from "../components/SignIn";
 

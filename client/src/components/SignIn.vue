@@ -2,7 +2,7 @@
   <div>
     <h3>Sign In Here</h3>
     <div class="row">
-      <form @submit.prevent="verifyUserLogin" class="col s12">
+      <form @submit.prevent="loginUser" class="col s12">
         <div class="row" v-if="errors.length">
           <b>Please fix the following error(s):</b>
           <ul>
@@ -52,7 +52,9 @@ export default {
       const user_login_info = {
         username: this.username_login,
         password: this.password_login
+        
       };
+      this.$router.push("/:instructor_profile_id")
     }
   }
 };
