@@ -39,32 +39,37 @@ export default {
   name: "InstructorProfile",
   data() {
     return {
+      listOfClasses: [],
       errors: [],
       class_name: null
     };
   },
+  mounted() {
+    API.getAllClasses()
+      .then(response => {
+        let listOfClasses = response.data;
+        console.log("listOfClasses");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
   methods: {
     saveClass: function() {
       API.addClass({
-      class_name: this.class_name
-      }).then(res => {
-        console.log(res.data);
-      }).catch(err => {
-        console.log(err);
+        class_name: this.class_name
       })
-      console.log(class_name);
-    },
-    displayListofClasses: function() {
-      API.getAllClasses({}).then(res => {
-        console.log(res.data);
-      }).catch(err => {
-        console.log(err);
-      })
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     editClassName: function() {},
     deleteClass: function() {},
     toRosterPage: function() {
-      console.log("click")
+      console.log("click");
       this.$router.push("/:class_roster_id");
     }
   }
