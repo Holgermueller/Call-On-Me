@@ -27,7 +27,7 @@ module.exports = {
   },
 
   get_all_classes: (req, res) => {
-    Class.findAll()
+    Class.find()
       .then(dbModel => {
         res.status(200).json({
           message: "Class list retrieved.",

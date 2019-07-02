@@ -47,8 +47,11 @@ export default {
   mounted() {
     API.getAllClasses()
       .then(response => {
-        let listOfClasses = response.data;
-        console.log("listOfClasses");
+        let listOfClasses = response.data.class_list.map(list => {
+          list.class_name;
+        });
+        console.log(response.data.class_list)
+        console.log(listOfClasses);
       })
       .catch(err => {
         console.log(err);
