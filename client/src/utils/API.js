@@ -5,30 +5,25 @@ const API = {
     return axios.post("/instructorapi/instructor/register", new_user);
   },
 
-  logUserIn: function() {
+  logUserIn: function() {},
 
+  removeUser: function() {},
+
+  addClass: function(new_class) {
+    return axios.post("/classapi/class/", new_class);
   },
 
-  addClass: function() {
-
+  getAllClasses: function() {
+    return axios.get("/classapi/class");
   },
 
-  removeClass: function() {
+  removeClass: function() {},
 
-  },
+  addStudentToClass: function() {},
 
-  addStudentToClass: function() {
+  editStudnetInfo: function() {},
 
-  },
-
-  editStudnetInfo: function() {
-
-  },
-
-  removeStudentFromClass: function() {
-
-  }
-
-}
+  removeStudentFromClass: function() {}
+};
 
 export default API;

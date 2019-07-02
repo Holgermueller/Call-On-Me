@@ -8,7 +8,6 @@
             <input
               type="text"
               v-model="class_name"
-              id="class_name"
               placeholder="Ex.: Multicultural Lit T-Th 9-9:50"
             />
           </div>
@@ -28,27 +27,40 @@
         <a href>Class names will go here</a>
       </li>
     </ul>
-    <form @submit.prevent="toRosterPage" class="col s12"><button
-        type="submit"
-          class="waves-effect waves-light btn-large"
-        >to roster page</button></form>
+    <form @submit.prevent="toRosterPage" class="col s12">
+      <button type="submit" class="waves-effect waves-light btn-large">to roster page</button>
+    </form>
   </div>
 </template>
 
 <script>
+import API from "../utils/API";
 export default {
   name: "InstructorProfile",
   data() {
     return {
+      errors: [],
       class_name: null
     };
   },
   methods: {
     saveClass: function() {
-      const class_name = this.class_name;
+      API.addClass({
+      class_name: this.class_name
+      }).then(res => {
+        console.log(res.data);
+      }).catch(err => {
+        console.log(err);
+      })
       console.log(class_name);
     },
-    displayListofClasses: function() {},
+    displayListofClasses: function() {
+      API.getAllClasses({}).then(res => {
+        console.log(res.data);
+      }).catch(err => {
+        console.log(err);
+      })
+    },
     editClassName: function() {},
     deleteClass: function() {},
     toRosterPage: function() {

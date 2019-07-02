@@ -58,29 +58,31 @@ export default {
   },
   methods: {
     checkForm: function() {
-      this.errors = [];
-      if (
-        !this.username_input &&
-        !this.email_input &&
-        !this.password_input &&
-        !this.password_check_input
-      ) {
-        this.errors.push("Please fill out all of the fields.");
-      } else if (!this.username_input) {
-        this.errors.push("Username required.");
-      } else if (!this.email_input) {
-        this.errors.push("Email required.");
-      } else if (!this.checkValidEmail(this.email_input)) {
-        this.errors.push("Valid email required");
-      } else if (!this.password_input) {
-        this.errors.push("Password required.");
-      } else if (!this.password_check_input) {
-        this.errors.push("Password confirmation required.");
-      } else if (this.password_input !== this.password_check_input) {
-        this.errors.push("Passwords do not match.");
-      } else {
-        this.registerUser();
-      }
+      this.$router.push("/:instructor_profile_id");
+
+      // this.errors = [];
+      // if (
+      //   !this.username_input &&
+      //   !this.email_input &&
+      //   !this.password_input &&
+      //   !this.password_check_input
+      // ) {
+      //   this.errors.push("Please fill out all of the fields.");
+      // } else if (!this.username_input) {
+      //   this.errors.push("Username required.");
+      // } else if (!this.email_input) {
+      //   this.errors.push("Email required.");
+      // } else if (!this.checkValidEmail(this.email_input)) {
+      //   this.errors.push("Valid email required");
+      // } else if (!this.password_input) {
+      //   this.errors.push("Password required.");
+      // } else if (!this.password_check_input) {
+      //   this.errors.push("Password confirmation required.");
+      // } else if (this.password_input !== this.password_check_input) {
+      //   this.errors.push("Passwords do not match.");
+      // } else {
+      //   this.registerUser();
+      // }
     },
     checkValidEmail: function(email_input) {
       const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
