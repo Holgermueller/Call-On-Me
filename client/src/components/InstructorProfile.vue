@@ -20,11 +20,17 @@
 
     <h5 class="sub-header">Select from your list of classes:</h5>
     <ul class="class-list">
-      <li>
-        <a href>Class names will go here</a>
-      </li>
-      <li>
-        <a href>Class names will go here</a>
+      <li
+        v-for="(one_class, index) in listOfClasses"
+        v-bind:key="index"
+        class="class-name-list-item"
+      >
+        <a href>
+          <p>{{one_class}}</p>
+        </a>
+        <button class="edit-button" v-on:click="editClassName">EDIT</button>
+        <button class="delete-button" v-on:click="deleteClass">X</button>
+        <hr />
       </li>
     </ul>
     <form @submit.prevent="toRosterPage" class="col s12">
@@ -48,10 +54,8 @@ export default {
     API.getAllClasses()
       .then(response => {
         let listOfClasses = response.data.class_list.map(list => {
-          list.class_name;
+          this.listOfClasses.push(list.class_name);
         });
-        console.log(response.data.class_list)
-        console.log(listOfClasses);
       })
       .catch(err => {
         console.log(err);
@@ -63,14 +67,19 @@ export default {
         class_name: this.class_name
       })
         .then(res => {
+          this.$router.go();
           console.log(res.data);
         })
         .catch(err => {
           console.log(err);
         });
     },
-    editClassName: function() {},
-    deleteClass: function() {},
+    editClassName: function() {
+      console.log("click");
+    },
+    deleteClass: function() {
+      console.log("click");
+    },
     toRosterPage: function() {
       console.log("click");
       this.$router.push("/:class_roster_id");
@@ -90,6 +99,15 @@ export default {
 }
 .button {
   text-align: center;
+}
+.class-name-list-item {
+  padding: 4px;
+  width: 25%;
+}
+.edit-button,
+.delete-button {
+  border-radius: 15%;
+  padding: 4px;
 }
 </style>
 
