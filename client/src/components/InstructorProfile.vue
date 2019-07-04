@@ -21,12 +21,13 @@
     <h5 class="sub-header">Select from your list of classes:</h5>
     <ul class="class-list">
       <li
-        v-for="(one_class, index) in listOfClasses"
+        v-for="(name_of_class, index) in names_of_classes"
         v-bind:key="index"
+        v-bind:id="name_of_class._id"
         class="class-name-list-item"
       >
         <a href>
-          <p>{{one_class}}</p>
+          <p>{{name_of_class.class_name}}</p>
         </a>
         <button class="delete-button" v-on:click="deleteClass">X</button>
         <hr />
@@ -44,16 +45,16 @@ export default {
   name: "InstructorProfile",
   data() {
     return {
-      listOfClasses: [],
+      names_of_classes: [],
       errors: [],
       class_name: null
     };
   },
   mounted() {
     API.getAllClasses()
-      .then(response => {
-        let listOfClasses = response.data.class_list.map(list => {
-          this.listOfClasses.push(list.class_name);
+      .then(res => {
+        let names_of_classes = res.data.class_list.map(list => {
+          this.names_of_classes.push(list);
         });
       })
       .catch(err => {
