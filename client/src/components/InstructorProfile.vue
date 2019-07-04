@@ -28,7 +28,6 @@
         <a href>
           <p>{{one_class}}</p>
         </a>
-        <button class="edit-button" v-on:click="editClassName">EDIT</button>
         <button class="delete-button" v-on:click="deleteClass">X</button>
         <hr />
       </li>
@@ -74,11 +73,11 @@ export default {
           console.log(err);
         });
     },
-    editClassName: function() {
-      console.log("click");
-    },
-    deleteClass: function() {
-      console.log("click");
+    deleteClass: function(id) {
+      console.log(id);
+      API.removeClass(id)
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err));
     },
     toRosterPage: function() {
       console.log("click");
