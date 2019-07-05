@@ -21,13 +21,14 @@
     <h5 class="sub-header">Select from your list of classes:</h5>
     <ul class="class-list">
       <li
-        v-for="(name_of_class, index) in names_of_classes"
+        v-for="(single_class_info, index) in class_info_array"
         v-bind:key="index"
-        v-bind:id="name_of_class._id"
+        v-bind:id="single_class_info._id"
+        v-bind:value="single_class_info._id"
         class="class-name-list-item"
       >
         <a href>
-          <p>{{name_of_class.class_name}}</p>
+          <p>{{single_class_info.class_name}}</p>
         </a>
         <button class="delete-button" v-on:click="deleteClass">X</button>
         <hr />
@@ -45,7 +46,7 @@ export default {
   name: "InstructorProfile",
   data() {
     return {
-      names_of_classes: [],
+      class_info_array: [],
       errors: [],
       class_name: null
     };
@@ -53,8 +54,8 @@ export default {
   mounted() {
     API.getAllClasses()
       .then(res => {
-        let names_of_classes = res.data.class_list.map(list => {
-          this.names_of_classes.push(list);
+        let class_info_array = res.data.class_list.map(class_info => {
+          this.class_info_array.push(class_info);
         });
       })
       .catch(err => {
@@ -74,10 +75,13 @@ export default {
           console.log(err);
         });
     },
-    deleteClass: function(id) {
-      console.log(id);
-      API.removeClass(id)
-        .then(res => console.log(res.data))
+    deleteClass: function() {
+      let targetId = event.path[1].id;
+      API.deleteClass(targetId)
+        .then(res => {
+          this.$router.go();
+          console.log(res.data);
+        })
         .catch(err => console.log(err));
     },
     toRosterPage: function() {

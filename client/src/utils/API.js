@@ -17,7 +17,7 @@ const API = {
     return axios.get("/classapi/class");
   },
 
-  removeClass: function(id) {
+  deleteClass: function(id) {
     return axios.delete("/classapi/class/" + id);
   },
 
