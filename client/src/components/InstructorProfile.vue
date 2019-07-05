@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2>Hello, Professor {name goes here}</h2>
     <h3 class="form-header">Add a class:</h3>
     <div class="row">
       <form @submit.prevent="saveClass" class="col s12">
@@ -25,17 +26,18 @@
         v-bind:key="index"
         v-bind:id="single_class_info._id"
         v-bind:value="single_class_info._id"
-        class="class-name-list-item"
+        class="card class-name-list-item"
       >
-        <a href>
+        
           <p>{{single_class_info.class_name}}</p>
-        </a>
-        <button class="delete-button" v-on:click="deleteClass">X</button>
-        <hr />
+        <button class="btn waves-effect waves-light btn-large" type="submit">Go to roster</button>
+        <button class="waves-effect waves-light btn-large red" v-on:click="deleteClass">DELETE CLASS</button>
       </li>
     </ul>
     <form @submit.prevent="toRosterPage" class="col s12">
       <button type="submit" class="waves-effect waves-light btn-large">to roster page</button>
+      <button class="waves-effect waves-light btn-large">Edit Account</button>
+      <button class="waves-effect waves-light btn-large red">Delete Account</button>
     </form>
   </div>
 </template>
@@ -111,7 +113,6 @@ export default {
 .edit-button,
 .delete-button {
   border-radius: 15%;
-  padding: 4px;
 }
 </style>
 

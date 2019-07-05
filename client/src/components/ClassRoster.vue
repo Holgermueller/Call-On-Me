@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Student name will go here.</h2>
-    <button>Talk</button>
+    <button>PICK A STUDENT</button>
     <h5>list of students in class will go here</h5>
     <div class="row">
       <form @submit.prevent="addStudentToClass" class="col s12">
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import API from "../utils/API";
 export default {
   name: "ClassRoster",
   data() {
@@ -26,12 +27,14 @@ export default {
       student_name: null
     };
   },
+  mounted(){},
   methods: {
     addStudentToClass: function() {
       const studentName = this.student_name;
       console.log(studentName);
     },
     displayStudentsInClass: function() {
+
 
     },
     editStudentInfo: function() {
