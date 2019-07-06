@@ -27,7 +27,15 @@ export default {
       student_name: null
     };
   },
-  mounted(){},
+  mounted(){
+    API.getAllStudentsForClass()
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  },
   methods: {
     addStudentToClass: function() {
       const studentName = this.student_name;

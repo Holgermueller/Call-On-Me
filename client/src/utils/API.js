@@ -21,6 +21,10 @@ const API = {
     return axios.delete("/classapi/class/" + id);
   },
 
+  getAllStudentsForClass: function() {
+    return axios.get("/studentapi/student");
+  },
+
   addStudentToClass: function() {},
 
   editStudnetInfo: function() {},

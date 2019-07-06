@@ -32,8 +32,14 @@
         <h6>{{single_class_info.class_name}}</h6>
         <hr />
         <div class="button-div">
-          <button class="btn waves-effect waves-light btn-large" type="submit">Go to roster</button>
+          <router-link to="/:class_roster_id" class="waves-effect waves-light btn-large primary">GO TO ROSTER</router-link>
           <button
+            class="btn waves-effect waves-light btn-large"
+            type="submit"
+            v-on:click="toRosterPage"
+          >Go to roster</button>
+          <button
+            type="submit"
             class="waves-effect waves-light btn-large red"
             v-on:click="deleteClass"
           >DELETE CLASS</button>
@@ -83,7 +89,7 @@ export default {
         });
     },
     deleteClass: function() {
-      let targetId = event.path[1].id;
+      let targetId = event.path[2].id;
       API.deleteClass(targetId)
         .then(res => {
           this.$router.go();
@@ -92,8 +98,8 @@ export default {
         .catch(err => console.log(err));
     },
     toRosterPage: function() {
-      console.log("click");
-      this.$router.go("/:class_roster_id");
+      let targetId = event.path[2].id;
+      this.$router.push("/:class_roster_id");
     },
     deleteAccount: function() {},
     editAccount: function() {},
