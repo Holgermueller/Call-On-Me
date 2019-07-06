@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>Hello, Professor {name goes here}</h2>
+    <button v-on:click="logout" class="waves-effect waves-light btn-large">LOG OUT</button>
     <h3 class="form-header">Add a class:</h3>
     <div class="row">
       <form @submit.prevent="saveClass" class="col s12">
@@ -93,7 +94,10 @@ export default {
     toRosterPage: function() {
       console.log("click");
       this.$router.go("/:class_roster_id");
-    }
+    },
+    deleteAccount: function() {},
+    editAccount: function() {},
+    logout: function() {}
   }
 };
 </script>
