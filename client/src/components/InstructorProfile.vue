@@ -28,17 +28,21 @@
         v-bind:value="single_class_info._id"
         class="card class-name-list-item"
       >
-        
-          <p>{{single_class_info.class_name}}</p>
-        <button class="btn waves-effect waves-light btn-large" type="submit">Go to roster</button>
-        <button class="waves-effect waves-light btn-large red" v-on:click="deleteClass">DELETE CLASS</button>
+        <h6>{{single_class_info.class_name}}</h6>
+        <hr />
+        <div class="button-div">
+          <button class="btn waves-effect waves-light btn-large" type="submit">Go to roster</button>
+          <button
+            class="waves-effect waves-light btn-large red"
+            v-on:click="deleteClass"
+          >DELETE CLASS</button>
+        </div>
       </li>
     </ul>
-    <form @submit.prevent="toRosterPage" class="col s12">
-      <button type="submit" class="waves-effect waves-light btn-large">to roster page</button>
+    <div class="col s12 profile-buttons">
       <button class="waves-effect waves-light btn-large">Edit Account</button>
       <button class="waves-effect waves-light btn-large red">Delete Account</button>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -88,7 +92,7 @@ export default {
     },
     toRosterPage: function() {
       console.log("click");
-      this.$router.push("/:class_roster_id");
+      this.$router.go("/:class_roster_id");
     }
   }
 };
@@ -96,8 +100,7 @@ export default {
 
 <style scoped>
 .form-header,
-.sub-header,
-.class-list {
+.sub-header {
   text-align: center;
 }
 .class-list {
@@ -107,12 +110,16 @@ export default {
   text-align: center;
 }
 .class-name-list-item {
+  margin: 2%;
   padding: 4px;
-  width: 25%;
+  height: 25%;
 }
-.edit-button,
-.delete-button {
-  border-radius: 15%;
+hr {
+  margin-bottom: 1%;
+}
+.profile-buttons {
+  margin: 4% 0%;
+  text-align: center;
 }
 </style>
 
