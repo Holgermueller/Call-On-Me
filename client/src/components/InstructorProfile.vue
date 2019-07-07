@@ -32,7 +32,6 @@
         <h6>{{single_class_info.class_name}}</h6>
         <hr />
         <div class="button-div">
-          <router-link to="/class_roster/:id" class="waves-effect waves-light btn-large primary">GO TO ROSTER</router-link>
           <button
             class="btn waves-effect waves-light btn-large"
             type="submit"

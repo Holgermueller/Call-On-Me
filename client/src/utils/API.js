@@ -25,7 +25,9 @@ const API = {
     return axios.get("/studentapi/student");
   },
 
-  addStudentToClass: function() {},
+  addStudentToClass: function(new_student) {
+    return axios.post("/studentapi/student" + new_student);
+  },
 
   editStudnetInfo: function() {},
 
