@@ -33,7 +33,7 @@ export default new VueRouter({
       component: InstructorProfile
     },
     {
-      path: "/:class_roster_id",
+      path: "/class_roster/:id",
       name: "ClassRoster",
       component: ClassRoster
     }
