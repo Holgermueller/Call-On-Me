@@ -81,10 +81,13 @@ export default {
         studentArray[Math.floor(Math.random() * studentArray.length)];
       document.querySelector("#nameDisplay").innerHTML =
         randomStudent.preferred_name;
-      console.log(randomStudent.preferred_name);
     },
-    editStudentInfo: function() {},
-    removeStudentFromClass: function() {}
+    editStudentInfo: function() {
+      console.log("click");
+    },
+    removeStudentFromClass: function() {
+      console.log("click");
+    }
   }
 };
 </script>

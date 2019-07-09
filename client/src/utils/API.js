@@ -29,7 +29,9 @@ const API = {
     return axios.post("/studentapi/student/", new_student);
   },
 
-  editStudnetInfo: function() {},
+  editStudnetInfo: function(id, updateObj) {
+    return axios.put("/studentapi/student/" + id, updateObj);
+  },
 
   removeStudentFromClass: function() {}
 };
