@@ -1,7 +1,9 @@
 <template>
   <div>
-    <h2>Student name will go here.</h2>
-    <button>PICK A STUDENT</button>
+    <div>
+      <h2 class="name-display" id="nameDisplay"></h2>
+    </div>
+    <button v-on:click="chooseAStudent" type="submit">PICK A STUDENT</button>
     <h5>{Class Name} roster:</h5>
     <ul class="roster-display">
       <li
@@ -13,7 +15,17 @@
       <form @submit.prevent="addStudentToClass" class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <input type="text" v-model="student_name" placeholder="Student name" required />
+            <input type="text" v-model="first_name" placeholder="First name" required />
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" v-model="last_name" placeholder="Last name" required />
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" v-model="preferred_name" placeholder="Preferred name" required />
           </div>
         </div>
         <router-link to="/:instructor_profile_id" class="waves-effect waves-light btn-large">BACK</router-link>
@@ -32,7 +44,9 @@ export default {
     return {
       student_array: [],
       errors: [],
-      student_name: null
+      first_name: null,
+      last_name: null,
+      preferred_name: null
     };
   },
   mounted() {
@@ -49,16 +63,26 @@ export default {
   methods: {
     addStudentToClass: function() {
       API.addStudentToClass({
-        student_name: this.student_name
+        first_name: this.first_name,
+        last_name: this.last_name,
+        preferred_name: this.preferred_name
       })
         .then(res => {
           console.log(res.data);
+          this.$router.go();
         })
         .catch(err => {
           console.log(err);
         });
     },
-    displayStudentsInClass: function() {},
+    chooseAStudent: function() {
+      let studentArray = this.student_array;
+      let randomStudent =
+        studentArray[Math.floor(Math.random() * studentArray.length)];
+      document.querySelector("#nameDisplay").innerHTML =
+        randomStudent.preferred_name;
+      console.log(randomStudent.preferred_name);
+    },
     editStudentInfo: function() {},
     removeStudentFromClass: function() {}
   }
@@ -66,5 +90,9 @@ export default {
 </script>
 
 <style scoped>
+.name-display {
+  border: 2px solid black;
+  border-radius: 15px;
+}
 </style>
 
