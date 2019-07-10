@@ -46,7 +46,8 @@ export default {
       errors: [],
       first_name: null,
       last_name: null,
-      preferred_name: null
+      preferred_name: null,
+      times_called: null
     };
   },
   mounted() {
@@ -77,10 +78,25 @@ export default {
     },
     chooseAStudent: function() {
       let studentArray = this.student_array;
+
       let randomStudent =
         studentArray[Math.floor(Math.random() * studentArray.length)];
+      
       document.querySelector("#nameDisplay").innerHTML =
         randomStudent.preferred_name;
+      
+      let randomStudentId = randomStudent._id;
+
+      API.editStudnetInfo(randomStudentId, this.times_called)
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    incrementCalledOn: function() {
+      let times_called = times_called++;
     },
     editStudentInfo: function() {
       console.log("click");
