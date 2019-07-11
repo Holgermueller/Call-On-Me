@@ -9,7 +9,24 @@
       <li
         v-for="(single_student, index) in student_array"
         v-bind:key="index"
-      >{{single_student.preferred_name}}</li>
+        class="card"
+        v-bind:id="single_student._id"
+      >
+        <h6>{{single_student.preferred_name}}</h6>
+        <p>Times called: {{single_student.times_called}}</p>
+        <hr />
+        <button
+          type="submit"
+          class="waves-effect waves-light btn-large"
+          v-on:click="editStudentInfo"
+        >EDIT</button>
+        <button
+          type="submit"
+          class="waves-effect waves-light btn-large red"
+          v-bind:id="single_student._id"
+          v-on:click="removeStudentFromClass"
+        >DELETE</button>
+      </li>
     </ul>
     <div class="row">
       <form @submit.prevent="addStudentToClass" class="col s12">
@@ -32,7 +49,6 @@
         <button type="submit" class="waves-effect waves-light btn-large">SUBMIT</button>
       </form>
     </div>
-    <router-link to="/editClass" class="waves-effect waves-light btn-large">Edit Roster</router-link>
   </div>
 </template>
 
@@ -81,10 +97,10 @@ export default {
 
       let randomStudent =
         studentArray[Math.floor(Math.random() * studentArray.length)];
-      
+
       document.querySelector("#nameDisplay").innerHTML =
         randomStudent.preferred_name;
-      
+
       let randomStudentId = randomStudent._id;
 
       API.editStudnetInfo(randomStudentId, this.times_called)
@@ -102,7 +118,13 @@ export default {
       console.log("click");
     },
     removeStudentFromClass: function() {
-      console.log("click");
+      let targetId = event.target.id;
+      API.removeStudentFromClass(targetId)
+        .then(res => {
+          this.$router.go();
+          console.log(res.data);
+        })
+        .catch(err => console.log(err));
     }
   }
 };

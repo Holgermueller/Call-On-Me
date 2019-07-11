@@ -36,11 +36,13 @@
             class="btn waves-effect waves-light btn-large"
             type="submit"
             v-on:click="toRosterPage"
+            v-bind:id="single_class_info._id"
           >Go to roster</button>
           <button
             type="submit"
             class="waves-effect waves-light btn-large red"
             v-on:click="deleteClass"
+            v-bind:id="single_class_info._id"
           >DELETE CLASS</button>
         </div>
       </li>
@@ -88,7 +90,7 @@ export default {
         });
     },
     deleteClass: function() {
-      let targetId = event.path[2].id;
+      let targetId = event.target.id;
       API.deleteClass(targetId)
         .then(res => {
           this.$router.go();

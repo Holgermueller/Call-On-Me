@@ -34,7 +34,9 @@ const API = {
     return axios.put("/studentapi/student/" + id, updateObj);
   },
 
-  removeStudentFromClass: function() {}
+  removeStudentFromClass: function(id) {
+    return axios.delete("/studentapi/student/" + id);
+  }
 };
 
 export default API;
