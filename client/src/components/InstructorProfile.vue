@@ -99,7 +99,7 @@ export default {
         .catch(err => console.log(err));
     },
     toRosterPage: function() {
-      let targetId = event.path[2].id;
+      let targetId = event.target.id;
       this.$router.push("/class_roster/:id");
     },
     deleteAccount: function() {},

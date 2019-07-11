@@ -3,8 +3,11 @@
     <div>
       <h2 class="name-display" id="nameDisplay"></h2>
     </div>
+
     <button v-on:click="chooseAStudent" type="submit">PICK A STUDENT</button>
+
     <h5>{Class Name} roster:</h5>
+
     <ul class="roster-display">
       <li
         v-for="(single_student, index) in student_array"
@@ -20,6 +23,7 @@
           class="waves-effect waves-light btn-large"
           v-on:click="editStudentInfo"
         >EDIT</button>
+
         <button
           type="submit"
           class="waves-effect waves-light btn-large red"
@@ -28,6 +32,12 @@
         >DELETE</button>
       </li>
     </ul>
+
+    <div v-if="showModal">
+      <h1>modal</h1>
+      <button @click="showModal=!showModal"></button>
+    </div>
+
     <div class="row">
       <form @submit.prevent="addStudentToClass" class="col s12">
         <div class="row">
@@ -63,7 +73,8 @@ export default {
       first_name: null,
       last_name: null,
       preferred_name: null,
-      times_called: null
+      times_called: null,
+      showModal: false
     };
   },
   mounted() {
@@ -116,6 +127,7 @@ export default {
     },
     editStudentInfo: function() {
       console.log("click");
+      this.showModal = true;
     },
     removeStudentFromClass: function() {
       let targetId = event.target.id;
