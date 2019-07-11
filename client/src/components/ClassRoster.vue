@@ -18,11 +18,17 @@
         <h6>{{single_student.preferred_name}}</h6>
         <p>Times called: {{single_student.times_called}}</p>
         <hr />
-        <button
-          type="submit"
-          class="waves-effect waves-light btn-large"
-          v-on:click="editStudentInfo"
-        >EDIT</button>
+        <button v-bind:data-target="single_student._id" class="btn-large modal-trigger">Modal</button>
+
+        <div v-bind:id="single_student._id" class="modal">
+          <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+          </div>
+        </div>
 
         <button
           type="submit"
@@ -32,11 +38,6 @@
         >DELETE</button>
       </li>
     </ul>
-
-    <div v-if="showModal">
-      <h1>modal</h1>
-      <button @click="showModal=!showModal"></button>
-    </div>
 
     <div class="row">
       <form @submit.prevent="addStudentToClass" class="col s12">
@@ -64,8 +65,10 @@
 
 <script>
 import API from "../utils/API";
+
 export default {
   name: "ClassRoster",
+  components: {},
   data() {
     return {
       student_array: [],
@@ -73,11 +76,15 @@ export default {
       first_name: null,
       last_name: null,
       preferred_name: null,
-      times_called: null,
-      showModal: false
+      times_called: null
     };
   },
   mounted() {
+    document.addEventListener("DOMContentLoaded", function() {
+      const elems = document.querySelectorAll(".modal");
+      const instances = M.Modal.init(elems);
+    });
+
     API.getAllStudentsForClass()
       .then(res => {
         let student_array = res.data.roster.map(students => {
@@ -127,7 +134,6 @@ export default {
     },
     editStudentInfo: function() {
       console.log("click");
-      this.showModal = true;
     },
     removeStudentFromClass: function() {
       let targetId = event.target.id;
