@@ -18,17 +18,11 @@
         <h6>{{single_student.preferred_name}}</h6>
         <p>Times called: {{single_student.times_called}}</p>
         <hr />
-        <button v-bind:data-target="single_student._id" class="btn-large modal-trigger">Modal</button>
-
-        <div v-bind:id="single_student._id" class="modal">
-          <div class="modal-content">
-            <h4>Modal Header</h4>
-            <p>A bunch of text</p>
-          </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-          </div>
-        </div>
+        <button
+          data-target="modal1"
+          v-bind:id="single_student._id"
+          class="waves-effect waves-light btn-large modal-trigger"
+        >Modal</button>
 
         <button
           type="submit"
@@ -38,6 +32,16 @@
         >DELETE</button>
       </li>
     </ul>
+
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+      </div>
+    </div>
 
     <div class="row">
       <form @submit.prevent="addStudentToClass" class="col s12">
