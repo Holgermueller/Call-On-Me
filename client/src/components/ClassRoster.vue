@@ -15,8 +15,28 @@
         class="card"
         v-bind:id="single_student._id"
       >
-        <h6>{{single_student.preferred_name}}</h6>
-        <p>Times called: {{single_student.times_called}}</p>
+        <h4>{{single_student.preferred_name}}</h4>
+        <h5>Times called: {{single_student.times_called}}</h5>
+        <hr />
+
+        <div class="edit-form">
+          <div>
+            <h6>Edit info for:</h6>
+            <h6>{{single_student.preferred_name}}</h6>
+            <hr />
+            <form action>
+              <input type="text" v-bind:value="single_student.first_name" />
+              <input type="text" v-bind:value="single_student.last_name" />
+              <input type="text" v-bind:value="single_student.preferred_name" />
+              <button class="modal-close waves-effect waves-light waves-red btn red">CANCEL</button>
+              <button
+                class="waves-effect waves-light waves-green btn"
+                v-on:click="editStudentInfoSubmit"
+              >SUBMIT</button>
+            </form>
+          </div>
+        </div>
+
         <hr />
         <button
           data-target="modal1"
@@ -33,26 +53,6 @@
         >DELETE</button>
       </li>
     </ul>
-
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-        <h4>Edit info for:</h4>
-        <h4>Student preferred name goes here.</h4>
-        <hr />
-        <form action>
-          <input type="text" placeholder="First name" />
-          <input type="text" placeholder="Family Name" />
-          <input type="text" placeholder="Preferred name" />
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button class="modal-close waves-effect waves-light waves-red btn red">CANCEL</button>
-        <button
-          class="waves-effect waves-light waves-green btn"
-          v-on:click="editStudentInfoSubmit"
-        >SUBMIT</button>
-      </div>
-    </div>
 
     <div class="row">
       <form @submit.prevent="addStudentToClass" class="col s12">
@@ -95,11 +95,6 @@ export default {
     };
   },
   mounted() {
-    document.addEventListener("DOMContentLoaded", function() {
-      const elems = document.querySelectorAll(".modal");
-      const instances = M.Modal.init(elems);
-    });
-
     API.getAllStudentsForClass()
       .then(res => {
         let student_array = res.data.roster.map(students => {
