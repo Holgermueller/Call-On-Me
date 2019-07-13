@@ -22,7 +22,8 @@
           data-target="modal1"
           v-bind:id="single_student._id"
           class="waves-effect waves-light btn-large modal-trigger"
-        >Modal</button>
+          v-on:click="editButtonToOpenModal"
+        >EDIT</button>
 
         <button
           type="submit"
@@ -35,11 +36,21 @@
 
     <div id="modal1" class="modal">
       <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+        <h4>Edit info for:</h4>
+        <h4>Student preferred name goes here.</h4>
+        <hr />
+        <form action>
+          <input type="text" placeholder="First name" />
+          <input type="text" placeholder="Family Name" />
+          <input type="text" placeholder="Preferred name" />
+        </form>
       </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        <button class="modal-close waves-effect waves-light waves-red btn red">CANCEL</button>
+        <button
+          class="waves-effect waves-light waves-green btn"
+          v-on:click="editStudentInfoSubmit"
+        >SUBMIT</button>
       </div>
     </div>
 
@@ -136,7 +147,7 @@ export default {
     incrementCalledOn: function() {
       let times_called = times_called++;
     },
-    editStudentInfo: function() {
+    editStudentInfoSubmit: function() {
       console.log("click");
     },
     removeStudentFromClass: function() {
@@ -147,6 +158,13 @@ export default {
           console.log(res.data);
         })
         .catch(err => console.log(err));
+    },
+    editButtonToOpenModal: function() {
+      console.log("click");
+    },
+    setDataForModal: function() {
+      let student_data = this.student_array;
+      let student_name = student_data.preferred_name;
     }
   }
 };
