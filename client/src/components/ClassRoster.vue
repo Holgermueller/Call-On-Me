@@ -25,12 +25,21 @@
             <h6>{{single_student.preferred_name}}</h6>
             <hr />
             <form action>
-              <input type="text" v-bind:value="single_student.first_name" />
-              <input type="text" v-bind:value="single_student.last_name" />
-              <input type="text" v-bind:value="single_student.preferred_name" />
+              <input
+                type="text"
+                v-bind:placeholder="single_student.first_name"
+                v-model="first_name_edit"
+              />
+              <input type="text" v-bind:placeholder="single_student.last_name" v-model="last_name_edit" />
+              <input
+                type="text"
+                v-bind:placeholder="single_student.preferred_name"
+                v-model="preferred_name_edit"
+              />
               <button class="modal-close waves-effect waves-light waves-red btn red">CANCEL</button>
               <button
                 class="waves-effect waves-light waves-green btn"
+                v-bind:id="single_student._id"
                 v-on:click="editStudentInfoSubmit"
               >SUBMIT</button>
             </form>
@@ -91,9 +100,13 @@ export default {
       first_name: null,
       last_name: null,
       preferred_name: null,
-      times_called: null
+      times_called: null,
+      first_name_edit: this.first_name_edit,
+      last_name_edit: this.last_name_edit,
+      preferred_name_edit: this.preferred_name_edit
     };
   },
+
   mounted() {
     API.getAllStudentsForClass()
       .then(res => {
@@ -105,6 +118,7 @@ export default {
         console.log(err);
       });
   },
+
   methods: {
     addStudentToClass: function() {
       API.addStudentToClass({
@@ -120,6 +134,7 @@ export default {
           console.log(err);
         });
     },
+
     chooseAStudent: function() {
       let studentArray = this.student_array;
 
@@ -139,12 +154,31 @@ export default {
           console.log(err);
         });
     },
+
     incrementCalledOn: function() {
       let times_called = times_called++;
     },
-    editStudentInfoSubmit: function() {
-      console.log("click");
+
+    editStudentInfoSubmit: function(e) {
+      e.preventDefault();
+
+      let targetId = event.target.id;
+
+      let updatedStudentInfoObj = {
+        first_name: this.first_name_edit,
+        last_name: this.last_name_edit,
+        preferred_name: this.preferred_name_edit
+      };
+
+      API.editStudnetInfo(targetId, updatedStudentInfoObj)
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
+
     removeStudentFromClass: function() {
       let targetId = event.target.id;
       API.removeStudentFromClass(targetId)
@@ -154,12 +188,9 @@ export default {
         })
         .catch(err => console.log(err));
     },
+
     editButtonToOpenModal: function() {
       console.log("click");
-    },
-    setDataForModal: function() {
-      let student_data = this.student_array;
-      let student_name = student_data.preferred_name;
     }
   }
 };
