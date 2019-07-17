@@ -8,37 +8,7 @@
 
     <h5>{Class Name} roster:</h5>
 
-    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add a Student</a>
-
-    <div id="modal1" class="modal">
-      <div class="modal-header">
-        <h3>Add a Student:</h3>
-      </div>
-      <div class="row">
-        <form @submit.prevent="addStudentToClass" class="col s12">
-          <div class="row">
-            <div class="input-field col s12">
-              <input type="text" v-model="first_name" placeholder="First name" required />
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input type="text" v-model="last_name" placeholder="Last name" required />
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input type="text" v-model="preferred_name" placeholder="Preferred name" required />
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button v-on:click="closeModal" class="waves-effect waves-light btn-large red">CANCEL</button>
-            <button type="submit" class="waves-effect waves-light btn-large">SUBMIT</button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <AddStudentModal />
 
     <ul class="roster-display">
       <li
@@ -106,17 +76,16 @@
 
 <script>
 import API from "../utils/API";
+import AddStudentModal from "../components/Modals/AddStudentModal";
 
 export default {
   name: "ClassRoster",
-  components: {},
+  components: {
+    AddStudentModal
+  },
   data() {
     return {
       student_array: [],
-      errors: [],
-      first_name: null,
-      last_name: null,
-      preferred_name: null,
       times_called: null,
       first_name_edit: this.first_name_edit,
       last_name_edit: this.last_name_edit,
@@ -125,11 +94,6 @@ export default {
   },
 
   mounted() {
-    document.addEventListener("DOMContentLoaded", function() {
-      const elems = document.querySelectorAll(".modal");
-      const instances = M.Modal.init(elems);
-    });
-
     API.getAllStudentsForClass()
       .then(res => {
         let student_array = res.data.roster.map(students => {
@@ -142,21 +106,6 @@ export default {
   },
 
   methods: {
-    addStudentToClass: function() {
-      API.addStudentToClass({
-        first_name: this.first_name,
-        last_name: this.last_name,
-        preferred_name: this.preferred_name
-      })
-        .then(res => {
-          console.log(res.data);
-          this.$router.go();
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
-
     chooseAStudent: function() {
       let studentArray = this.student_array;
 
@@ -214,10 +163,6 @@ export default {
 
     editButtonToOpenDropdown: function() {
       console.log("click");
-    },
-
-    closeModal:function() {
-      console.log('click');
     }
   }
 };
