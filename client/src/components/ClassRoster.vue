@@ -4,7 +4,7 @@
       <h2 class="name-display" id="nameDisplay"></h2>
     </div>
 
-    <button v-on:click="chooseAStudent" type="submit">PICK A STUDENT</button>
+    <button v-on:click="chooseAndIncrement" type="submit">PICK A STUDENT</button>
 
     <h5>{Class Name} roster:</h5>
 
@@ -86,7 +86,7 @@ export default {
   data() {
     return {
       student_array: [],
-      times_called: null,
+      times_called: this.times_called,
       first_name_edit: this.first_name_edit,
       last_name_edit: this.last_name_edit,
       preferred_name_edit: this.preferred_name_edit
@@ -116,18 +116,31 @@ export default {
         randomStudent.preferred_name;
 
       let randomStudentId = randomStudent._id;
-
-      API.editStudnetInfo(randomStudentId, this.times_called)
-        .then(res => {
-          console.log(res.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
     },
 
     incrementCalledOn: function() {
-      let times_called = times_called++;
+      let studentArray = this.student_array;
+      // Number.prototype.increment = () => {
+      //   return this + 1;
+      // };
+
+      let times_called = randomStudent.times_called;
+      times_called = times_called.incrementCalledOn();
+      let name = randomStudent.preferred_name;
+      console.log({ name, times_called });
+
+      // API.editStudnetInfo(randomStudentId, this.times_called)
+      //   .then(res => {
+      //     console.log(res.data);
+      //   })
+      //   .catch(err => {
+      //     console.log(err);
+      //   });
+    },
+
+    chooseAndIncrement: function() {
+      this.chooseAStudent();
+      this.incrementCalledOn();
     },
 
     editStudentInfoSubmit: function(e) {
@@ -156,7 +169,6 @@ export default {
       API.removeStudentFromClass(targetId)
         .then(res => {
           this.$router.go();
-          console.log(res.data);
         })
         .catch(err => console.log(err));
     },

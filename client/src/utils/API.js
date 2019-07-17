@@ -30,7 +30,6 @@ const API = {
   },
 
   editStudnetInfo: function(id, updateObj) {
-    console.log(updateObj);
     return axios.put("/studentapi/student/" + id, updateObj);
   },
 
