@@ -18,7 +18,7 @@
         v-bind:id="single_student._id"
       >
         <h4>{{single_student.preferred_name}}</h4>
-        <h5>Times called: {{single_student.times_called}}</h5>
+        <h5 v-bind:value="single_student.times_called">Times called: {{single_student.times_called}}</h5>
         <hr />
 
         <div class="edit-form">
@@ -117,17 +117,18 @@ export default {
 
       let increment_id = randomStudent._id;
 
-      let calls_calls_to_increment = this.times_called_to_increment;
+      let times_called = randomStudent.times_called;
 
-      let incremented_calls = calls_calls_to_increment+1;
+      times_called++;
 
       let incrementObject = {
-        times_called: incremented_calls
+        times_called: times_called
       };
 
       API.editStudnetInfo(increment_id, incrementObject)
         .then(res => {
           console.log(res.data);
+          this.$router.go();
         })
         .catch(err => {
           console.log(err);
