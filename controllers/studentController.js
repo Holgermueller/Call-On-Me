@@ -68,7 +68,8 @@ module.exports = {
             _id: result.id,
             first_name: result.first_name,
             last_name: result.last_name,
-            preferred_name: result.preferred_name
+            preferred_name: result.preferred_name,
+            times_called: result.times_called
           }
         });
       })

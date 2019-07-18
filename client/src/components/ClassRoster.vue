@@ -4,7 +4,7 @@
       <h2 class="name-display" id="nameDisplay"></h2>
     </div>
 
-    <button v-on:click="chooseAndIncrement" type="submit">PICK A STUDENT</button>
+    <button v-on:click="chooseAStudent" type="submit">PICK A STUDENT</button>
 
     <h5>{Class Name} roster:</h5>
 
@@ -86,7 +86,7 @@ export default {
   data() {
     return {
       student_array: [],
-      times_called: this.times_called,
+      times_called_to_increment: this.times_called,
       first_name_edit: this.first_name_edit,
       last_name_edit: this.last_name_edit,
       preferred_name_edit: this.preferred_name_edit
@@ -115,32 +115,23 @@ export default {
       document.querySelector("#nameDisplay").innerHTML =
         randomStudent.preferred_name;
 
-      let randomStudentId = randomStudent._id;
-    },
+      let increment_id = randomStudent._id;
 
-    incrementCalledOn: function() {
-      let studentArray = this.student_array;
-      // Number.prototype.increment = () => {
-      //   return this + 1;
-      // };
+      let calls_calls_to_increment = this.times_called_to_increment;
 
-      let times_called = randomStudent.times_called;
-      times_called = times_called.incrementCalledOn();
-      let name = randomStudent.preferred_name;
-      console.log({ name, times_called });
+      let incremented_calls = calls_calls_to_increment+1;
 
-      // API.editStudnetInfo(randomStudentId, this.times_called)
-      //   .then(res => {
-      //     console.log(res.data);
-      //   })
-      //   .catch(err => {
-      //     console.log(err);
-      //   });
-    },
+      let incrementObject = {
+        times_called: incremented_calls
+      };
 
-    chooseAndIncrement: function() {
-      this.chooseAStudent();
-      this.incrementCalledOn();
+      API.editStudnetInfo(increment_id, incrementObject)
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
 
     editStudentInfoSubmit: function(e) {
