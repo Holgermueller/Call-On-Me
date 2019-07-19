@@ -12,8 +12,8 @@
 
     <ul class="roster-display">
       <li
-        v-for="(single_student, index) in student_array"
-        v-bind:key="index"
+        v-for="single_student in student_array"
+        v-bind:key="single_student._id"
         class="card"
         v-bind:id="single_student._id"
       >
@@ -108,7 +108,6 @@ export default {
   methods: {
     chooseAStudent: function() {
       let studentArray = this.student_array;
-
       let randomStudent =
         studentArray[Math.floor(Math.random() * studentArray.length)];
 
@@ -116,19 +115,16 @@ export default {
         randomStudent.preferred_name;
 
       let increment_id = randomStudent._id;
-
       let times_called = randomStudent.times_called;
-
       times_called++;
-
       let incrementObject = {
         times_called: times_called
       };
 
       API.editStudnetInfo(increment_id, incrementObject)
         .then(res => {
-          console.log(res.data);
-          this.$router.go();
+          document.querySelector(increment_id).innerHTML =
+            randomStudent.times_called;
         })
         .catch(err => {
           console.log(err);
@@ -137,7 +133,6 @@ export default {
 
     editStudentInfoSubmit: function(e) {
       e.preventDefault();
-
       let targetId = event.target.id;
 
       let updatedStudentInfoObj = {
