@@ -1,10 +1,6 @@
 <template>
   <div>
-    <div>
-      <h2 class="name-display" id="nameDisplay"></h2>
-    </div>
-
-    <button v-on:click="chooseAStudent" type="submit">PICK A STUDENT</button>
+    <StudentNameDisplay v-bind:student_array="student_array" />
 
     <h5>{Class Name} roster:</h5>
 
@@ -26,6 +22,7 @@
             <h6>Edit info for:</h6>
             <h6>{{single_student.preferred_name}}</h6>
             <hr />
+
             <form action>
               <input
                 type="text"
@@ -77,11 +74,13 @@
 <script>
 import API from "../utils/API";
 import AddStudentModal from "../components/Modals/AddStudentModal";
+import StudentNameDisplay from "../components/StudentNameDisplay/StudentNameDisplay";
 
 export default {
   name: "ClassRoster",
   components: {
-    AddStudentModal
+    AddStudentModal,
+    StudentNameDisplay
   },
   data() {
     return {
@@ -106,31 +105,6 @@ export default {
   },
 
   methods: {
-    chooseAStudent: function() {
-      let studentArray = this.student_array;
-      let randomStudent =
-        studentArray[Math.floor(Math.random() * studentArray.length)];
-
-      document.querySelector("#nameDisplay").innerHTML =
-        randomStudent.preferred_name;
-
-      let increment_id = randomStudent._id;
-      let times_called = randomStudent.times_called;
-      times_called++;
-      let incrementObject = {
-        times_called: times_called
-      };
-
-      API.editStudnetInfo(increment_id, incrementObject)
-        .then(res => {
-          document.querySelector(increment_id).innerHTML =
-            randomStudent.times_called;
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
-
     editStudentInfoSubmit: function(e) {
       e.preventDefault();
       let targetId = event.target.id;
@@ -168,11 +142,6 @@ export default {
 </script>
 
 <style scoped>
-.name-display {
-  border: 2px solid black;
-  border-radius: 15px;
-}
-
 .edit-form {
   width: 85%;
   margin: 1% auto;
