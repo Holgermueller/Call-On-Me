@@ -9,14 +9,14 @@
 </template>
 
 <script>
-import LogInModal from "../components/Modals/LogInModal"
 import RegistrationModal from "../components/Modals/RegistrationModal"
+import LogInModal from "../components/Modals/LogInModal"
 
 export default {
   name: "Home",
   components: {
+    RegistrationModal,
     LogInModal,
-    RegistrationModal
   }
 };
 </script>

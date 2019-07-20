@@ -75,8 +75,8 @@ export default {
   },
   mounted() {
     document.addEventListener("DOMContentLoaded", function() {
-      const elems = document.querySelectorAll(".modal");
-      const instances = M.Modal.init(elems);
+      const elementss = document.querySelectorAll("#modal1");
+      const instances = M.Modal.init(elementss);
     });
   },
   methods: {

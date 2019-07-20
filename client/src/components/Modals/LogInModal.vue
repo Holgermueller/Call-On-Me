@@ -1,8 +1,8 @@
 <template>
   <div>
-    <a class="waves-effect waves-light btn modal-trigger btn-large" href="#modal1">Log In</a>
+    <button class="waves-effect waves-light btn modal-trigger btn-large" href="#modal2">Log In</button>
 
-    <div id="modal1" class="modal">
+    <div id="modal2" class="modal">
       <div class="modal-content">
         <h3>Sign In Here</h3>
         <div class="row">
@@ -48,7 +48,7 @@ export default {
   },
   mounted() {
     document.addEventListener("DOMContentLoaded", function() {
-      const elems = document.querySelectorAll(".modal");
+      const elems = document.querySelectorAll("#modal2");
       const instances = M.Modal.init(elems);
     });
   },
