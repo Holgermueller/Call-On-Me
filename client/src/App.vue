@@ -9,20 +9,16 @@
 <script>
 import Header from "./components/Layout/Header";
 import Home from "./components/Home";
-import Register from "./components/Register";
 import InstructorProfile from "./components/InstructorProfile";
 import ClassRoster from "./components/ClassRoster";
 import Footer from "./components/Layout/Footer";
-import SignIn from "./components/SignIn";
 
 export default {
   name: "app",
   components: {
     Header,
     Home,
-    Register,
     InstructorProfile,
-    SignIn,
     ClassRoster,
     Footer
   },

@@ -2,15 +2,22 @@
   <div>
     <h2 class="page-header">Welcome to Call On Me</h2>
     <div class="actions">
-      <router-link to="/register" class="waves-effect waves-light btn-large">Register</router-link>
-      <router-link to="/signin" class="waves-effect waves-light btn-large">Sign In</router-link>
+      <RegistrationModal />
+      <LogInModal />
     </div>
   </div>
 </template>
 
 <script>
+import LogInModal from "../components/Modals/LogInModal"
+import RegistrationModal from "../components/Modals/RegistrationModal"
+
 export default {
-  name: "Home"
+  name: "Home",
+  components: {
+    LogInModal,
+    RegistrationModal
+  }
 };
 </script>
 
