@@ -38,7 +38,7 @@
 import API from "../../utils/API";
 
 export default {
-  name: "AddStudentModal",
+  name: "AddStudentDialog",
   mounted() {
     document.addEventListener("DOMContentLoaded", function() {
       const elems = document.querySelectorAll(".modal");

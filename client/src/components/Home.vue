@@ -2,21 +2,21 @@
   <div>
     <h2 class="page-header">Welcome to Call On Me</h2>
     <div class="actions">
-      <RegistrationModal />
-      <LogInModal />
+      <RegistrationDialog />
+      <LogInDialog />
     </div>
   </div>
 </template>
 
 <script>
-import RegistrationModal from "../components/Modals/RegistrationModal"
-import LogInModal from "../components/Modals/LogInModal"
+import RegistrationDialog from "../components/Dialogs/RegistrationDialog"
+import LogInDialog from "../components/Dialogs/LogInDialog"
 
 export default {
   name: "Home",
   components: {
-    RegistrationModal,
-    LogInModal,
+    RegistrationDialog,
+    LogInDialog,
   }
 };
 </script>

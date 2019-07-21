@@ -61,7 +61,7 @@
 import API from "../../utils/API";
 
 export default {
-  name: "RegistrationModal",
+  name: "RegistratioDialog",
   data: () => {
     return {
       errors: [],

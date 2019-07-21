@@ -42,7 +42,7 @@
 import API from "../../utils/API";
 
 export default {
-  name: "LogInModal",
+  name: "LogInDialog",
   data: () => {
     return {
       errors: [],

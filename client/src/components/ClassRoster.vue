@@ -4,7 +4,7 @@
 
     <h5>{Class Name} roster:</h5>
 
-    <AddStudentModal />
+    <AddStudentDialog />
 
     <ul class="roster-display">
       <li
@@ -73,13 +73,13 @@
 
 <script>
 import API from "../utils/API";
-import AddStudentModal from "../components/Modals/AddStudentModal";
+import AddStudentDialog from "../components/Dialogs/AddStudentDialog";
 import StudentNameDisplay from "../components/StudentNameDisplay/StudentNameDisplay";
 
 export default {
   name: "ClassRoster",
   components: {
-    AddStudentModal,
+    AddStudentDialog,
     StudentNameDisplay
   },
   data() {
