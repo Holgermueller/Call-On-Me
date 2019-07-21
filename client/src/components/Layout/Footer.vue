@@ -1,5 +1,8 @@
 <template>
-  <footer class="page-footer footer-copyright green">&copy; 2019 H.M.Mueller</footer>
+  <v-footer class="pa-3 green">
+    <v-spacer></v-spacer>
+    <footer>&copy; 2019 H.M.Mueller</footer>
+  </v-footer>
 </template>
 
 <script>
@@ -11,8 +14,6 @@ export default {
 <style scoped>
 footer {
   padding: 8px;
-  text-align: center;
-  width: fit-content;
   margin: 3px auto;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="waves-effect waves-light btn modal-trigger btn-large" href="#modal2">Log In</button>
+    <button class="waves-effect waves-light btn modal-trigger btn-large" href="#modal2">SIGN In</button>
 
     <div id="modal2" class="modal">
       <div class="modal-content">
@@ -24,7 +24,11 @@
               </div>
             </div>
             <div class="link-button">
-              <button type="submit" v-on:click="closeModal" class="waves-effect waves-light btn-large">CANCEL</button>
+              <button
+                type="submit"
+                v-on:click="closeModal"
+                class="waves-effect waves-light btn-large red"
+              >CANCEL</button>
               <button type="submit" class="waves-effect waves-light btn-large">SUBMIT</button>
             </div>
           </form>
@@ -71,7 +75,10 @@ export default {
     },
     closeModal: function(e) {
       e.preventDefault();
-      console.log('click');
+
+      const elems = document.querySelector("#modal2");
+      const instances = M.Modal.close(elems);
+      console.log("click");
     }
   }
 };
