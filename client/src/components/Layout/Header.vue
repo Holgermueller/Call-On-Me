@@ -1,16 +1,12 @@
 <template>
-  <div class="row">
-    <div class="col s12 m6">
-      <div class="card green darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">
-            <header class="header">
-              <h1>Call On Me!!</h1>
-            </header>
-          </span>
-        </div>
-      </div>
-    </div>
+  <div>
+    <v-card>
+      <v-responsive>
+        <v-card-text class="green">
+          <h1>Call On Me!!</h1>
+        </v-card-text>
+      </v-responsive>
+    </v-card>
   </div>
 </template>
 
@@ -21,7 +17,7 @@ export default {
 </script>
 
 <style scoped>
-.row {
+h1 {
   padding: 8px;
   text-align: center;
   margin: 3px auto;

@@ -1,40 +1,40 @@
 <template>
   <div>
-    <button class="waves-effect waves-light btn modal-trigger btn-large" href="#modal2">SIGN In</button>
+    <v-dialog v-model="dialog" width="500">
+      <template v-slot:activator="{on}">
+        <v-btn color="green" dark v-on="on" large>SIGN IN</v-btn>
+      </template>
 
-    <div id="modal2" class="modal">
-      <div class="modal-content">
-        <h3>Sign In Here</h3>
-        <div class="row">
-          <form @submit.prevent="loginUser" class="col s12">
-            <div class="row" v-if="errors.length">
-              <b>Please fix the following error(s):</b>
-              <ul>
-                <li v-for="(error, index) in errors" v-bind:key="index">{{error}}</li>
-              </ul>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input type="text" v-model="username_login" placeholder="Username or email" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input type="password" v-model="password_login" placeholder="Password" />
-              </div>
-            </div>
-            <div class="link-button">
-              <button
-                type="submit"
-                v-on:click="closeModal"
-                class="waves-effect waves-light btn-large red"
-              >CANCEL</button>
-              <button type="submit" class="waves-effect waves-light btn-large">SUBMIT</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Sign In Here</span>
+        </v-card-title>
+        <v-card-text>
+          <div class="errors" v-if="errors.length">
+            <b>Please fix the following error(s):</b>
+            <ul class="error-list">
+              <li v-for="(error, index) in errors" v-bind:key="index">{{error}}</li>
+            </ul>
+          </div>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12>
+                <v-text-field v-model="username_login" label="Username or Email*"></v-text-field>
+              </v-flex>
+
+              <v-flex xs12>
+                <v-text-field v-model="password_login" label="Password*"></v-text-field>
+              </v-flex>
+            </v-layout>
+          </v-container>
+          <small>* Indicates required field.</small>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="red darken-1" @click="dialog = false">Cancel</v-btn>
+          <v-btn color="green darken-1" @click="loginUser">Submit</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -43,19 +43,15 @@ import API from "../../utils/API";
 
 export default {
   name: "LogInModal",
-  data() {
+  data: () => {
     return {
       errors: [],
       username_login: null,
-      password_login: null
+      password_login: null,
+      dialog: false
     };
   },
-  mounted() {
-    document.addEventListener("DOMContentLoaded", function() {
-      const elems = document.querySelectorAll("#modal2");
-      const instances = M.Modal.init(elems);
-    });
-  },
+  mounted() {},
   methods: {
     verifyUserLogin: function() {
       this.errors = [];
@@ -71,19 +67,20 @@ export default {
         username: this.username_login,
         password: this.password_login
       };
-      this.$router.push("/:instructor_profile_id");
-    },
-    closeModal: function(e) {
-      e.preventDefault();
 
-      const elems = document.querySelector("#modal2");
-      const instances = M.Modal.close(elems);
-      console.log("click");
+      this.$router.push("/:instructor_profile_id");
     }
   }
 };
 </script>
 
 <style scoped>
+.errors {
+  text-align: center;
+  color: red;
+}
+.error-list {
+  text-align: left;
+}
 </style>
 

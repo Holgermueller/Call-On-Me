@@ -1,61 +1,59 @@
 <template>
   <div>
-    <a class="waves-effect waves-light btn modal-trigger btn-large" href="#modal1">SIGN UP</a>
+    <v-dialog>
+      <template v-slot:activator="{on}">
+        <v-btn color="green" dark v-on="on" large>SIGN UP</v-btn>
+      </template>
 
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-        <div>
-          <h2 class="form-header">Register Here:</h2>
-          <h6 class="form-subheader">Please fill out all of the fields.</h6>
-          <div class="row">
-            <form @submit.prevent="checkForm" class="col s12">
-              <div class="row errors" v-if="errors.length">
-                <b>Please fix the following error(s):</b>
-                <ul class="error-list">
-                  <li v-for="(error, index) in errors" v-bind:key="index">{{ error }}</li>
-                </ul>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input type="text" v-model="username_input" placeholder="Username" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input type="text" v-model="email_input" placeholder="Email" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input
-                    type="password"
-                    v-model="password_input"
-                    placeholder="Password (Must have at least one capital letter, one symbol, and one number.)"
-                  />
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input
-                    type="password"
-                    v-model="password_check_input"
-                    placeholder="Confirm Password"
-                  />
-                </div>
-              </div>
-              <div class="link-button">
-                <button
-                  type="submit"
-                  v-on:click="closeModal"
-                  class="waves-effect waves-light btn-large red"
-                >CANCEL</button>
-                <button type="submit" class="waves-effect waves-light btn-large">REGISTER</button>
-              </div>
-            </form>
-          </div>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Register Here:</span>
+        </v-card-title>
+
+        <div class="errors" v-if="errors.length">
+          <b>Please fix the following error(s):</b>
+          <ul class="error-list">
+            <li v-for="(error, index) in errors" v-bind:key="index">{{ error }}</li>
+          </ul>
         </div>
-      </div>
-    </div>
+
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12 sm6 md4>
+                <v-text-field type="text" v-model="username_input" label="Username*"></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6 md4>
+                <v-text-field v-model="email_input" label="E-mail*"></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6 md4>
+                <v-text-field
+                  type="password"
+                  v-model="password_input"
+                  label="Password*"
+                  hint="Must have at least one capital letter, one symbol, and one number."
+                  persistent-hint
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6 md4>
+                <v-text-field
+                  type="password"
+                  v-model="password_check_input"
+                  label="Confirm Password*"
+                ></v-text-field>
+              </v-flex>
+            </v-layout>
+          </v-container>
+          <small>* Indicates required field.</small>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="pink darken-1" @click="dialog = false;">Cancel</v-btn>
+          <v-btn color="blue darken-1" @click="checkForm">Register</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
   </div>
 </template>
 
@@ -64,20 +62,17 @@ import API from "../../utils/API";
 
 export default {
   name: "RegistrationModal",
-  data() {
+  data: () => {
     return {
       errors: [],
       username_input: null,
       email_input: null,
       password_input: null,
-      password_check_input: null
+      password_check_input: null,
+      dialog: false
     };
   },
   mounted() {
-    document.addEventListener("DOMContentLoaded", function() {
-      const elementss = document.querySelectorAll("#modal1");
-      const instances = M.Modal.init(elementss);
-    });
   },
   methods: {
     checkForm: function() {
@@ -129,25 +124,12 @@ export default {
           console.log(err);
           this.errors.push("User already exists.");
         });
-    },
-    closeModal: function(e) {
-      e.preventDefault();
-      console.log("click");
     }
   }
 };
 </script>
 
 <style scoped>
-.form-header {
-  text-align: center;
-}
-.form-subheader {
-  text-align: center;
-}
-.link-button {
-  text-align: center;
-}
 .errors {
   text-align: center;
   color: red;
