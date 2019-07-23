@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div data-app>
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{on}">
         <v-btn color="green" dark v-on="on" large>SIGN IN</v-btn>
@@ -9,6 +9,7 @@
         <v-card-title>
           <span class="headline">Sign In Here</span>
         </v-card-title>
+
         <v-card-text>
           <div class="errors" v-if="errors.length">
             <b>Please fix the following error(s):</b>
@@ -30,6 +31,7 @@
           <small>* Indicates required field.</small>
         </v-card-text>
         <v-card-actions>
+          <v-spacer></v-spacer>
           <v-btn color="red darken-1" @click="dialog = false">Cancel</v-btn>
           <v-btn color="green darken-1" @click="loginUser">Submit</v-btn>
         </v-card-actions>
@@ -43,7 +45,7 @@ import API from "../../utils/API";
 
 export default {
   name: "LogInDialog",
-  data: () => {
+  data() {
     return {
       errors: [],
       username_login: null,

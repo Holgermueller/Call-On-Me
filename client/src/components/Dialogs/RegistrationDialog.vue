@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div data-app>
     <v-dialog>
       <template v-slot:activator="{on}">
         <v-btn color="green" dark v-on="on" large>SIGN UP</v-btn>
@@ -48,12 +48,11 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="pink darken-1" @click="dialog = false;">Cancel</v-btn>
+          <v-btn color="red darken-1" @click="dialog = false;">Cancel</v-btn>
           <v-btn color="blue darken-1" @click="checkForm">Register</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-
   </div>
 </template>
 
@@ -62,7 +61,7 @@ import API from "../../utils/API";
 
 export default {
   name: "RegistratioDialog",
-  data: () => {
+  data() {
     return {
       errors: [],
       username_input: null,

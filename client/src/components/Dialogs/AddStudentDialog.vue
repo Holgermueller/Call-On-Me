@@ -1,36 +1,45 @@
 <template>
-  <div>
-    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add a Student</a>
+  <div data-app>
+    <v-dialog>
+      <template v-slot:activator="{on}">
+        <v-btn color="green" dark v-on="on">ADD A STUDENT</v-btn>
+      </template>
 
-    <div id="modal1" class="modal">
-      <div class="modal-header">
-        <h3>Add a Student:</h3>
-      </div>
-      <div class="row">
-        <form @submit.prevent="addStudentToClass" class="col s12">
-          <div class="row">
-            <div class="input-field col s12">
-              <input type="text" v-model="first_name" placeholder="First name" required />
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input type="text" v-model="last_name" placeholder="Last name" required />
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input type="text" v-model="preferred_name" placeholder="Preferred name" required />
-            </div>
-          </div>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Add a Student:</span>
+        </v-card-title>
 
-          <div class="modal-footer">
-            <button v-on:click="closeModal" class="waves-effect waves-light btn-large red">CANCEL</button>
-            <button type="submit" class="waves-effect waves-light btn-large">SUBMIT</button>
-          </div>
-        </form>
-      </div>
-    </div>
+        <div class="errors" v-if="errors.length">
+          <b>Please fix the following error(s):</b>
+          <ul class="error-list">
+            <li v-for="(error, index) in errors" v-bind:key="index">{{ error }}</li>
+          </ul>
+        </div>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12 sm6 md4>
+                <v-text-field type="text" v-model="first_name" label="First name*"></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6 md4>
+                <v-text-field type="text" v-model="last_name" label="Family name*"></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6 md4>
+                <v-text-field type="text" v-model="preferred_name" label="Preferred name*"></v-text-field>
+              </v-flex>
+            </v-layout>
+          </v-container>
+          <small>* Indicates required field.</small>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="red darken-1" @click="dialog = false">CANCEL</v-btn>
+          <v-btn color="blue darken-1" @click="addStudentToClass">Submit</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -39,18 +48,14 @@ import API from "../../utils/API";
 
 export default {
   name: "AddStudentDialog",
-  mounted() {
-    document.addEventListener("DOMContentLoaded", function() {
-      const elems = document.querySelectorAll(".modal");
-      const instances = M.Modal.init(elems);
-    });
-  },
+  mounted() {},
   data() {
     return {
       errors: [],
       first_name: null,
       last_name: null,
-      preferred_name: null
+      preferred_name: null,
+      dialog: false
     };
   },
   methods: {
@@ -66,10 +71,6 @@ export default {
         .catch(err => {
           console.log(err);
         });
-    },
-
-    closeModal: function() {
-      console.log("click");
     }
   }
 };
