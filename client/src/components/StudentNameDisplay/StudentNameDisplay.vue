@@ -1,10 +1,14 @@
 <template>
   <div>
-    <div>
-      <h2 class="name-display" id="nameDisplay"></h2>
-    </div>
+    <v-card class="name-display-card">
+      <div>
+        <h2 class="name-display" id="nameDisplay"></h2>
+      </div>
 
-    <button v-on:click="chooseAStudent" type="submit">PICK A STUDENT</button>
+      <div class="button-div">
+        <v-btn class="picker-button" @click="chooseAStudent" type="submit">PICK A STUDENT</v-btn>
+      </div>
+    </v-card>
   </div>
 </template>
 
@@ -14,7 +18,7 @@ import API from "../../utils/API";
 export default {
   name: "StudentNameDisplay",
   data() {
-    return{}
+    return {};
   },
   props: {
     student_array: {
@@ -52,9 +56,22 @@ export default {
 </script>
 
 <style scoped>
+.name-display-card {
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+}
+
 .name-display {
-  border: 2px solid black;
-  border-radius: 15px;
+  border: 5px ridge black;
+  min-height: 125px;
+  text-align: center;
+  padding: 8%;
+}
+
+.button-div {
+  margin: auto;
 }
 </style>
 

@@ -6,64 +6,60 @@
 
     <AddStudentDialog />
 
-    <ul class="roster-display">
-      <li
-        v-for="single_student in student_array"
-        v-bind:key="single_student._id"
-        class="card"
-        v-bind:id="single_student._id"
-      >
-        <h4>{{single_student.preferred_name}}</h4>
-        <h5 v-bind:value="single_student.times_called">Times called: {{single_student.times_called}}</h5>
-        <hr />
+    <v-card class="display-card">
+      <v-expansion-panel>
+        <v-expansion-panel-content
+          v-for="single_student in student_array"
+          v-bind:key="single_student._id"
+        >
+          <h4 slot="header">{{single_student.preferred_name}}</h4>
+          <h5
+            v-bind:value="single_student.times_called"
+          >Times called: {{single_student.times_called}}</h5>
+          <hr />
+          <div class="edit-form">
+            <div>
+              <template>
+                <h6>Edit info for:</h6>
+                <h6>{{single_student.preferred_name}}</h6>
+              </template>
 
-        <div class="edit-form">
-          <div>
-            <h6>Edit info for:</h6>
-            <h6>{{single_student.preferred_name}}</h6>
-            <hr />
+              <hr />
 
-            <form action>
-              <input
-                type="text"
-                v-bind:placeholder="single_student.first_name"
-                v-model="first_name_edit"
-              />
-              <input
-                type="text"
-                v-bind:placeholder="single_student.last_name"
-                v-model="last_name_edit"
-              />
-              <input
-                type="text"
-                v-bind:placeholder="single_student.preferred_name"
-                v-model="preferred_name_edit"
-              />
-              <button class="modal-close waves-effect waves-light waves-red btn red">CANCEL</button>
-              <button
-                class="waves-effect waves-light waves-green btn"
-                v-bind:id="single_student._id"
-                v-on:click="editStudentInfoSubmit"
-              >SUBMIT</button>
-            </form>
+              <form action>
+                <input
+                  type="text"
+                  v-bind:placeholder="single_student.first_name"
+                  v-model="first_name_edit"
+                />
+                <input
+                  type="text"
+                  v-bind:placeholder="single_student.last_name"
+                  v-model="last_name_edit"
+                />
+                <input
+                  type="text"
+                  v-bind:placeholder="single_student.preferred_name"
+                  v-model="preferred_name_edit"
+                />
+                <button class="modal-close waves-effect waves-light waves-red btn red">CANCEL</button>
+                <button
+                  class="waves-effect waves-light waves-green btn"
+                  v-bind:id="single_student._id"
+                  v-on:click="editStudentInfoSubmit"
+                >SUBMIT</button>
+                <button
+                  type="submit"
+                  class="waves-effect waves-light btn-large red"
+                  v-bind:id="single_student._id"
+                  v-on:click="removeStudentFromClass"
+                >DELETE</button>
+              </form>
+            </div>
           </div>
-        </div>
-
-        <hr />
-        <button
-          v-bind:id="single_student._id"
-          class="waves-effect waves-light btn-large"
-          v-on:click="editButtonToOpenDropdown"
-        >EDIT</button>
-
-        <button
-          type="submit"
-          class="waves-effect waves-light btn-large red"
-          v-bind:id="single_student._id"
-          v-on:click="removeStudentFromClass"
-        >DELETE</button>
-      </li>
-    </ul>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-card>
 
     <div>
       <router-link to="/:instructor_profile_id" class="waves-effect waves-light btn-large">BACK</router-link>
@@ -142,6 +138,12 @@ export default {
 </script>
 
 <style scoped>
+.display-card {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .edit-form {
   width: 85%;
   margin: 1% auto;

@@ -56,6 +56,7 @@
 
 <script>
 import API from "../utils/API";
+
 export default {
   name: "InstructorProfile",
   data() {

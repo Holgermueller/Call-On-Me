@@ -1,58 +1,60 @@
 <template>
   <div data-app>
-    <v-dialog>
-      <template v-slot:activator="{on}">
-        <v-btn color="green" dark v-on="on" large>SIGN UP</v-btn>
-      </template>
+    <v-layout row justify-center>
+      <v-dialog>
+        <template v-slot:activator="{on}">
+          <v-btn color="green" dark v-on="on" large>SIGN UP</v-btn>
+        </template>
 
-      <v-card>
-        <v-card-title>
-          <span class="headline">Register Here:</span>
-        </v-card-title>
+        <v-card>
+          <v-card-title>
+            <span class="headline">Register Here:</span>
+          </v-card-title>
 
-        <div class="errors" v-if="errors.length">
-          <b>Please fix the following error(s):</b>
-          <ul class="error-list">
-            <li v-for="(error, index) in errors" v-bind:key="index">{{ error }}</li>
-          </ul>
-        </div>
+          <div class="errors" v-if="errors.length">
+            <b>Please fix the following error(s):</b>
+            <ul class="error-list">
+              <li v-for="(error, index) in errors" v-bind:key="index">{{ error }}</li>
+            </ul>
+          </div>
 
-        <v-card-text>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <v-flex xs12 sm6 md4>
-                <v-text-field type="text" v-model="username_input" label="Username*"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field v-model="email_input" label="E-mail*"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field
-                  type="password"
-                  v-model="password_input"
-                  label="Password*"
-                  hint="Must have at least one capital letter, one symbol, and one number."
-                  persistent-hint
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field
-                  type="password"
-                  v-model="password_check_input"
-                  label="Confirm Password*"
-                ></v-text-field>
-              </v-flex>
-            </v-layout>
-          </v-container>
-          <small>* Indicates required field.</small>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="red darken-1" @click="dialog = false;">Cancel</v-btn>
-          <v-btn color="blue darken-1" @click="checkForm">Register</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+          <v-card-text>
+            <v-container grid-list-md>
+              <v-layout wrap>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field type="text" v-model="username_input" label="Username*"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field v-model="email_input" label="E-mail*"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field
+                    type="password"
+                    v-model="password_input"
+                    label="Password*"
+                    hint="Must have at least one capital letter, one symbol, and one number."
+                    persistent-hint
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field
+                    type="password"
+                    v-model="password_check_input"
+                    label="Confirm Password*"
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+            </v-container>
+            <small>* Indicates required field.</small>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="red darken-1" @click="dialog2 = false">Cancel</v-btn>
+            <v-btn color="blue darken-1" @click="checkForm">Register</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-layout>
   </div>
 </template>
 
@@ -68,11 +70,10 @@ export default {
       email_input: null,
       password_input: null,
       password_check_input: null,
-      dialog: false
+      dialog2: false
     };
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     checkForm: function() {
       this.$router.push("/:instructor_profile_id");

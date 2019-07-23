@@ -35,7 +35,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="red darken-1" @click="dialog = false">CANCEL</v-btn>
+          <v-btn color="red darken-1" @click="dialog3 = false">CANCEL</v-btn>
           <v-btn color="blue darken-1" @click="addStudentToClass">Submit</v-btn>
         </v-card-actions>
       </v-card>
@@ -55,7 +55,7 @@ export default {
       first_name: null,
       last_name: null,
       preferred_name: null,
-      dialog: false
+      dialog3: false
     };
   },
   methods: {
