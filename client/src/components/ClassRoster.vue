@@ -42,18 +42,17 @@
                   v-bind:placeholder="single_student.preferred_name"
                   v-model="preferred_name_edit"
                 />
-                <button class="modal-close waves-effect waves-light waves-red btn red">CANCEL</button>
-                <button
-                  class="waves-effect waves-light waves-green btn"
+                <v-btn
+                  color="green darken-1"
                   v-bind:id="single_student._id"
                   v-on:click="editStudentInfoSubmit"
-                >SUBMIT</button>
-                <button
+                >SUBMIT</v-btn>
+                <v-btn
                   type="submit"
-                  class="waves-effect waves-light btn-large red"
-                  v-bind:id="single_student._id"
+                  color="red darken-1"
+                  id="single_student._id"
                   v-on:click="removeStudentFromClass"
-                >DELETE</button>
+                >DELETE</v-btn>
               </form>
             </div>
           </div>
