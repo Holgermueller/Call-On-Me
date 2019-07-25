@@ -4,7 +4,11 @@
 
     <h5>{Class Name} roster:</h5>
 
-    <AddStudentDialog />
+    <div class="roster-page-actions">
+      <AddStudentDialog />
+      <router-link to="/:instructor_profile_id" color="blue darken-1">BACK</router-link>
+      <v-btn>Log Out</v-btn>
+    </div>
 
     <v-card class="display-card">
       <v-expansion-panel>
@@ -26,7 +30,7 @@
 
               <hr />
 
-              <form action>
+              <form v-bind:id="single_student._id">
                 <input
                   type="text"
                   v-bind:placeholder="single_student.first_name"
@@ -45,13 +49,14 @@
                 <v-btn
                   color="green darken-1"
                   v-bind:id="single_student._id"
-                  v-on:click="editStudentInfoSubmit"
+                  @click="editStudentInfoSubmit"
                 >SUBMIT</v-btn>
+
                 <v-btn
                   type="submit"
                   color="red darken-1"
-                  id="single_student._id"
-                  v-on:click="removeStudentFromClass"
+                  v-bind:id="single_student._id"
+                  @click="removeStudentFromClass"
                 >DELETE</v-btn>
               </form>
             </div>
@@ -59,10 +64,6 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-card>
-
-    <div>
-      <router-link to="/:instructor_profile_id" class="waves-effect waves-light btn-large">BACK</router-link>
-    </div>
   </div>
 </template>
 
@@ -120,17 +121,17 @@ export default {
         });
     },
 
-    removeStudentFromClass: function() {
+    removeStudentFromClass: function(e) {
+      e.preventDefault();
       let targetId = event.target.id;
+      console.log(targetId);
       API.removeStudentFromClass(targetId)
         .then(res => {
           this.$router.go();
         })
-        .catch(err => console.log(err));
-    },
-
-    editButtonToOpenDropdown: function() {
-      console.log("click");
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };

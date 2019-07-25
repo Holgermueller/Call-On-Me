@@ -94,6 +94,9 @@ export default {
 </script>
 
 <style scoped>
+.sub-header {
+  text-align: center;
+}
 hr {
   margin-bottom: 1%;
 }

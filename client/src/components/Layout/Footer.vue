@@ -15,6 +15,7 @@ export default {
 footer {
   padding: 8px;
   margin: 3px auto;
+  bottom: 0;
 }
 </style>
 

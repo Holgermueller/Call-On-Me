@@ -49,7 +49,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="red darken-1" @click="dialog2 = false">Cancel</v-btn>
+            <v-btn color="red darken-1" @click="dialog = false">Cancel</v-btn>
             <v-btn color="blue darken-1" @click="checkForm">Register</v-btn>
           </v-card-actions>
         </v-card>
@@ -70,7 +70,7 @@ export default {
       email_input: null,
       password_input: null,
       password_check_input: null,
-      dialog2: false
+      dialog: false
     };
   },
   mounted() {},
