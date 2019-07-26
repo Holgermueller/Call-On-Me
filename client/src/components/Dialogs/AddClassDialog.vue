@@ -1,6 +1,6 @@
 <template>
   <div data-app>
-    <v-dialog>
+    <v-dialog v-model="dialog">
       <template v-slot:activator="{on}">
         <v-btn color="green" dark v-on="on">Add A Class</v-btn>
       </template>

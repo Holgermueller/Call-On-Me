@@ -1,6 +1,6 @@
 <template>
   <div data-app>
-    <v-dialog>
+    <v-dialog v-model="dialog">
       <template v-slot:activator="{on}">
         <v-btn color="green" dark v-on="on">ADD A STUDENT</v-btn>
       </template>
@@ -35,7 +35,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="red darken-1" @click="dialog3 = false">CANCEL</v-btn>
+          <v-btn color="red darken-1" @click="dialog = false">CANCEL</v-btn>
           <v-btn color="blue darken-1" @click="addStudentToClass">Submit</v-btn>
         </v-card-actions>
       </v-card>
@@ -55,7 +55,7 @@ export default {
       first_name: null,
       last_name: null,
       preferred_name: null,
-      dialog3: false
+      dialog: false
     };
   },
   methods: {
