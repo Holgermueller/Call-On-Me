@@ -10,13 +10,10 @@
       <v-btn>Log Out</v-btn>
     </div>
 
-    <v-card class="display-card">
-      <v-expansion-panel>
-        <v-expansion-panel-content
-          v-for="single_student in student_array"
-          v-bind:key="single_student._id"
-        >
-          <h4 slot="header">{{single_student.preferred_name}}</h4>
+    <v-expansion-panels class="display-card">
+      <v-expansion-panel v-for="single_student in student_array" v-bind:key="single_student._id">
+        <v-expansion-panel-header>{{single_student.preferred_name}}</v-expansion-panel-header>
+        <v-expansion-panel-content>
           <h5
             v-bind:value="single_student.times_called"
           >Times called: {{single_student.times_called}}</h5>
@@ -63,7 +60,7 @@
           </div>
         </v-expansion-panel-content>
       </v-expansion-panel>
-    </v-card>
+    </v-expansion-panels>
   </div>
 </template>
 
