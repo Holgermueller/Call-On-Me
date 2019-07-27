@@ -13,30 +13,31 @@
     <h5 class="sub-header">Select from your list of classes:</h5>
 
     <v-card class="class-list">
-      <v-expansion-panel>
-        <v-expansion-panel-content
-          v-for="single_class_info in class_info_array"
-          v-bind:key="single_class_info._id"
-          v-bind:id="single_class_info._id"
-          v-bind:value="single_class_info._id"
-          class="single-class"
-        >
-          <v-card-title slot="header" class="headline">{{single_class_info.class_name}}</v-card-title>
-          <hr />
-          <v-card-actions>
-            <v-btn
-              @click="toRosterPage"
-              v-bind:id="single_class_info._id"
-              color="blue darken-1"
-            >Go To Roster</v-btn>
-            <v-btn
-              @click="deleteClass"
-              v-bind:id="single_class_info._id"
-              color="red darken-1"
-            >Delete Class</v-btn>
-          </v-card-actions>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
+      <v-expansion-panels>
+        <v-expansion-panel>
+          <v-expansion-panel-content
+            v-for="single_class_info in class_info_array"
+            v-bind:key="single_class_info._id"
+            v-bind:id="single_class_info._id"
+            v-bind:value="single_class_info._id"
+            class="single-class"
+          >
+            <v-card-title slot="header" class="headline">{{single_class_info.class_name}}</v-card-title>
+            <v-card-actions>
+              <v-btn
+                @click="toRosterPage"
+                v-bind:id="single_class_info._id"
+                color="blue darken-1"
+              >Go To Roster</v-btn>
+              <v-btn
+                @click="deleteClass"
+                v-bind:id="single_class_info._id"
+                color="red darken-1"
+              >Delete Class</v-btn>
+            </v-card-actions>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
     </v-card>
   </div>
 </template>
@@ -52,7 +53,8 @@ export default {
   },
   data() {
     return {
-      class_info_array: []
+      class_info_array: [],
+      inset: true
     };
   },
   mounted() {
