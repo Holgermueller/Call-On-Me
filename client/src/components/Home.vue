@@ -22,6 +22,7 @@ export default {
 </script>
 
 <style scoped>
+
 .page-header {
   text-align: center;
 }

@@ -8,7 +8,7 @@
 
         <v-card>
           <v-card-title>
-            <span class="headline">Register Here:</span>
+            <span class="headline blue lighten-1" primary-title>Register Here:</span>
           </v-card-title>
 
           <div class="errors" v-if="errors.length">
@@ -18,14 +18,20 @@
             </ul>
           </div>
 
-          <v-card-text>
+          <v-form ref="form" v-model="valid">
             <v-container grid-list-md>
               <v-layout wrap>
                 <v-flex xs12 sm6 md4>
-                  <v-text-field type="text" v-model="username_input" label="Username*"></v-text-field>
+                  <v-text-field
+                    type="text"
+                    v-model="username_input"
+                    label="Username*"
+                    clearable
+                    clear-icon
+                  ></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="email_input" label="E-mail*"></v-text-field>
+                  <v-text-field v-model="email_input" label="E-mail*" clearable clear-icon></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
                   <v-text-field
@@ -34,6 +40,8 @@
                     label="Password*"
                     hint="Must have at least one capital letter, one symbol, and one number."
                     persistent-hint
+                    clearable
+                    clear-icon
                   ></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
@@ -41,17 +49,21 @@
                     type="password"
                     v-model="password_check_input"
                     label="Confirm Password*"
+                    clearable
+                    clear-icon
                   ></v-text-field>
                 </v-flex>
+
+                <small>* Indicates required field.</small>
+                <v-spacer></v-spacer>
+                <v-card-actions>
+<v-btn color="red darken-1" @click="dialog = false">Cancel</v-btn>
+                <v-btn color="blue darken-1" @click="checkForm">Register</v-btn>
+                </v-card-actions>
+                
               </v-layout>
             </v-container>
-            <small>* Indicates required field.</small>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="red darken-1" @click="dialog = false">Cancel</v-btn>
-            <v-btn color="blue darken-1" @click="checkForm">Register</v-btn>
-          </v-card-actions>
+          </v-form>
         </v-card>
       </v-dialog>
     </v-layout>
@@ -70,7 +82,8 @@ export default {
       email_input: null,
       password_input: null,
       password_check_input: null,
-      dialog: false
+      dialog: false,
+      valid: true
     };
   },
   mounted() {},
