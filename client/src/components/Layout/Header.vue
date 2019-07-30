@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-card>
+    <v-card class="green">
       <v-responsive>
-        <v-card-text class="green">
+        <v-card-text>
           <h1>Call On Me!!</h1>
         </v-card-text>
       </v-responsive>
@@ -17,9 +17,4 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  padding: 8px;
-  text-align: center;
-  margin: 3px auto;
-}
 </style>
