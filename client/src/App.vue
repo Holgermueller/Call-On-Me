@@ -1,9 +1,11 @@
 <template>
-  <div id="app">
-    <Header />
-    <router-view></router-view>
-    <Footer />
-  </div>
+  <v-app>
+    <v-content>
+      <Header />
+      <router-view></router-view>
+      <Footer />
+    </v-content>
+  </v-app>
 </template>
 
 <script>
@@ -14,7 +16,7 @@ import ClassRoster from "./components/ClassRoster";
 import Footer from "./components/Layout/Footer";
 
 export default {
-  name: "app",
+  name: "App",
   components: {
     Header,
     Home,
@@ -22,21 +24,8 @@ export default {
     ClassRoster,
     Footer
   },
-  data() {
-    return {};
-  }
+  data: () => ({
+    //
+  })
 };
 </script>
-
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.4;
-}
-</style>
