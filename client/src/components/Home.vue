@@ -1,8 +1,9 @@
 <template>
   <div>
-    <h2 class="page-header">Welcome to Call On Me</h2>
-    <div class="actions">
+    <h2 class="text-center p-5%">Welcome to Call On Me</h2>
+    <div class="text-center">
       <RegistrationDialog />
+      <v-spacer></v-spacer>
       <LogInDialog />
     </div>
   </div>
@@ -22,13 +23,5 @@ export default {
 </script>
 
 <style scoped>
-
-.page-header {
-  text-align: center;
-}
-.actions {
-  text-align: center;
-  margin-bottom: 10%;
-}
 </style>
 

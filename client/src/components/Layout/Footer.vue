@@ -1,7 +1,10 @@
 <template>
-  <v-footer class="pa-3 green">
+  <v-footer absolute class="green">
     <v-spacer></v-spacer>
-    <footer>&copy; 2019 H.M.Mueller</footer>
+    <div>
+      &copy; 2019
+      <strong>H.M.Mueller</strong>
+    </div>
   </v-footer>
 </template>
 
@@ -12,10 +15,5 @@ export default {
 </script>
 
 <style scoped>
-footer {
-  padding: 8px;
-  margin: 3px auto;
-  bottom: 0;
-}
 </style>
 

@@ -2,7 +2,10 @@
   <div data-app>
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{on}">
-        <v-btn color="green" dark v-on="on" large>SIGN IN</v-btn>
+        <v-btn color="green" dark v-on="on" large>
+          <span class="mdi mdi-keyboard"></span>
+          SIGN IN
+        </v-btn>
       </template>
 
       <v-card>
@@ -17,14 +20,26 @@
               <li v-for="(error, index) in errors" v-bind:key="index">{{error}}</li>
             </ul>
           </div>
+
           <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs12>
-                <v-text-field v-model="username_login" label="Username or Email*"></v-text-field>
+                <v-text-field
+                  v-model="username_login"
+                  label="Username or Email*"
+                  prepend-icon="mdi-account-circle"
+                ></v-text-field>
               </v-flex>
 
               <v-flex xs12>
-                <v-text-field v-model="password_login" label="Password*"></v-text-field>
+                <v-text-field
+                  :type="show_password ? 'text' : 'password'"
+                  v-model="password_login"
+                  label="Password*"
+                  prepend-icon="mdi-lock"
+                  :append-icon="show_password ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click:append="show_password = !show_password"
+                ></v-text-field>
               </v-flex>
             </v-layout>
           </v-container>
@@ -32,8 +47,13 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="red darken-1" @click="dialog = false">Cancel</v-btn>
-          <v-btn color="green darken-1" @click="loginUser">Submit</v-btn>
+          <v-btn color="red" @click="dialog = false" class="white--text">
+            <span class="mdi mdi-close-circle"></span> Cancel
+          </v-btn>
+          <v-btn color="green" @click="loginUser" class="white--text">
+            <span class="mdi mdi-check-bold"></span>
+            Sign In
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -50,7 +70,8 @@ export default {
       errors: [],
       username_login: null,
       password_login: null,
-      dialog: false
+      dialog: false,
+      show_password: false
     };
   },
   mounted() {},

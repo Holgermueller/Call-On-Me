@@ -1,9 +1,9 @@
 <template>
   <div>
-    <v-card class="green">
+    <v-card class="green text-center">
       <v-responsive>
-        <v-card-text>
-          <h1>Call On Me!!</h1>
+        <v-card-text class="display-4 font-weight-black">
+          <span>Call On Me!!</span>
         </v-card-text>
       </v-responsive>
     </v-card>
