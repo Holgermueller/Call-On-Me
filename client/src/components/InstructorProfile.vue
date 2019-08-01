@@ -1,18 +1,21 @@
 <template>
-  <div>
-    <h2>Hello, Professor {name goes here}</h2>
+  <div class="profile-page">
+    <h2 class="headline text-center font-weight-bold ma-5">Hello, Professor {name goes here}</h2>
 
     <div class="profile-actions">
       <AddClassDialog />
+      <EditAccountDialog />
+      <DeleteAccountDialog />
 
-      <v-btn @click="editAccount">Edit Account</v-btn>
-      <v-btn @click="deleteAccount">Delete Account</v-btn>
-      <v-btn @click="logout">Log Out</v-btn>
+      <v-btn @click="logout" color="blue">
+        Log Out
+        <span class="mdi mdi-logout"></span>
+      </v-btn>
     </div>
 
-    <h5 class="sub-header">Select from your list of classes:</h5>
+    <h5 class="title text-center ma-5">Select from your list of classes:</h5>
 
-    <v-expansion-panels class="class-list">
+    <v-expansion-panels class="mb-9">
       <v-expansion-panel
         v-for="single_class_info in class_info_array"
         v-bind:key="single_class_info._id"
@@ -21,12 +24,12 @@
       >
         <v-expansion-panel-header class="headline">{{single_class_info.class_name}}</v-expansion-panel-header>
         <v-expansion-panel-content class="single-class">
-          <hr />
-          <v-btn @click="deleteClass" v-bind:id="single_class_info._id" color="red darken-1">
+          <hr class="mb-1" />
+          <v-btn @click="deleteClass" v-bind:id="single_class_info._id" color="red">
             <span class="mdi mdi-delete"></span>
             Delete Class
           </v-btn>
-          <v-btn @click="toRosterPage" v-bind:id="single_class_info._id" color="blue darken-1">
+          <v-btn @click="toRosterPage" v-bind:id="single_class_info._id" color="blue">
             Go To Roster
             <span class="mdi mdi-arrow-right-bold"></span>
           </v-btn>
@@ -39,11 +42,15 @@
 <script>
 import API from "../utils/API";
 import AddClassDialog from "../components/Dialogs/AddClassDialog";
+import EditAccountDialog from "../components/Dialogs/EditAccount";
+import DeleteAccountDialog from "../components/Dialogs/DeleteAccount";
 
 export default {
   name: "InstructorProfile",
   components: {
-    AddClassDialog
+    AddClassDialog,
+    EditAccountDialog,
+    DeleteAccountDialog
   },
   data() {
     return {
@@ -65,6 +72,7 @@ export default {
   methods: {
     deleteClass: function() {
       let targetId = event.target.id;
+      console.log(targetId);
       API.deleteClass(targetId)
         .then(res => {
           this.$router.go();
@@ -76,12 +84,6 @@ export default {
       let targetId = event.target.id;
       this.$router.push("/class_roster/:id");
     },
-    deleteAccount: function() {
-      console.log("click");
-    },
-    editAccount: function() {
-      console.log("click");
-    },
     logout: function() {
       console.log("click");
     }
@@ -90,15 +92,11 @@ export default {
 </script>
 
 <style scoped>
-.sub-header {
-  text-align: center;
+.profile-page {
+  margin-bottom: 15%;
 }
-hr {
-  margin-bottom: 1%;
-}
-.class-list {
-  max-width: 85%;
+.profile-actions {
   margin: 2% auto;
-  height: 25%;
+  border: 3% solid black;
 }
 </style>
