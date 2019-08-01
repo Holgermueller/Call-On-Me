@@ -24,48 +24,50 @@
 
             <v-container grid-list-md>
               <v-layout wrap>
-                <v-flex xs12 sm6 md4>
-                  <v-text-field
-                    prepend-icon="mdi-account-circle"
-                    type="text"
-                    v-model="username_input"
-                    label="Username*"
-                  ></v-text-field>
-                </v-flex>
+                <v-form ref="form">
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field
+                      prepend-icon="mdi-account-circle"
+                      type="text"
+                      v-model="username_input"
+                      label="Username*"
+                    ></v-text-field>
+                  </v-flex>
 
-                <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="email_input" label="E-mail*" prepend-icon="mdi-email"></v-text-field>
-                </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="email_input" label="E-mail*" prepend-icon="mdi-email"></v-text-field>
+                  </v-flex>
 
-                <v-flex xs12 sm6 md4>
-                  <v-text-field
-                    :type="show_password ? 'text' : 'password'"
-                    v-model="password_input"
-                    label="Password*"
-                    prepend-icon="mdi-lock"
-                    :append-icon="show_password ? 'mdi-eye' : 'mdi-eye-off'"
-                    hint="Must have at least one capital letter, one symbol, and one number."
-                    persistent-hint
-                    @click:append="show_password = !show_password"
-                  ></v-text-field>
-                </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field
+                      :type="show_password ? 'text' : 'password'"
+                      v-model="password_input"
+                      label="Password*"
+                      prepend-icon="mdi-lock"
+                      :append-icon="show_password ? 'mdi-eye' : 'mdi-eye-off'"
+                      hint="Must have at least one capital letter, one symbol, and one number."
+                      persistent-hint
+                      @click:append="show_password = !show_password"
+                    ></v-text-field>
+                  </v-flex>
 
-                <v-flex xs12 sm6 md4>
-                  <v-text-field
-                    :type="show_confirm_password ? 'text' : 'password'"
-                    v-model="password_check_input"
-                    label="Confirm Password*"
-                    prepend-icon="mdi-lock"
-                    :append-icon="show_confirm_password ? 'mdi-eye' : 'mdi-eye-off'"
-                    @click:append="show_confirm_password = !show_confirm_password"
-                  ></v-text-field>
-                </v-flex>
-                <v-flex>
-                  <v-btn color="amber" class="white--text">
-                    <span class="mdi mdi-close"></span>
-                    Clear Form
-                  </v-btn>
-                </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field
+                      :type="show_confirm_password ? 'text' : 'password'"
+                      v-model="password_check_input"
+                      label="Confirm Password*"
+                      prepend-icon="mdi-lock"
+                      :append-icon="show_confirm_password ? 'mdi-eye' : 'mdi-eye-off'"
+                      @click:append="show_confirm_password = !show_confirm_password"
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex>
+                    <v-btn color="amber" class="white--text" @click="resetForm">
+                      <span class="mdi mdi-close"></span>
+                      Clear Form
+                    </v-btn>
+                  </v-flex>
+                </v-form>
               </v-layout>
             </v-container>
             <small>* Indicates required field.</small>
@@ -155,6 +157,9 @@ export default {
           console.log(err);
           this.errors.push("User already exists.");
         });
+    },
+    resetForm: function() {
+      this.$refs.form.reset();
     }
   }
 };

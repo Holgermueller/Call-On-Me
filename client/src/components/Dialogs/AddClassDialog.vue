@@ -2,11 +2,16 @@
   <div data-app>
     <v-dialog v-model="dialog">
       <template v-slot:activator="{on}">
-        <v-btn color="green" dark v-on="on">Add A Class</v-btn>
+        <v-btn color="green" dark v-on="on">
+          <span class="mdi mdi-pen-plus"></span>
+          Add A Class
+        </v-btn>
       </template>
 
       <v-card>
-        <v-card-title class="headline">Add a class:</v-card-title>
+        <v-card-title class="headline blue">
+          <span class="headline mdi mdi-account-group"> Add a class:</span>
+        </v-card-title>
 
         <div class="errors" v-if="errors.length">
           <b>Please fix the following error(s):</b>
@@ -20,11 +25,15 @@
             <v-layout wrap>
               <v-flex xs12 sm6 md4>
                 <v-text-field
+                prepend-icon="mdi-account-group"
                   type="text"
                   v-model="class_name"
                   label="Enter class name here*"
                   hint="Ex.: Multicultural Lit T-Th 9-9:50"
                   persistent-hint
+                  append-icon="mdi-close"
+                  ref="textField"
+                  @click:append="clearField"
                 ></v-text-field>
               </v-flex>
             </v-layout>
@@ -64,6 +73,9 @@ export default {
         .catch(err => {
           console.log(err);
         });
+    },
+    clearField: function() {
+      this.$refs.textField.reset();
     }
   }
 };

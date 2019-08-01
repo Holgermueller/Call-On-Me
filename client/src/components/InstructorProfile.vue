@@ -19,19 +19,17 @@
         v-bind:id="single_class_info._id"
         v-bind:value="single_class_info._id"
       >
-        <v-expansion-panel-header>{{single_class_info.class_name}}</v-expansion-panel-header>
+        <v-expansion-panel-header class="headline">{{single_class_info.class_name}}</v-expansion-panel-header>
         <v-expansion-panel-content class="single-class">
           <hr />
-          <v-btn
-            @click="toRosterPage"
-            v-bind:id="single_class_info._id"
-            color="blue darken-1"
-          >Go To Roster</v-btn>
-          <v-btn
-            @click="deleteClass"
-            v-bind:id="single_class_info._id"
-            color="red darken-1"
-          >Delete Class</v-btn>
+          <v-btn @click="deleteClass" v-bind:id="single_class_info._id" color="red darken-1">
+            <span class="mdi mdi-delete"></span>
+            Delete Class
+          </v-btn>
+          <v-btn @click="toRosterPage" v-bind:id="single_class_info._id" color="blue darken-1">
+            Go To Roster
+            <span class="mdi mdi-arrow-right-bold"></span>
+          </v-btn>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
