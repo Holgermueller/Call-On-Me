@@ -1,9 +1,8 @@
 <template>
   <div data-app>
-    <v-layout row justify-center>
       <v-dialog v-model="dialog">
         <template v-slot:activator="{on}">
-          <v-btn class="success" v-on="on" large append-icon="mdi-pen">
+          <v-btn block class="success" v-on="on" large append-icon="mdi-pen">
             <span class="mdi mdi-pen"></span>
             SIGN UP
           </v-btn>
@@ -84,7 +83,6 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-    </v-layout>
   </div>
 </template>
 

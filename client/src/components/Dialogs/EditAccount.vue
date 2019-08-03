@@ -2,7 +2,7 @@
   <div data-app>
     <v-dialog v-model="dialog">
       <template v-slot:activator="{on}">
-        <v-btn color="amber" dark v-on="on">
+        <v-btn block color="amber" dark v-on="on">
           <span class="mdi mdi-pen-plus"></span>
           Edit Account
         </v-btn>

@@ -2,7 +2,7 @@
   <div data-app>
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{on}">
-        <v-btn color="green" dark v-on="on" large>
+        <v-btn block color="green" dark v-on="on" large>
           <span class="mdi mdi-keyboard"></span>
           SIGN IN
         </v-btn>

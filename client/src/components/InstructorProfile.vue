@@ -2,16 +2,16 @@
   <div class="profile-page">
     <h2 class="headline text-center font-weight-bold ma-5">Hello, Professor {name goes here}</h2>
 
-    <div class="profile-actions">
+    <v-card class="profile-actions">
       <AddClassDialog />
       <EditAccountDialog />
       <DeleteAccountDialog />
       <LogoutButton />
-    </div>
+    </v-card>
 
     <h5 class="title text-center ma-5">Select from your list of classes:</h5>
 
-    <v-expansion-panels class="mb-9">
+    <v-expansion-panels class="class-display-panel">
       <v-expansion-panel
         v-for="single_class_info in class_info_array"
         v-bind:key="single_class_info._id"
@@ -25,6 +25,7 @@
             <span class="mdi mdi-delete"></span>
             Delete Class
           </v-btn>
+
           <v-btn @click="toRosterPage" v-bind:id="single_class_info._id" color="blue">
             Go To Roster
             <span class="mdi mdi-arrow-right-bold"></span>
@@ -93,5 +94,10 @@ export default {
 .profile-actions {
   margin: 2% auto;
   border: 3% solid black;
+  width: 75%;
+}
+.class-display-panel {
+  width: 85%;
+  margin: 1% auto;
 }
 </style>

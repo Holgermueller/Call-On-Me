@@ -2,7 +2,7 @@
   <div data-app>
     <v-dialog v-model="dialog">
       <template v-slot:activator="{on}">
-        <v-btn color="green" dark v-on="on">
+        <v-btn block color="green" dark v-on="on">
           <span class="mdi mdi-pen-plus"></span>
           Add A Class
         </v-btn>
@@ -10,7 +10,7 @@
 
       <v-card>
         <v-card-title class="headline blue">
-          <span class="headline mdi mdi-account-group"> Add a class:</span>
+          <span class="headline mdi mdi-account-group">Add a class:</span>
         </v-card-title>
 
         <div class="errors" v-if="errors.length">
@@ -25,7 +25,7 @@
             <v-layout wrap>
               <v-flex xs12 sm6 md4>
                 <v-text-field
-                prepend-icon="mdi-account-group"
+                  prepend-icon="mdi-account-group"
                   type="text"
                   v-model="class_name"
                   label="Enter class name here*"

@@ -1,18 +1,23 @@
 <template>
-  <div class="mb-9">
+  <div class="roster-page">
     <StudentNameDisplay v-bind:student_array="student_array" />
 
     <h5 class="title text-center ma-5">{Class Name} roster:</h5>
 
-    <div class="ma-5">
+    <v-card class="ma-5 elevation-0">
       <AddStudentDialog />
-      <router-link to="/:instructor_profile_id" color="blue darken-1">BACK</router-link>
+      <router-link class="router-link" to="/:instructor_profile_id">
+        <v-btn block color="blue" link h-ref="/:instructor_profile_id">
+          <span class="mdi mdi-arrow-left-bold"></span>
+          BACK
+        </v-btn>
+      </router-link>
       <LogoutButton />
-    </div>
+    </v-card>
 
-    <v-expansion-panels class="mb-9">
+    <v-expansion-panels class="roster-display-panel">
       <v-expansion-panel v-for="single_student in student_array" v-bind:key="single_student._id">
-        <v-expansion-panel-header>{{single_student.preferred_name}}</v-expansion-panel-header>
+        <v-expansion-panel-header class="headline">{{single_student.preferred_name}}</v-expansion-panel-header>
         <v-expansion-panel-content>
           <h5
             v-bind:value="single_student.times_called"
@@ -43,18 +48,20 @@
                   v-bind:placeholder="single_student.preferred_name"
                   v-model="preferred_name_edit"
                 />
-                <v-btn
-                  color="green darken-1"
-                  v-bind:id="single_student._id"
-                  @click="editStudentInfoSubmit"
-                >SUBMIT</v-btn>
-
-                <v-btn
-                  type="submit"
-                  color="red darken-1"
-                  v-bind:id="single_student._id"
-                  @click="removeStudentFromClass"
-                >DELETE</v-btn>
+                <br />
+                <div>
+                  <v-btn
+                    color="green darken-1"
+                    v-bind:id="single_student._id"
+                    @click="editStudentInfoSubmit"
+                  >SUBMIT</v-btn>
+                  <v-btn
+                    type="submit"
+                    color="red darken-1"
+                    v-bind:id="single_student._id"
+                    @click="removeStudentFromClass"
+                  >DELETE</v-btn>
+                </div>
               </form>
             </div>
           </div>
@@ -137,6 +144,15 @@ export default {
 </script>
 
 <style scoped>
+.roster-page {
+  margin-bottom: 15%;
+}
+
+.roster-display-panel {
+  width: 85%;
+  margin: 0 auto;
+}
+
 .display-card {
   width: 85%;
   margin-left: auto;
@@ -146,6 +162,10 @@ export default {
 .edit-form {
   width: 85%;
   margin: 1% auto;
+}
+
+.router-link {
+  text-decoration: none;
 }
 </style>
 

@@ -2,7 +2,7 @@
   <div data-app>
     <v-dialog v-model="dialog">
       <template v-slot:activator="{on}">
-        <v-btn color="green" dark v-on="on">
+        <v-btn block color="green" dark v-on="on">
           <span class="mdi mdi-account-plus"></span> ADD A STUDENT
         </v-btn>
       </template>

@@ -1,11 +1,13 @@
 <template>
   <div>
     <h2 class="text-center p-5%">Welcome to Call On Me</h2>
-    <div class="text-center">
+
+    <v-card class="text-center home-card">
       <RegistrationDialog />
-      <v-spacer></v-spacer>
+      
       <LogInDialog />
-    </div>
+    </v-card>
+    
   </div>
 </template>
 
@@ -23,5 +25,9 @@ export default {
 </script>
 
 <style scoped>
+.home-card {
+  width: 55%;
+  margin: 5% auto;
+}
 </style>
 

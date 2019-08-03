@@ -1,12 +1,11 @@
 <template>
   <div>
-    <v-card class="name-display-card">
-      <div>
-        <h2 class="name-display" id="nameDisplay"></h2>
-      </div>
+    <v-card class="name-display-card elevation-24">
+        <h2 class="name-display headline elevation-2" id="nameDisplay"></h2>
 
       <div class="button-div">
         <v-btn
+          block
           color="amber"
           class="my-5 mx-auto select-button"
           @click="chooseAStudent"
@@ -77,10 +76,6 @@ export default {
 
 .select-button {
   border: 3px solid #ffcd00;
-}
-
-.button-div {
-  margin: auto;
 }
 </style>
 

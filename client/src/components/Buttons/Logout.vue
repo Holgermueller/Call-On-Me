@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn @click="logout" color="blue">
+    <v-btn block @click="logout" color="blue">
       Log Out
       <span class="mdi mdi-logout"></span>
     </v-btn>
