@@ -6,7 +6,12 @@
       </div>
 
       <div class="button-div">
-        <v-btn class="picker-button" @click="chooseAStudent" type="submit">PICK A STUDENT</v-btn>
+        <v-btn
+          color="amber"
+          class="my-5 mx-auto select-button"
+          @click="chooseAStudent"
+          type="button"
+        >PICK A STUDENT</v-btn>
       </div>
     </v-card>
   </div>
@@ -68,6 +73,10 @@ export default {
   min-height: 125px;
   text-align: center;
   padding: 8%;
+}
+
+.select-button {
+  border: 3px solid #ffcd00;
 }
 
 .button-div {

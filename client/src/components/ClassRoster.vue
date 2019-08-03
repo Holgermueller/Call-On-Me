@@ -1,16 +1,16 @@
 <template>
-  <div>
+  <div class="mb-9">
     <StudentNameDisplay v-bind:student_array="student_array" />
 
-    <h5>{Class Name} roster:</h5>
+    <h5 class="title text-center ma-5">{Class Name} roster:</h5>
 
-    <div class="roster-page-actions">
+    <div class="ma-5">
       <AddStudentDialog />
       <router-link to="/:instructor_profile_id" color="blue darken-1">BACK</router-link>
-      <v-btn>Log Out</v-btn>
+      <LogoutButton />
     </div>
 
-    <v-expansion-panels class="display-card">
+    <v-expansion-panels class="mb-9">
       <v-expansion-panel v-for="single_student in student_array" v-bind:key="single_student._id">
         <v-expansion-panel-header>{{single_student.preferred_name}}</v-expansion-panel-header>
         <v-expansion-panel-content>
@@ -68,12 +68,14 @@
 import API from "../utils/API";
 import AddStudentDialog from "../components/Dialogs/AddStudentDialog";
 import StudentNameDisplay from "../components/StudentNameDisplay/StudentNameDisplay";
+import LogoutButton from "../components/Buttons/Logout";
 
 export default {
   name: "ClassRoster",
   components: {
     AddStudentDialog,
-    StudentNameDisplay
+    StudentNameDisplay,
+    LogoutButton
   },
   data() {
     return {

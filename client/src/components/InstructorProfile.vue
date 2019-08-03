@@ -6,11 +6,7 @@
       <AddClassDialog />
       <EditAccountDialog />
       <DeleteAccountDialog />
-
-      <v-btn @click="logout" color="blue">
-        Log Out
-        <span class="mdi mdi-logout"></span>
-      </v-btn>
+      <LogoutButton />
     </div>
 
     <h5 class="title text-center ma-5">Select from your list of classes:</h5>
@@ -44,13 +40,15 @@ import API from "../utils/API";
 import AddClassDialog from "../components/Dialogs/AddClassDialog";
 import EditAccountDialog from "../components/Dialogs/EditAccount";
 import DeleteAccountDialog from "../components/Dialogs/DeleteAccount";
+import LogoutButton from "../components/Buttons/Logout";
 
 export default {
   name: "InstructorProfile",
   components: {
     AddClassDialog,
     EditAccountDialog,
-    DeleteAccountDialog
+    DeleteAccountDialog,
+    LogoutButton
   },
   data() {
     return {
@@ -83,9 +81,6 @@ export default {
     toRosterPage: function() {
       let targetId = event.target.id;
       this.$router.push("/class_roster/:id");
-    },
-    logout: function() {
-      console.log("click");
     }
   }
 };

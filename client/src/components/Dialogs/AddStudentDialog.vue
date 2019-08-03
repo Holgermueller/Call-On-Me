@@ -2,12 +2,14 @@
   <div data-app>
     <v-dialog v-model="dialog">
       <template v-slot:activator="{on}">
-        <v-btn color="green" dark v-on="on">ADD A STUDENT</v-btn>
+        <v-btn color="green" dark v-on="on">
+          <span class="mdi mdi-account-plus"></span> ADD A STUDENT
+        </v-btn>
       </template>
 
       <v-card>
-        <v-card-title>
-          <span class="headline">Add a Student:</span>
+        <v-card-title class="headline blue">
+          <span class="headline mdi mdi-account-plus">Add a Student:</span>
         </v-card-title>
 
         <div class="errors" v-if="errors.length">
