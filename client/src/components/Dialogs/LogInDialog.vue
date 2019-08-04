@@ -76,7 +76,7 @@ export default {
   },
   mounted() {},
   methods: {
-    verifyUserLogin: function() {
+    verifyUserLogin() {
       this.errors = [];
       if (!this.username_login) {
         this.errors.push("Username or email required.");
@@ -85,7 +85,8 @@ export default {
         this.errors.push("Password required.");
       }
     },
-    loginUser: function() {
+    
+    loginUser() {
       const user_login_info = {
         username: this.username_login,
         password: this.password_login

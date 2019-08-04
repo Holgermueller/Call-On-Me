@@ -15,7 +15,7 @@ export default {
     return {};
   },
   methods: {
-    logout: function() {
+    logout() {
       console.log("click");
     }
   }

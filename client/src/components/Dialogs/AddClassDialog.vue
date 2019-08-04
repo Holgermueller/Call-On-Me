@@ -62,19 +62,19 @@ export default {
     };
   },
   methods: {
-    saveClass: function() {
+    saveClass() {
       API.addClass({
         class_name: this.class_name
       })
         .then(res => {
-          this.$router.go();
+          //this.$router.go();
           console.log(res.data);
         })
         .catch(err => {
           console.log(err);
         });
     },
-    clearField: function() {
+    clearField() {
       this.$refs.textField.reset();
     }
   }

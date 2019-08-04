@@ -55,7 +55,7 @@ export default {
   },
   mounted() {},
   methods: {
-    submitEdits: function() {
+    submitEdits() {
       console.log("click");
       const edit_object = {
         user_name_edit: this.user_name_edit,

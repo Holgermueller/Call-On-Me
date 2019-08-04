@@ -31,7 +31,7 @@ export default {
     }
   },
   methods: {
-    chooseAStudent: function() {
+    chooseAStudent() {
       let studentArray = this.student_array;
       let randomStudent =
         studentArray[Math.floor(Math.random() * studentArray.length)];

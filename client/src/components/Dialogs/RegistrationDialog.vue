@@ -106,7 +106,7 @@ export default {
   },
   mounted() {},
   methods: {
-    checkForm: function() {
+    checkForm() {
       this.$router.push("/:instructor_profile_id");
 
       // this.errors = [];
@@ -133,15 +133,18 @@ export default {
       //   this.registerUser();
       // }
     },
-    checkValidEmail: function(email_input) {
+
+    checkValidEmail(email_input) {
       const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
       return regex.test(email_input);
     },
-    checkPassword: function(password_input) {
+    
+    checkPassword(password_input) {
       //const pwd_regex = ;
       // return pwd_regex.test(password_input);
     },
-    registerUser: function() {
+
+    registerUser() {
       API.registerUser({
         instructor_name: this.username_input,
         email: this.email_input,
@@ -156,7 +159,8 @@ export default {
           this.errors.push("User already exists.");
         });
     },
-    resetForm: function() {
+
+    resetForm() {
       this.$refs.form.reset();
     }
   }

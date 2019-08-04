@@ -16,7 +16,12 @@
     </v-card>
 
     <v-expansion-panels class="roster-display-panel">
-      <v-expansion-panel v-for="single_student in student_array" v-bind:key="single_student._id">
+      <v-expansion-panel
+        v-for="single_student in student_array"
+        v-bind:key="single_student._id"
+        v-bind:id="single_student.id"
+        v-bind:value="single_student.id"
+      >
         <v-expansion-panel-header class="headline">{{single_student.preferred_name}}</v-expansion-panel-header>
         <v-expansion-panel-content>
           <h5

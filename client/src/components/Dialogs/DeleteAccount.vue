@@ -50,7 +50,7 @@ export default {
   },
   mounted() {},
   methods: {
-    deleteAccount: function() {
+    deleteAccount() {
       console.log("click");
     }
   }

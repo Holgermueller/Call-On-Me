@@ -57,7 +57,7 @@ export default {
       inset: true
     };
   },
-  mounted() {
+  created() {
     API.getAllClasses()
       .then(res => {
         let class_info_array = res.data.class_list.map(class_info => {
@@ -69,7 +69,7 @@ export default {
       });
   },
   methods: {
-    deleteClass: function() {
+    deleteClass() {
       let targetId = event.target.id;
       console.log(targetId);
       API.deleteClass(targetId)
@@ -79,7 +79,7 @@ export default {
         })
         .catch(err => console.log(err));
     },
-    toRosterPage: function() {
+    toRosterPage() {
       let targetId = event.target.id;
       this.$router.push("/class_roster/:id");
     }
