@@ -68,7 +68,8 @@ export default {
         preferred_name: this.preferred_name
       })
         .then(res => {
-          this.$router.go();
+          //this.$router.go();
+          this.dialog = false;
         })
         .catch(err => {
           console.log(err);

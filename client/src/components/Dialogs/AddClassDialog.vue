@@ -68,7 +68,9 @@ export default {
       })
         .then(res => {
           //this.$router.go();
+          this.$forceUpdate();
           console.log(res.data);
+          this.dialog = false;
         })
         .catch(err => {
           console.log(err);

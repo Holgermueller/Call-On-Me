@@ -68,9 +68,17 @@ export default {
         console.log(err);
       });
   },
+
+  watch: {
+    watchStudentInfoArray() {
+    console.log(this.class_info_array);
+
+    }
+  },
+
   methods: {
     deleteClass() {
-      let targetId = event.target.id;
+      let targetId = event.currentTarget.id;
       console.log(targetId);
       API.deleteClass(targetId)
         .then(res => {

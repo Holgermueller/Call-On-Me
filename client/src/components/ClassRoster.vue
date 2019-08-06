@@ -134,7 +134,7 @@ export default {
 
     removeStudentFromClass: function(e) {
       e.preventDefault();
-      let targetId = event.target.id;
+      let targetId = event.currentTarget.id;
       console.log(targetId);
       API.removeStudentFromClass(targetId)
         .then(res => {
