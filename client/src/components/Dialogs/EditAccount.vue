@@ -53,7 +53,7 @@ export default {
       email_edit: null
     };
   },
-  mounted() {},
+  created() {},
   methods: {
     submitEdits() {
       console.log("click");

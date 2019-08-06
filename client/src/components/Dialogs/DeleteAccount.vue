@@ -48,7 +48,7 @@ export default {
       errors: []
     };
   },
-  mounted() {},
+  created() {},
   methods: {
     deleteAccount() {
       console.log("click");

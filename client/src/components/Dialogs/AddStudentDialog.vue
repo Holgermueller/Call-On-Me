@@ -21,15 +21,17 @@
         <v-card-text>
           <v-container grid-list-md>
             <v-layout wrap>
-              <v-flex xs12 sm6 md4>
-                <v-text-field type="text" v-model="first_name" label="First name*"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field type="text" v-model="last_name" label="Family name*"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field type="text" v-model="preferred_name" label="Preferred name*"></v-text-field>
-              </v-flex>
+              <v-form ref="form">
+                <v-flex xs12 sm6 md4>
+                  <v-text-field type="text" v-model="first_name" label="First name*"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field type="text" v-model="last_name" label="Family name*"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field type="text" v-model="preferred_name" label="Preferred name*"></v-text-field>
+                </v-flex>
+              </v-form>
             </v-layout>
           </v-container>
           <small>* Indicates required field.</small>
@@ -50,7 +52,7 @@ import API from "../../utils/API";
 
 export default {
   name: "AddStudentDialog",
-  mounted() {},
+  created() {},
   data() {
     return {
       errors: [],
@@ -70,10 +72,14 @@ export default {
         .then(res => {
           //this.$router.go();
           this.dialog = false;
+          this.clearField();
         })
         .catch(err => {
           console.log(err);
         });
+    },
+    clearField() {
+      this.$refs.form.reset();
     }
   }
 };

@@ -69,11 +69,9 @@ export default {
       });
   },
 
-  watch: {
-    watchStudentInfoArray() {
+  updated() {
     console.log(this.class_info_array);
-
-    }
+    
   },
 
   methods: {
@@ -82,8 +80,9 @@ export default {
       console.log(targetId);
       API.deleteClass(targetId)
         .then(res => {
-          this.$router.go();
+          //this.$router.go();
           console.log(res.data);
+          this.updated;
         })
         .catch(err => console.log(err));
     },

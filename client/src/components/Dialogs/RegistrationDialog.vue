@@ -104,7 +104,7 @@ export default {
       show_confirm_password: false
     };
   },
-  mounted() {},
+  created() {},
   methods: {
     checkForm() {
       this.$router.push("/:instructor_profile_id");

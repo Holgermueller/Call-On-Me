@@ -28,6 +28,9 @@
             v-bind:value="single_student.times_called"
           >Times called: {{single_student.times_called}}</h5>
           <hr />
+
+          <EditStudentInfoForm v-bind:student_array='student_array' />
+
           <div class="edit-form">
             <div>
               <template>
@@ -81,14 +84,17 @@ import API from "../utils/API";
 import AddStudentDialog from "../components/Dialogs/AddStudentDialog";
 import StudentNameDisplay from "../components/StudentNameDisplay/StudentNameDisplay";
 import LogoutButton from "../components/Buttons/Logout";
+import EditStudentInfoForm from "../components/Forms/EditStudentInfo";
 
 export default {
   name: "ClassRoster",
   components: {
     AddStudentDialog,
     StudentNameDisplay,
-    LogoutButton
+    LogoutButton,
+    EditStudentInfoForm
   },
+
   data() {
     return {
       student_array: [],
@@ -99,7 +105,14 @@ export default {
     };
   },
 
-  mounted() {
+  // props: {
+  //   student_array: {
+  //     type: Array,
+  //     required: true
+  //   }
+  // },
+
+  created() {
     API.getAllStudentsForClass()
       .then(res => {
         let student_array = res.data.roster.map(students => {
