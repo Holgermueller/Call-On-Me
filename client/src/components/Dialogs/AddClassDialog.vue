@@ -20,25 +20,20 @@
           </ul>
         </div>
 
-        <v-card-text>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <v-flex xs12 sm6 md4>
-                <v-text-field
-                  prepend-icon="mdi-account-group"
-                  type="text"
-                  v-model="class_name"
-                  label="Enter class name here*"
-                  hint="Ex.: Multicultural Lit T-Th 9-9:50"
-                  persistent-hint
-                  append-icon="mdi-close"
-                  ref="textField"
-                  @click:append="clearField"
-                ></v-text-field>
-              </v-flex>
-            </v-layout>
-          </v-container>
-          <small>* Indicates required field.</small>
+        <v-card-text my="12">
+          <v-text-field
+            prepend-icon="mdi-account-group"
+            type="text"
+            v-model="class_name"
+            label="Enter class name here*"
+            hint="Ex.: Multicultural Lit T-Th 9-9:50"
+            persistent-hint
+            append-icon="mdi-close"
+            ref="textField"
+            @click:append="clearField"
+          ></v-text-field>
+
+          <small m="12 auto">* Indicates required field.</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>

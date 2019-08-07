@@ -26,36 +26,33 @@
         <v-expansion-panel-content>
           <h5
             v-bind:value="single_student.times_called"
+            class="body-1"
           >Times called: {{single_student.times_called}}</h5>
           <hr />
 
-          <EditStudentInfoForm v-bind:student_array='student_array' />
-
           <div class="edit-form">
             <div>
-              <template>
-                <h6>Edit info for:</h6>
-                <h6>{{single_student.preferred_name}}</h6>
+              <template color="grey">
+                <h6 class="body-1">Edit info for:</h6>
+                <h6 class="body-1">{{single_student.preferred_name}}</h6>
               </template>
 
-              <hr />
-
-              <form v-bind:id="single_student._id">
-                <input
+              <v-form v-bind:id="single_student._id">
+                <v-text-field
                   type="text"
                   v-bind:placeholder="single_student.first_name"
                   v-model="first_name_edit"
-                />
-                <input
+                ></v-text-field>
+                <v-text-field
                   type="text"
                   v-bind:placeholder="single_student.last_name"
                   v-model="last_name_edit"
-                />
-                <input
+                ></v-text-field>
+                <v-text-field
                   type="text"
                   v-bind:placeholder="single_student.preferred_name"
                   v-model="preferred_name_edit"
-                />
+                ></v-text-field>
                 <br />
                 <div>
                   <v-btn
@@ -63,6 +60,7 @@
                     v-bind:id="single_student._id"
                     @click="editStudentInfoSubmit"
                   >SUBMIT</v-btn>
+
                   <v-btn
                     type="submit"
                     color="red darken-1"
@@ -70,7 +68,7 @@
                     @click="removeStudentFromClass"
                   >DELETE</v-btn>
                 </div>
-              </form>
+              </v-form>
             </div>
           </div>
         </v-expansion-panel-content>
@@ -84,15 +82,13 @@ import API from "../utils/API";
 import AddStudentDialog from "../components/Dialogs/AddStudentDialog";
 import StudentNameDisplay from "../components/StudentNameDisplay/StudentNameDisplay";
 import LogoutButton from "../components/Buttons/Logout";
-import EditStudentInfoForm from "../components/Forms/EditStudentInfo";
 
 export default {
   name: "ClassRoster",
   components: {
     AddStudentDialog,
     StudentNameDisplay,
-    LogoutButton,
-    EditStudentInfoForm
+    LogoutButton
   },
 
   data() {
@@ -104,13 +100,6 @@ export default {
       preferred_name_edit: this.preferred_name_edit
     };
   },
-
-  // props: {
-  //   student_array: {
-  //     type: Array,
-  //     required: true
-  //   }
-  // },
 
   created() {
     API.getAllStudentsForClass()
@@ -125,7 +114,7 @@ export default {
   },
 
   methods: {
-    editStudentInfoSubmit: function(e) {
+    editStudentInfoSubmit(e) {
       e.preventDefault();
       let targetId = event.target.id;
 
@@ -145,7 +134,7 @@ export default {
         });
     },
 
-    removeStudentFromClass: function(e) {
+    removeStudentFromClass(e) {
       e.preventDefault();
       let targetId = event.currentTarget.id;
       console.log(targetId);

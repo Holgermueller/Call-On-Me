@@ -51,12 +51,13 @@ export default {
     DeleteAccountDialog,
     LogoutButton
   },
+
   data() {
     return {
-      class_info_array: [],
-      inset: true
+      class_info_array: []
     };
   },
+
   created() {
     API.getAllClasses()
       .then(res => {
@@ -69,23 +70,18 @@ export default {
       });
   },
 
-  updated() {
-    console.log(this.class_info_array);
-    
-  },
-
   methods: {
     deleteClass() {
       let targetId = event.currentTarget.id;
-      console.log(targetId);
       API.deleteClass(targetId)
         .then(res => {
           //this.$router.go();
-          console.log(res.data);
-          this.updated;
+        
+          console.log(this.class_info_array);
         })
         .catch(err => console.log(err));
     },
+
     toRosterPage() {
       let targetId = event.target.id;
       this.$router.push("/class_roster/:id");

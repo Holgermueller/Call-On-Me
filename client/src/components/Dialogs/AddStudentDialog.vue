@@ -18,22 +18,21 @@
             <li v-for="(error, index) in errors" v-bind:key="index">{{ error }}</li>
           </ul>
         </div>
+
         <v-card-text>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <v-form ref="form">
-                <v-flex xs12 sm6 md4>
-                  <v-text-field type="text" v-model="first_name" label="First name*"></v-text-field>
-                </v-flex>
-                <v-flex xs12 sm6 md4>
-                  <v-text-field type="text" v-model="last_name" label="Family name*"></v-text-field>
-                </v-flex>
-                <v-flex xs12 sm6 md4>
-                  <v-text-field type="text" v-model="preferred_name" label="Preferred name*"></v-text-field>
-                </v-flex>
-              </v-form>
-            </v-layout>
-          </v-container>
+          <v-form ref="form">
+            <v-flex xs12 sm6 md4>
+              <v-text-field type="text" v-model="first_name" label="First name*"></v-text-field>
+            </v-flex>
+
+            <v-flex xs12 sm6 md4>
+              <v-text-field type="text" v-model="last_name" label="Family name*"></v-text-field>
+            </v-flex>
+            <v-flex xs12 sm6 md4>
+              <v-text-field type="text" v-model="preferred_name" label="Preferred name*"></v-text-field>
+            </v-flex>
+          </v-form>
+
           <small>* Indicates required field.</small>
         </v-card-text>
 
