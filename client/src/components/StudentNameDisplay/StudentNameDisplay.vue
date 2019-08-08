@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card class="name-display-card elevation-24">
-        <h2 class="name-display headline elevation-2" id="nameDisplay"></h2>
+      <h2 class="name-display headline elevation-2" id="nameDisplay"></h2>
 
       <div class="button-div">
         <v-btn
@@ -22,7 +22,9 @@ import API from "../../utils/API";
 export default {
   name: "StudentNameDisplay",
   data() {
-    return {};
+    return {
+      calledArray: []
+    };
   },
   props: {
     student_array: {
@@ -35,17 +37,33 @@ export default {
       let studentArray = this.student_array;
       let randomStudent =
         studentArray[Math.floor(Math.random() * studentArray.length)];
+      let calledArray = this.calledArray;
 
-      document.querySelector("#nameDisplay").innerHTML =
-        randomStudent.preferred_name;
+      if (calledArray.length === studentArray.length) {
+        this.calledArray = [];
+      } else if (this.calledArray.includes(randomStudent.preferred_name)) {
+        this.chooseAStudent();
+      } else {
+        console.log(randomStudent.preferred_name);
+        console.log(calledArray);
 
-      let increment_id = randomStudent._id;
-      let times_called = randomStudent.times_called;
-      times_called++;
-      let incrementObject = {
-        times_called: times_called
-      };
+        this.calledArray.push(randomStudent.preferred_name);
 
+        document.querySelector("#nameDisplay").innerHTML =
+          randomStudent.preferred_name;
+
+        let increment_id = randomStudent._id;
+        let times_called = randomStudent.times_called;
+        times_called++;
+        let incrementObject = {
+          times_called: times_called
+        };
+      }
+    },
+
+    checkArray() {},
+
+    incrementTimesCalled() {
       API.editStudnetInfo(increment_id, incrementObject)
         .then(res => {
           // document.querySelector(increment_id).innerHTML =

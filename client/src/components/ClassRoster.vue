@@ -40,6 +40,7 @@
               <v-form v-bind:id="single_student._id">
                 <v-text-field
                   type="text"
+                  label="First name"
                   v-bind:placeholder="single_student.first_name"
                   v-model="first_name_edit"
                 ></v-text-field>
