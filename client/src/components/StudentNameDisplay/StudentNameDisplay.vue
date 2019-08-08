@@ -41,6 +41,7 @@ export default {
 
       if (calledArray.length === studentArray.length) {
         this.calledArray = [];
+        this.chooseAStudent();
       } else if (this.calledArray.includes(randomStudent.preferred_name)) {
         this.chooseAStudent();
       } else {
@@ -58,20 +59,16 @@ export default {
         let incrementObject = {
           times_called: times_called
         };
+
+        API.editStudnetInfo(increment_id, incrementObject)
+          .then(res => {
+            // document.querySelector(increment_id).innerHTML =
+            //   randomStudent.times_called;
+          })
+          .catch(err => {
+            console.log(err);
+          });
       }
-    },
-
-    checkArray() {},
-
-    incrementTimesCalled() {
-      API.editStudnetInfo(increment_id, incrementObject)
-        .then(res => {
-          // document.querySelector(increment_id).innerHTML =
-          //   randomStudent.times_called;
-        })
-        .catch(err => {
-          console.log(err);
-        });
     }
   }
 };
