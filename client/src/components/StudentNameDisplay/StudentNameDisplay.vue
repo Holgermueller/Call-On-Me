@@ -45,9 +45,6 @@ export default {
       } else if (this.calledArray.includes(randomStudent.preferred_name)) {
         this.chooseAStudent();
       } else {
-        console.log(randomStudent.preferred_name);
-        console.log(calledArray);
-
         this.calledArray.push(randomStudent.preferred_name);
 
         document.querySelector("#nameDisplay").innerHTML =

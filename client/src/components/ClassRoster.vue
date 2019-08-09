@@ -95,7 +95,6 @@ export default {
   data() {
     return {
       student_array: [],
-      times_called_to_increment: this.times_called,
       first_name_edit: this.first_name_edit,
       last_name_edit: this.last_name_edit,
       preferred_name_edit: this.preferred_name_edit
@@ -146,6 +145,10 @@ export default {
         .catch(err => {
           console.log(err);
         });
+    },
+
+    updateTimesCalledForDisplay() {
+      
     }
   }
 };
