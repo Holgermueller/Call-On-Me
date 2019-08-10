@@ -13,7 +13,7 @@
 
     <v-expansion-panels class="class-display-panel">
       <v-expansion-panel
-        v-for="(singleClass, index) in classesArray"
+        v-for="singleClass in classesArray"
         v-bind:key="singleClass._id"
         v-bind:id="singleClass._id"
         v-bind:value="singleClass._id"
@@ -22,7 +22,7 @@
         <v-expansion-panel-header class="headline">{{singleClass.class_name}}</v-expansion-panel-header>
         <v-expansion-panel-content class="single-class">
           <hr class="mb-1" />
-          <v-btn @click="deleteClass" v-bind:id="singleClass._id" v-bind:index="index" color="red">
+          <v-btn @click="deleteClass" v-bind:id="singleClass._id" color="red">
             <span class="mdi mdi-delete"></span>
             Delete Class
           </v-btn>
@@ -77,10 +77,9 @@ export default {
     },
 
     deleteClass(singleClass) {
-      console.log(this.classesArray.indexOf(singleClass));
-      //this.classesArray.splice(index, 1);
-      let targetId = event.currentTarget.id;
-      // API.deleteClass(targetId)
+      console.log(singleClass)
+      // let targetId = event.currentTarget.id;
+      // API.deleteClass(targetId, singleClass)
       //   .then(res => {
       //     console.log(this.classesArray);
       //   })
