@@ -13,20 +13,21 @@
 
     <v-expansion-panels class="class-display-panel">
       <v-expansion-panel
-        v-for="single_class_info in class_info_array"
-        v-bind:key="single_class_info._id"
-        v-bind:id="single_class_info._id"
-        v-bind:value="single_class_info._id"
+        v-for="(singleClass, index) in classesArray"
+        v-bind:key="singleClass._id"
+        v-bind:id="singleClass._id"
+        v-bind:value="singleClass._id"
+        v-on:saveClass="updateClassesArray($event)"
       >
-        <v-expansion-panel-header class="headline">{{single_class_info.class_name}}</v-expansion-panel-header>
+        <v-expansion-panel-header class="headline">{{singleClass.class_name}}</v-expansion-panel-header>
         <v-expansion-panel-content class="single-class">
           <hr class="mb-1" />
-          <v-btn @click="deleteClass" v-bind:id="single_class_info._id" color="red">
+          <v-btn @click="deleteClass" v-bind:id="singleClass._id" v-bind:index="index" color="red">
             <span class="mdi mdi-delete"></span>
             Delete Class
           </v-btn>
 
-          <v-btn @click="toRosterPage" v-bind:id="single_class_info._id" color="blue">
+          <v-btn @click="toRosterPage" v-bind:id="singleClass._id" color="blue">
             Go To Roster
             <span class="mdi mdi-arrow-right-bold"></span>
           </v-btn>
@@ -54,15 +55,15 @@ export default {
 
   data() {
     return {
-      class_info_array: []
+      classesArray: []
     };
   },
 
   created() {
     API.getAllClasses()
       .then(res => {
-        let class_info_array = res.data.class_list.map(class_info => {
-          this.class_info_array.push(class_info);
+        let classesArray = res.data.class_list.map(classInfo => {
+          this.classesArray.push(classInfo);
         });
       })
       .catch(err => {
@@ -71,15 +72,19 @@ export default {
   },
 
   methods: {
-    deleteClass() {
+    catchEmitEvent(classToPushToArray) {
+      this.classesArray.push(classToPushToArray);
+    },
+
+    deleteClass(singleClass) {
+      console.log(this.classesArray.indexOf(singleClass));
+      //this.classesArray.splice(index, 1);
       let targetId = event.currentTarget.id;
-      API.deleteClass(targetId)
-        .then(res => {
-          //this.$router.go();
-        
-          console.log(this.class_info_array);
-        })
-        .catch(err => console.log(err));
+      // API.deleteClass(targetId)
+      //   .then(res => {
+      //     console.log(this.classesArray);
+      //   })
+      //   .catch(err => console.log(err));
     },
 
     toRosterPage() {

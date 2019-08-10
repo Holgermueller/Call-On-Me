@@ -147,9 +147,7 @@ export default {
         });
     },
 
-    updateTimesCalledForDisplay() {
-      
-    }
+    updateTimesCalledForDisplay() {}
   }
 };
 </script>

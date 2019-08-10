@@ -38,7 +38,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="red " @click="dialog = false">Cancel</v-btn>
-          <v-btn color="blue " @click="saveClass">Submit</v-btn>
+          <v-btn color="blue " v-on:click="saveClass">Submit</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -62,8 +62,9 @@ export default {
         class_name: this.class_name
       })
         .then(res => {
-          //this.$router.go();
           console.log(res.data);
+          let class_name = res.data.createdClass.class_name;
+          this.$emit("saveClass", class_name);
           this.dialog = false;
           this.clearField();
         })
