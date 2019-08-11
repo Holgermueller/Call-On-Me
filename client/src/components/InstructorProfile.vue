@@ -77,8 +77,14 @@ export default {
     },
 
     deleteClass(singleClass) {
-      console.log(singleClass)
-      // let targetId = event.currentTarget.id;
+      let indexes = [];
+      
+      for (let index = 0; index < this.classesArray.length; index++) {
+        indexes.push(index);
+      }
+
+      let targetId = event.currentTarget.id;
+
       // API.deleteClass(targetId, singleClass)
       //   .then(res => {
       //     console.log(this.classesArray);
