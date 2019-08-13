@@ -47,6 +47,7 @@
 
 <script>
 import API from "../../utils/API";
+import { bus } from "../../main";
 
 export default {
   data() {
@@ -64,7 +65,7 @@ export default {
         .then(res => {
           console.log(res.data);
           let class_name = res.data.createdClass.class_name;
-          this.$emit("saveClass", class_name);
+          bus.$emit("saveClass", class_name);
           this.dialog = false;
           this.clearField();
         })

@@ -43,6 +43,7 @@ import AddClassDialog from "../components/Dialogs/AddClassDialog";
 import EditAccountDialog from "../components/Dialogs/EditAccount";
 import DeleteAccountDialog from "../components/Dialogs/DeleteAccount";
 import LogoutButton from "../components/Buttons/Logout";
+import { bus } from "../main";
 
 export default {
   name: "InstructorProfile",
@@ -75,8 +76,11 @@ export default {
   },
 
   methods: {
-    catchEmitEvent(classToPushToArray) {
-      this.classesArray.push(classToPushToArray);
+    catchEmitEvent(data) {
+      bus.$on("saveClass", data => {
+      this.classesArray.push(data);
+      console.log(this.classesArray);
+      })
     },
 
     deleteClass(index) {
