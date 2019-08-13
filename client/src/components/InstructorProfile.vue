@@ -13,7 +13,7 @@
 
     <v-expansion-panels class="class-display-panel">
       <v-expansion-panel
-        v-for="singleClass in classesArray"
+        v-for="(singleClass, index) in classesArray"
         v-bind:key="singleClass._id"
         v-bind:id="singleClass._id"
         v-bind:value="singleClass._id"
@@ -22,7 +22,7 @@
         <v-expansion-panel-header class="headline">{{singleClass.class_name}}</v-expansion-panel-header>
         <v-expansion-panel-content class="single-class">
           <hr class="mb-1" />
-          <v-btn @click="deleteClass" v-bind:id="singleClass._id" color="red">
+          <v-btn @click="deleteClass(index)" v-bind:id="singleClass._id" color="red">
             <span class="mdi mdi-delete"></span>
             Delete Class
           </v-btn>
@@ -63,7 +63,10 @@ export default {
     API.getAllClasses()
       .then(res => {
         let classesArray = res.data.class_list.map(classInfo => {
-          this.classesArray.push(classInfo);
+          let class_name = classInfo.class_name;
+          let _id = classInfo._id;
+          let students = classInfo.students;
+          this.classesArray.push({ class_name, _id, students });
         });
       })
       .catch(err => {
@@ -76,20 +79,15 @@ export default {
       this.classesArray.push(classToPushToArray);
     },
 
-    deleteClass(singleClass) {
-      let indexes = [];
-      
-      for (let index = 0; index < this.classesArray.length; index++) {
-        indexes.push(index);
-      }
+    deleteClass(index) {
+      this.classesArray.splice(index, 1);
 
       let targetId = event.currentTarget.id;
-
-      // API.deleteClass(targetId, singleClass)
-      //   .then(res => {
-      //     console.log(this.classesArray);
-      //   })
-      //   .catch(err => console.log(err));
+      API.deleteClass(targetId)
+        .then(res => {
+          console.log(this.classesArray);
+        })
+        .catch(err => console.log(err));
     },
 
     toRosterPage() {
