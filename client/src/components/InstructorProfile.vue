@@ -22,7 +22,7 @@
         <v-expansion-panel-header class="headline">{{singleClass.class_name}}</v-expansion-panel-header>
         <v-expansion-panel-content class="single-class">
           <hr class="mb-1" />
-          <v-btn @click="deleteClass(index)" v-bind:id="singleClass._id" color="red">
+          <v-btn @click="deleteClassAndRemoveFromDOM(index)" v-bind:id="singleClass._id" color="red">
             <span class="mdi mdi-delete"></span>
             Delete Class
           </v-btn>
@@ -83,7 +83,7 @@ export default {
       })
     },
 
-    deleteClass(index) {
+    deleteClassAndRemoveFromDOM(index) {
       this.classesArray.splice(index, 1);
 
       let targetId = event.currentTarget.id;

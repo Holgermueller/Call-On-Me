@@ -48,6 +48,7 @@
 
 <script>
 import API from "../../utils/API";
+import { bus } from "../../main";
 
 export default {
   name: "AddStudentDialog",
@@ -62,14 +63,16 @@ export default {
     };
   },
   methods: {
+    
     addStudentToClass() {
+      this.sendDataToStudentArray();
+
       API.addStudentToClass({
         first_name: this.first_name,
         last_name: this.last_name,
         preferred_name: this.preferred_name
       })
         .then(res => {
-          //this.$router.go();
           this.dialog = false;
           this.clearField();
         })
@@ -77,8 +80,21 @@ export default {
           console.log(err);
         });
     },
+
     clearField() {
       this.$refs.form.reset();
+    },
+
+    sendDataToStudentArray() {
+      const studentData = {
+        first_name: this.first_name,
+        last_name: this.last_name,
+        preferred_name: this.preferred_name,
+        
+
+      };
+
+      bus.$emit("sendStudent", studentData);
     }
   }
 };

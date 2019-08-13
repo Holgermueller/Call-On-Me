@@ -82,6 +82,7 @@ import API from "../utils/API";
 import AddStudentDialog from "../components/Dialogs/AddStudentDialog";
 import StudentNameDisplay from "../components/StudentNameDisplay/StudentNameDisplay";
 import LogoutButton from "../components/Buttons/Logout";
+import { bus } from "../main";
 
 export default {
   name: "ClassRoster",
@@ -101,6 +102,10 @@ export default {
   },
 
   created() {
+    bus.$on("sendStudent", value => {
+      this.student_array.push(value);
+    });
+
     API.getAllStudentsForClass()
       .then(res => {
         let student_array = res.data.roster.map(students => {
@@ -111,6 +116,8 @@ export default {
         console.log(err);
       });
   },
+
+  mounted() {},
 
   methods: {
     editStudentInfoSubmit(e) {
@@ -135,7 +142,7 @@ export default {
 
     removeStudentFromClass(index) {
       this.student_array.splice(index, 1);
-      
+
       let targetId = event.currentTarget.id;
       API.removeStudentFromClass(targetId)
         .then(res => {
