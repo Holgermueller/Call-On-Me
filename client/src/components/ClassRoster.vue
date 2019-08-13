@@ -17,7 +17,7 @@
 
     <v-expansion-panels class="roster-display-panel">
       <v-expansion-panel
-        v-for="single_student in student_array"
+        v-for="(single_student, index) in student_array"
         v-bind:key="single_student._id"
         v-bind:id="single_student.id"
         v-bind:value="single_student.id"
@@ -63,10 +63,9 @@
                   >SUBMIT</v-btn>
 
                   <v-btn
-                    type="submit"
                     color="red darken-1"
                     v-bind:id="single_student._id"
-                    @click="removeStudentFromClass"
+                    @click="removeStudentFromClass(index)"
                   >DELETE</v-btn>
                 </div>
               </v-form>
@@ -134,13 +133,13 @@ export default {
         });
     },
 
-    removeStudentFromClass(e) {
-      e.preventDefault();
+    removeStudentFromClass(index) {
+      this.student_array.splice(index, 1);
+      
       let targetId = event.currentTarget.id;
-      console.log(targetId);
       API.removeStudentFromClass(targetId)
         .then(res => {
-          this.$router.go();
+          console.log(res.data);
         })
         .catch(err => {
           console.log(err);
