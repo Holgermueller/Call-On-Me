@@ -17,12 +17,16 @@
         v-bind:key="singleClass._id"
         v-bind:id="singleClass._id"
         v-bind:value="singleClass._id"
-        v-on:saveClass="updateClassesArray($event)"
+        v-bind:classesArray="classesArray"
       >
         <v-expansion-panel-header class="headline">{{singleClass.class_name}}</v-expansion-panel-header>
         <v-expansion-panel-content class="single-class">
           <hr class="mb-1" />
-          <v-btn @click="deleteClassAndRemoveFromDOM(index)" v-bind:id="singleClass._id" color="red">
+          <v-btn
+            @click="deleteClassAndRemoveFromDOM(index)"
+            v-bind:id="singleClass._id"
+            color="red"
+          >
             <span class="mdi mdi-delete"></span>
             Delete Class
           </v-btn>
@@ -61,13 +65,15 @@ export default {
   },
 
   created() {
+    bus.$on("sendClassData", value => {
+      console.log(value);
+      this.classesArray.push(value);
+    });
+
     API.getAllClasses()
       .then(res => {
         let classesArray = res.data.class_list.map(classInfo => {
-          let class_name = classInfo.class_name;
-          let _id = classInfo._id;
-          let students = classInfo.students;
-          this.classesArray.push({ class_name, _id, students });
+          this.classesArray.push(classInfo);
         });
       })
       .catch(err => {
@@ -76,13 +82,6 @@ export default {
   },
 
   methods: {
-    catchEmitEvent(data) {
-      bus.$on("saveClass", data => {
-      this.classesArray.push(data);
-      console.log(this.classesArray);
-      })
-    },
-
     deleteClassAndRemoveFromDOM(index) {
       this.classesArray.splice(index, 1);
 

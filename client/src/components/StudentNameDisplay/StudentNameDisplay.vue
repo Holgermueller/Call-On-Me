@@ -26,12 +26,14 @@ export default {
       calledArray: []
     };
   },
+  
   props: {
     student_array: {
       type: Array,
       required: true
     }
   },
+
   methods: {
     chooseAStudent() {
       let studentArray = this.student_array;

@@ -59,20 +59,20 @@ export default {
       first_name: null,
       last_name: null,
       preferred_name: null,
-      dialog: false
+      dialog: false,
+      times_called: 0
     };
   },
   methods: {
-    
     addStudentToClass() {
-      this.sendDataToStudentArray();
-
       API.addStudentToClass({
         first_name: this.first_name,
         last_name: this.last_name,
-        preferred_name: this.preferred_name
+        preferred_name: this.preferred_name,
+        times_called: this.times_called
       })
         .then(res => {
+          this.sendDataToStudentArray();
           this.dialog = false;
           this.clearField();
         })
@@ -90,8 +90,7 @@ export default {
         first_name: this.first_name,
         last_name: this.last_name,
         preferred_name: this.preferred_name,
-        
-
+        times_called: 0
       };
 
       bus.$emit("sendStudent", studentData);
