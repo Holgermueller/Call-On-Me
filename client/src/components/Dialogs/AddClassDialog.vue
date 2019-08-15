@@ -71,7 +71,7 @@ export default {
         class_name: this.class_name
       })
         .then(res => {
-          this.sendDataToClassesArray();
+          //this.sendDataToClassesArray();
           this.updateClassesArray();
           let class_name = res.data.createdClass.class_name;
           this.dialog = false;
@@ -82,16 +82,18 @@ export default {
         });
     },
 
-    sendDataToClassesArray() {
-      let classData = {
-        class_name: this.class_name
-      };
+    // sendDataToClassesArray() {
+    //   let classData = {
+    //     class_name: this.class_name
+    //   };
 
-      bus.$emit("sendClassData", classData);
-    },
+    //   bus.$emit("sendClassData", classData);
+    // },
 
     updateClassesArray() {
       let classesArray = this.classesArray;
+
+      classesArray.length = 0;
 
       API.getAllClasses()
         .then(res => {

@@ -61,6 +61,7 @@ export default {
 
         API.editStudnetInfo(increment_id, incrementObject)
           .then(res => {
+            console.log(res.data);
             // document.querySelector(increment_id).innerHTML =
             //   randomStudent.times_called;
           })

@@ -3,7 +3,7 @@
     <h2 class="headline text-center font-weight-bold ma-5">Hello, Professor {name goes here}</h2>
 
     <v-card class="profile-actions">
-      <AddClassDialog />
+      <AddClassDialog v-bind:classesArray="classesArray" />
       <EditAccountDialog />
       <DeleteAccountDialog />
       <LogoutButton />
@@ -75,6 +75,7 @@ export default {
         let classesArray = res.data.class_list.map(classInfo => {
           this.classesArray.push(classInfo);
         });
+        console.log(res.data._id);
       })
       .catch(err => {
         console.log(err);

@@ -5,7 +5,7 @@
     <h5 class="title text-center ma-5">{Class Name} roster:</h5>
 
     <v-card class="ma-5 elevation-0">
-      <AddStudentDialog />
+      <AddStudentDialog v-bind:student_array="student_array" />
       <router-link class="router-link" to="/:instructor_profile_id">
         <v-btn block color="blue" link h-ref="/:instructor_profile_id">
           <span class="mdi mdi-arrow-left-bold"></span>

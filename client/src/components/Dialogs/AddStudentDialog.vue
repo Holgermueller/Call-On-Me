@@ -63,6 +63,14 @@ export default {
       times_called: 0
     };
   },
+
+  props: {
+    student_array: {
+      type: Array,
+      required: true
+    }
+  },
+
   methods: {
     addStudentToClass() {
       API.addStudentToClass({
@@ -72,7 +80,8 @@ export default {
         times_called: this.times_called
       })
         .then(res => {
-          this.sendDataToStudentArray();
+          //this.sendDataToStudentArray();
+          this.updateStudentArray();
           this.dialog = false;
           this.clearField();
         })
@@ -85,15 +94,31 @@ export default {
       this.$refs.form.reset();
     },
 
-    sendDataToStudentArray() {
-      const studentData = {
-        first_name: this.first_name,
-        last_name: this.last_name,
-        preferred_name: this.preferred_name,
-        times_called: 0
-      };
+    // sendDataToStudentArray() {
+    //   const studentData = {
+    //     first_name: this.first_name,
+    //     last_name: this.last_name,
+    //     preferred_name: this.preferred_name,
+    //     times_called: 0
+    //   };
 
-      bus.$emit("sendStudent", studentData);
+    //   bus.$emit("sendStudent", studentData);
+    // },
+
+    updateStudentArray() {
+      let student_array = this.student_array;
+
+      student_array.length = 0;
+
+      API.getAllStudentsForClass()
+        .then(res => {
+          let student_array = res.data.roster.map(students => {
+            this.student_array.push(students);
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };
