@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card class="name-display-card elevation-24">
-      <h2 class="name-display headline elevation-2" id="nameDisplay"></h2>
+      <h1 class="name-display headline elevation-2" id="nameDisplay"></h1>
 
       <div class="button-div">
         <v-btn
@@ -69,6 +69,10 @@ export default {
             console.log(err);
           });
       }
+    },
+
+    updateTimesCalledForDisplay() {
+
     }
   }
 };

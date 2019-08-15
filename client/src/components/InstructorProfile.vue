@@ -11,7 +11,7 @@
 
     <h5 class="title text-center ma-5">Select from your list of classes:</h5>
 
-    <v-expansion-panels class="class-display-panel">
+    <v-expansion-panels class="class-display-panel" inset focusable>
       <v-expansion-panel
         v-for="(singleClass, index) in classesArray"
         v-bind:key="singleClass._id"

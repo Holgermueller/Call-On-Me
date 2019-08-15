@@ -15,7 +15,7 @@
       <LogoutButton />
     </v-card>
 
-    <v-expansion-panels class="roster-display-panel">
+    <v-expansion-panels class="roster-display-panel" inset focusable>
       <v-expansion-panel
         v-for="(single_student, index) in student_array"
         v-bind:key="single_student._id"
@@ -132,7 +132,6 @@ export default {
 
       API.editStudnetInfo(targetId, updatedStudentInfoObj)
         .then(res => {
-          console.log(res.data);
           this.$router.go();
         })
         .catch(err => {
@@ -152,8 +151,6 @@ export default {
           console.log(err);
         });
     },
-
-    updateTimesCalledForDisplay() {}
   }
 };
 </script>
