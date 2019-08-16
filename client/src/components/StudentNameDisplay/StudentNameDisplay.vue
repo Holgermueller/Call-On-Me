@@ -18,6 +18,7 @@
 
 <script>
 import API from "../../utils/API";
+import { bus } from "../../main";
 
 export default {
   name: "StudentNameDisplay",
@@ -26,7 +27,7 @@ export default {
       calledArray: []
     };
   },
-  
+
   props: {
     student_array: {
       type: Array,
@@ -62,17 +63,29 @@ export default {
         API.editStudnetInfo(increment_id, incrementObject)
           .then(res => {
             console.log(res.data);
-            // document.querySelector(increment_id).innerHTML =
-            //   randomStudent.times_called;
           })
           .catch(err => {
             console.log(err);
           });
+
+        this.updateTimesCalledForDisplay();
       }
     },
 
     updateTimesCalledForDisplay() {
+      let student_array = this.student_array;
 
+      student_array.length = 0;
+
+      API.getAllStudentsForClass()
+        .then(res => {
+          let student_array = res.data.roster.map(students => {
+            this.student_array.push(students);
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };

@@ -2,7 +2,7 @@
   <div>
     <h2 class="text-center p-5%">Welcome to Call On Me</h2>
 
-    <v-card class="text-center home-card">
+    <v-card class="text-center home-card elevation-0">
       <RegistrationDialog />
       
       <LogInDialog />
