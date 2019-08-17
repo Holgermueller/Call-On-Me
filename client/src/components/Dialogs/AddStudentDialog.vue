@@ -1,6 +1,6 @@
 <template>
   <div data-app>
-    <v-dialog v-model="dialog">
+    <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{on}">
         <v-btn block color="green" dark v-on="on">
           <span class="mdi mdi-account-plus"></span> ADD A STUDENT
@@ -12,32 +12,39 @@
           <span class="headline mdi mdi-account-plus">Add a Student:</span>
         </v-card-title>
 
-        <div class="errors" v-if="errors.length">
-          <b>Please fix the following error(s):</b>
-          <ul class="error-list">
-            <li v-for="(error, index) in errors" v-bind:key="index">{{ error }}</li>
-          </ul>
-        </div>
-
         <v-card-text>
-          <v-form ref="form">
-            <v-flex xs12 sm6 md4>
-              <v-text-field type="text" v-model="first_name" label="First name*"></v-text-field>
-            </v-flex>
+          <div class="errors" v-if="errors.length">
+            <b>Please fix the following error(s):</b>
+            <ul class="error-list">
+              <li v-for="(error, index) in errors" v-bind:key="index">{{ error }}</li>
+            </ul>
+          </div>
 
-            <v-flex xs12 sm6 md4>
-              <v-text-field type="text" v-model="last_name" label="Family name*"></v-text-field>
-            </v-flex>
-            <v-flex xs12 sm6 md4>
-              <v-text-field type="text" v-model="preferred_name" label="Preferred name*"></v-text-field>
-            </v-flex>
-          </v-form>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-form ref="form">
+                <v-flex md>
+                  <v-text-field v-model="first_name" label="First name*"></v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm6 md4>
+                  <v-text-field v-model="last_name" label="Family name*"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field v-model="preferred_name" label="Preferred name*"></v-text-field>
+                </v-flex>
+              </v-form>
+            </v-layout>
+          </v-container>
 
           <small>* Indicates required field.</small>
         </v-card-text>
 
         <v-card-actions>
           <v-spacer></v-spacer>
+          <v-btn @click="clearField">
+            Clear Form
+          </v-btn>
           <v-btn color="red darken-1" @click="dialog = false">CANCEL</v-btn>
           <v-btn color="blue darken-1" @click="addStudentToClass">Submit</v-btn>
         </v-card-actions>

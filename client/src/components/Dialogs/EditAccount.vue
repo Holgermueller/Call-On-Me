@@ -1,6 +1,6 @@
 <template>
   <div data-app>
-    <v-dialog v-model="dialog">
+    <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{on}">
         <v-btn block color="amber" dark v-on="on">
           <span class="mdi mdi-pen-plus"></span>
@@ -13,8 +13,8 @@
           <span class="headline mdi mdi-account-edit">Edit Information:</span>
         </v-card-title>
 
-        <v-card-text>
-          <v-container grid-list>
+        <v-card-text class="d-flex">
+          <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs-12>
                 <v-text-field
@@ -24,6 +24,7 @@
                   label="Username"
                 ></v-text-field>
               </v-flex>
+
               <v-flex xs-12>
                 <v-text-field type="email" v-model="email_edit" label="email"></v-text-field>
               </v-flex>

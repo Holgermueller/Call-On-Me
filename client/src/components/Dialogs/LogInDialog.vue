@@ -45,6 +45,7 @@
           </v-container>
           <small>* Indicates required field.</small>
         </v-card-text>
+        
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="red" @click="dialog = false" class="white--text">

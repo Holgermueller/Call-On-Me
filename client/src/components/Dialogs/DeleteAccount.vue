@@ -1,6 +1,6 @@
 <template>
   <div data-app>
-    <v-dialog v-model="dialog">
+    <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{on}">
         <v-btn block color="red" dark v-on="on">
           <span class="mdi mdi-delete"></span>

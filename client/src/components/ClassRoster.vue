@@ -111,7 +111,6 @@ export default {
         let student_array = res.data.roster.map(students => {
           this.student_array.push(students);
         });
-        
       })
       .catch(err => {
         console.log(err);
