@@ -9,7 +9,7 @@
       </template>
 
       <v-card>
-        <v-card-title>
+        <v-card-title class="headline">
           <span class="headline">Sign In Here</span>
         </v-card-title>
 

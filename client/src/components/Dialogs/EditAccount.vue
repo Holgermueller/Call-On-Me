@@ -13,7 +13,14 @@
           <span class="headline mdi mdi-account-edit">Edit Information:</span>
         </v-card-title>
 
-        <v-card-text class="d-flex">
+        <v-card-text>
+          <div class="errors" v-if="errors.length">
+            <b>Please fix the following error(s):</b>
+            <ul class="error-list">
+              <li v-for="(error, index) in errors" v-bind:key="index">{{error}}</li>
+            </ul>
+          </div>
+
           <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs-12>
@@ -26,7 +33,12 @@
               </v-flex>
 
               <v-flex xs-12>
-                <v-text-field type="email" v-model="email_edit" label="email"></v-text-field>
+                <v-text-field
+                  prepend-icon="mdi-email"
+                  type="email"
+                  v-model="email_edit"
+                  label="email"
+                ></v-text-field>
               </v-flex>
             </v-layout>
           </v-container>
