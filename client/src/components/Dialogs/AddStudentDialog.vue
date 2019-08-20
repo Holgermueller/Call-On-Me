@@ -20,17 +20,18 @@
             </ul>
           </div>
 
-          <v-container grid-list-md>
+          <v-container fluid>
             <v-layout wrap>
               <v-form ref="form">
-                <v-flex md>
+                <v-flex xs12 sm6 md24>
                   <v-text-field v-model="first_name" label="First name*"></v-text-field>
                 </v-flex>
 
-                <v-flex xs12 sm6 md4>
+                <v-flex xs12 sm6 md24>
                   <v-text-field v-model="last_name" label="Family name*"></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm6 md4>
+                
+                <v-flex xs12 sm6 md24>
                   <v-text-field v-model="preferred_name" label="Preferred name*"></v-text-field>
                 </v-flex>
               </v-form>
