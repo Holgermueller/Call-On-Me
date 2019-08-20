@@ -13,6 +13,10 @@ const API = {
     return axios.post("/classapi/class/", new_class);
   },
 
+  getOneClass: function(id) {
+    return axios.get("/classapi/class" + id);
+  },
+
   getAllClasses: function() {
     return axios.get("/classapi/class");
   },

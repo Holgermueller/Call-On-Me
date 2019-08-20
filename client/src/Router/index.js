@@ -17,12 +17,14 @@ export default new VueRouter({
     {
       path: "/:instructor_profile_id",
       name: "InstructorProfile",
-      component: InstructorProfile
+      component: InstructorProfile,
+      props: true
     },
     {
       path: "/class_roster/:id",
       name: "ClassRoster",
-      component: ClassRoster
+      component: ClassRoster,
+      props: true
     }
   ]
 });

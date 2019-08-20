@@ -31,7 +31,12 @@
             Delete Class
           </v-btn>
 
-          <v-btn @click="toRosterPage" v-bind:id="singleClass._id" color="blue">
+          <v-btn
+            @click="toRosterPage"
+            v-bind:id="singleClass._id"
+            v-bind:data="singleClass.class_name"
+            color="blue"
+          >
             Go To Roster
             <span class="mdi mdi-arrow-right-bold"></span>
           </v-btn>
@@ -60,13 +65,13 @@ export default {
 
   data() {
     return {
+      //id: this.$route.params.id,
       classesArray: []
     };
   },
 
   created() {
     bus.$on("sendClassData", value => {
-      console.log(value);
       this.classesArray.push(value);
     });
 
@@ -75,7 +80,6 @@ export default {
         let classesArray = res.data.class_list.map(classInfo => {
           this.classesArray.push(classInfo);
         });
-        console.log(res.data._id);
       })
       .catch(err => {
         console.log(err);
@@ -89,14 +93,19 @@ export default {
       let targetId = event.currentTarget.id;
       API.deleteClass(targetId)
         .then(res => {
-          console.log(this.classesArray);
+          console.log(res.data);
         })
         .catch(err => console.log(err));
     },
 
     toRosterPage() {
-      let targetId = event.target.id;
-      this.$router.push("/class_roster/:id");
+      let id = event.currentTarget.id;
+      let className = event.currentTarget.data;
+      console.log(className);
+      this.$router.push(
+        "/class_roster/" + id,
+        
+      );
     }
   }
 };

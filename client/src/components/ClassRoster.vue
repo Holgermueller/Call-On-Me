@@ -2,7 +2,8 @@
   <div class="roster-page">
     <StudentNameDisplay v-bind:student_array="student_array" />
 
-    <h5 class="title text-center ma-5">{Class Name} roster:</h5>
+    <h5 class="title text-center ma-5">{{$route.params.className}} roster:</h5>
+    <p>{{$route.params.id}}</p>
 
     <v-card class="ma-5 elevation-0">
       <AddStudentDialog v-bind:student_array="student_array" />
@@ -94,6 +95,7 @@ export default {
 
   data() {
     return {
+      id: this.$router.params.id,
       student_array: [],
       first_name_edit: this.first_name_edit,
       last_name_edit: this.last_name_edit,
@@ -106,21 +108,25 @@ export default {
       this.student_array.push(value);
     });
 
-    API.getAllStudentsForClass()
-      .then(res => {
-        let student_array = res.data.roster.map(students => {
-          this.student_array.push(students);
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    API.getOneClass(this.id).then(res => {
+      console.log(res.data);
+    });
+
+    // API.getAllStudentsForClass()
+    //   .then(res => {
+    //     let student_array = res.data.roster.map(students => {
+    //       this.student_array.push(students);
+    //     });
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   },
 
   methods: {
     editStudentInfoSubmit(e) {
       e.preventDefault();
-      let targetId = event.target.id;
+      let targetId = event.currentTarget.id;
 
       let updatedStudentInfoObj = {
         first_name: this.first_name_edit,
@@ -148,7 +154,7 @@ export default {
         .catch(err => {
           console.log(err);
         });
-    },
+    }
   }
 };
 </script>
