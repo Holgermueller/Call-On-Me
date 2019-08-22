@@ -5,7 +5,11 @@ const studentSchema = mongoose.Schema({
   first_name: { type: String, required: true },
   last_name: { type: String, required: true },
   preferred_name: { type: String, required: true },
-  times_called: { type: Number, default: 0 }
+  times_called: { type: Number, default: 0 },
+  class: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Class"
+  }
 });
 
 module.exports = mongoose.model("Student", studentSchema);

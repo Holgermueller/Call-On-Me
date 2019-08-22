@@ -14,7 +14,7 @@ const API = {
   },
 
   getRosterForOneClass: function(id) {
-    return axios.get("/classapi/class" + id);
+    return axios.get("/classapi/class/" + id);
   },
 
   getAllClasses: function() {
