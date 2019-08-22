@@ -1,6 +1,6 @@
 <template>
   <div class="roster-page">
-    <StudentNameDisplay v-bind:student_array="student_array" />
+    <!-- <StudentNameDisplay v-bind:student_array="student_array" /> -->
 
     <h5 class="title text-center ma-5">{{$route.params.className}} roster:</h5>
     <p>{{$route.params.id}}</p>
@@ -95,7 +95,6 @@ export default {
 
   data() {
     return {
-      id: this.$router.params.id,
       student_array: [],
       first_name_edit: this.first_name_edit,
       last_name_edit: this.last_name_edit,
@@ -108,19 +107,19 @@ export default {
       this.student_array.push(value);
     });
 
-    API.getOneClass(this.id).then(res => {
+    API.getOneClass(this.$route.params.id).then(res => {
       console.log(res.data);
     });
 
-    // API.getAllStudentsForClass()
-    //   .then(res => {
-    //     let student_array = res.data.roster.map(students => {
-    //       this.student_array.push(students);
-    //     });
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+    API.getAllStudentsForClass()
+      .then(res => {
+        let student_array = res.data.roster.map(students => {
+          this.student_array.push(students);
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
 
   methods: {

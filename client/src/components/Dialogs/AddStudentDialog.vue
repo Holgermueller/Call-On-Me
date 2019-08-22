@@ -9,7 +9,7 @@
 
       <v-card>
         <v-card-title class="headline blue">
-          <span class="headline mdi mdi-account-plus">Add a Student:</span>
+          <span class="headline mdi mdi-account-plus">Add a Student: {{$route.params.id}}</span>
         </v-card-title>
 
         <v-card-text>

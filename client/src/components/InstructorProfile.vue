@@ -37,8 +37,10 @@
             v-bind:data="singleClass.class_name"
             color="blue"
           >
-            Go To Roster
-            <span class="mdi mdi-arrow-right-bold"></span>
+            <!-- <router-link :to="{params: {className: singleClass.class_name}}"> -->
+              Go To Roster
+              <span class="mdi mdi-arrow-right-bold"></span>
+            <!-- </router-link> -->
           </v-btn>
         </v-expansion-panel-content>
       </v-expansion-panel>
@@ -100,12 +102,7 @@ export default {
 
     toRosterPage() {
       let id = event.currentTarget.id;
-      let className = event.currentTarget.data;
-      console.log(className);
-      this.$router.push(
-        "/class_roster/" + id,
-        
-      );
+      this.$router.push("/class_roster/" + id);
     }
   }
 };

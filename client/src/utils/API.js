@@ -13,7 +13,7 @@ const API = {
     return axios.post("/classapi/class/", new_class);
   },
 
-  getOneClass: function(id) {
+  getRosterForOneClass: function(id) {
     return axios.get("/classapi/class" + id);
   },
 
