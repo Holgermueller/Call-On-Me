@@ -6,7 +6,8 @@ module.exports = {
     const newClass = new Class({
       _id: mongoose.Types.ObjectId(),
       class_name: req.body.class_name,
-      students: req.body.studentId
+      students: [req.body.studentId],
+      created_by: created_by
     });
     newClass
       .save()

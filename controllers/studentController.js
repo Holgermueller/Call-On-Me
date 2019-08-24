@@ -22,7 +22,8 @@ module.exports = {
       _id: new mongoose.Types.ObjectId(),
       first_name: req.body.first_name,
       last_name: req.body.last_name,
-      preferred_name: req.body.preferred_name
+      preferred_name: req.body.preferred_name,
+      class_student_is_in: class_student_is_in
     });
     student
       .save()

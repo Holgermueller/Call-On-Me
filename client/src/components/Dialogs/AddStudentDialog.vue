@@ -93,7 +93,7 @@ export default {
         last_name: this.last_name,
         preferred_name: this.preferred_name,
         times_called: this.times_called,
-        class: this.classId
+        class_student_is_in: this.classId
       })
         .then(res => {
           console.log(res.data);
