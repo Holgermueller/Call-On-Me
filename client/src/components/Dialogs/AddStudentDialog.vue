@@ -9,7 +9,7 @@
 
       <v-card>
         <v-card-title class="headline blue">
-          <span class="headline mdi mdi-account-plus">Add a Student: {{$route.params.id}}</span>
+          <span class="headline mdi mdi-account-plus">Add a Student to {{className}}:</span>
         </v-card-title>
 
         <v-card-text>
@@ -30,7 +30,7 @@
                 <v-flex xs12 sm6 md24>
                   <v-text-field v-model="last_name" label="Family name*"></v-text-field>
                 </v-flex>
-                
+
                 <v-flex xs12 sm6 md24>
                   <v-text-field v-model="preferred_name" label="Preferred name*"></v-text-field>
                 </v-flex>
@@ -43,9 +43,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn @click="clearField">
-            Clear Form
-          </v-btn>
+          <v-btn @click="clearField">Clear Form</v-btn>
           <v-btn color="red darken-1" @click="dialog = false">CANCEL</v-btn>
           <v-btn color="blue darken-1" @click="addStudentToClass">Submit</v-btn>
         </v-card-actions>
@@ -68,6 +66,7 @@ export default {
       last_name: null,
       preferred_name: null,
       dialog: false,
+      class: this.classId,
       times_called: 0
     };
   },
@@ -75,6 +74,14 @@ export default {
   props: {
     student_array: {
       type: Array,
+      required: true
+    },
+    classId: {
+      type: String,
+      required: true
+    },
+    className: {
+      type: String,
       required: true
     }
   },
@@ -85,9 +92,11 @@ export default {
         first_name: this.first_name,
         last_name: this.last_name,
         preferred_name: this.preferred_name,
-        times_called: this.times_called
+        times_called: this.times_called,
+        class: this.classId
       })
         .then(res => {
+          console.log(res.data);
           //this.sendDataToStudentArray();
           this.updateStudentArray();
           this.dialog = false;
@@ -100,6 +109,10 @@ export default {
 
     clearField() {
       this.$refs.form.reset();
+    },
+
+    getClassId() {
+      console.log(this.classId);
     },
 
     // sendDataToStudentArray() {

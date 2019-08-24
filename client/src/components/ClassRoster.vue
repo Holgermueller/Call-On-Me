@@ -2,10 +2,14 @@
   <div class="roster-page">
     <!-- <StudentNameDisplay v-bind:student_array="student_array" /> -->
 
-    <h5 class="title text-center ma-5" >{{className}} roster:</h5>
+    <h5 class="title text-center ma-5">{{className}} roster:</h5>
 
     <v-card class="ma-5 elevation-0">
-      <AddStudentDialog v-bind:student_array="student_array" />
+      <AddStudentDialog
+        v-bind:student_array="student_array"
+        v-bind:classId="classId"
+        v-bind:className="className"
+      />
       <router-link class="router-link" to="/:instructor_profile_id">
         <v-btn block color="blue" link h-ref="/:instructor_profile_id">
           <span class="mdi mdi-arrow-left-bold"></span>
@@ -94,11 +98,12 @@ export default {
 
   data() {
     return {
-      className: null,
+      className: "",
       student_array: [],
       first_name_edit: this.first_name_edit,
       last_name_edit: this.last_name_edit,
-      preferred_name_edit: this.preferred_name_edit
+      preferred_name_edit: this.preferred_name_edit,
+      classId: ""
     };
   },
 
@@ -107,11 +112,11 @@ export default {
       this.student_array.push(value);
     });
 
-    API.getRosterForOneClass(this.$route.params.id)
-    .then(res => {
+    API.getRosterForOneClass(this.$route.params.id).then(res => {
       this.className = res.data.class_name;
-      let student_array = res.data.students;
-      console.log(this.className);
+      let student_array = res.data;
+      this.classId = res.data._id;
+      console.log(student_array);
     });
 
     // API.getAllStudentsForClass()
