@@ -30,7 +30,7 @@ const API = {
   },
 
   addStudentToClass: function(new_student) {
-    return axios.post("/studentapi/student/", new_student);
+    return axios.post("/studentapi/student", new_student);
   },
 
   editStudnetInfo: function(id, updateObj) {

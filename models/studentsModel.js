@@ -6,10 +6,10 @@ const studentSchema = mongoose.Schema({
   last_name: { type: String, required: true },
   preferred_name: { type: String, required: true },
   times_called: { type: Number, default: 0 },
-  class_student_is_in: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Class"
-  }
+  // class_student_is_in: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "Class"
+  // }
 });
 
 module.exports = mongoose.model("Student", studentSchema);
