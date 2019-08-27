@@ -4,7 +4,7 @@ const Class = require("../models/classesModel");
 
 module.exports = {
   get_all_students: (req, res) => {
-    Student.find()
+    Student.find({ _classId: req.params.studentId })
       .sort({ date: -1 })
       .then(dbModel => {
         res.status(200).json({
@@ -23,7 +23,7 @@ module.exports = {
       _id: new mongoose.Types.ObjectId(),
       first_name: req.body.first_name,
       last_name: req.body.last_name,
-      preferred_name: req.body.preferred_name,
+      preferred_name: req.body.preferred_name
     });
     student
       .save()
