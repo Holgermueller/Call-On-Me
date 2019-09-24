@@ -28,6 +28,11 @@ module.exports = {
     student
       .save()
       .then(result => {
+        Class.findOneAndUpdate(
+          { _id: req.params.classId },
+          { $push: { students: result._id } },
+          { upsert: true }
+        );
         res.status(201).json({
           message: "Student added!",
           createdStudent: {

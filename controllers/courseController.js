@@ -1,21 +1,20 @@
-const Class = require("../models/classesModel");
-const mongoose = require("mongoose");
+const Course = require("../models/courseModel");
 
 module.exports = {
-  add_class: (req, res) => {
-    const newClass = new Class({
+  add_course: (req, res) => {
+    const newCourse = new Course({
       _id: mongoose.Types.ObjectId(),
-      class_name: req.body.class_name,
+      course_name: req.body.course_name,
       students: [req.body.studentId],
       created_by: created_by
     });
-    newClass
+    newCourse
       .save()
       .then(result => {
         res.status(201).json({
-          message: "Class added!",
-          createdClass: {
-            class_name: req.body.class_name,
+          message: "Course added!",
+          createdCourse: {
+            course_name: req.body.course_name,
             created_by: req.body.created_by
           }
         });
@@ -28,12 +27,12 @@ module.exports = {
   },
 
   get_all_classes: (req, res) => {
-    Class.find()
+    Course.find()
       .then(dbModel => {
         res.status(200).json({
-          message: "Class list retrieved.",
+          message: "Course list retrieved.",
           count: dbModel.length,
-          class_list: dbModel
+          Course_list: dbModel
         });
       })
       .catch(err => {
@@ -42,11 +41,11 @@ module.exports = {
   },
 
   get_one_class: (req, res) => {
-    Class.findById(req.params.classId)
+    Course.findById(req.params.classId)
       .then(dbModel => {
         if (!dbModel) {
           return res.status(404).json({
-            message: "Class not found"
+            message: "Course not found"
           });
         }
         res.status(200).json(dbModel);
@@ -55,11 +54,11 @@ module.exports = {
   },
 
   remove_class: (req, res) => {
-    Class.findById({ _id: req.params.classId })
+    Course.findById({ _id: req.params.classId })
       .then(dbModel => dbModel.remove())
       .then(dbModel => {
         res.status(200).json({
-          message: "Class deleted."
+          message: "Course deleted."
         });
       })
       .catch(err => res.status(422).json(err));

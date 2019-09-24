@@ -66,7 +66,6 @@ export default {
       last_name: null,
       preferred_name: null,
       dialog: false,
-      classId: this.classId,
       times_called: 0
     };
   },
@@ -93,10 +92,9 @@ export default {
         last_name: this.last_name,
         preferred_name: this.preferred_name,
         times_called: this.times_called,
-        classId
+        classId: this.classId
       })
         .then(res => {
-          console.log(this.classId)
           //this.sendDataToStudentArray();
           this.updateStudentArray();
           this.dialog = false;

@@ -1,15 +1,13 @@
-const mongoose = require("mongoose");
-
-const studentSchema = mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
-  first_name: { type: String, required: true },
-  last_name: { type: String, required: true },
-  preferred_name: { type: String, required: true },
-  times_called: { type: Number, default: 0 },
-  _classId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Class"
+const Student = sequelize.define("student", {
+  first_name: { type: Sequelize.STRING, allowNull: false },
+  last_name: { type: Sequelize.STRING, allowNull: false },
+  preferred_name: { type: Sequelize.STRING, allowNull: false },
+  times_called: { type: Sequelize.INTEGER, default: 0 },
+  course_id: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: Course,
+      key: "id"
+    }
   }
 });
-
-module.exports = mongoose.model("Student", studentSchema);

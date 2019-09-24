@@ -4,7 +4,6 @@ const BODYPARSER = require("body-parser");
 const CORS = require("cors");
 const PATH = require("path");
 const MORGAN = require("morgan");
-const MONGOOSE = require("mongoose");
 const routes = require("./routes");
 
 const APP = EXPRESS();
@@ -20,18 +19,6 @@ APP.use(CORS());
 APP.use(BODYPARSER.urlencoded({ extended: true }));
 APP.use(BODYPARSER.json());
 APP.use(COMPRESSION());
-
-MONGOOSE.Promise = global.Promise;
-MONGOOSE.set("useFindAndModify", false);
-MONGOOSE.set("useCreateIndex", true);
-MONGOOSE.connect(
-  process.env.MONGODB_URI || "mongodb://localhost:27017/callOnMeDB",
-  { useNewUrlParser: true }
-);
-const CONNECTION = MONGOOSE.connection;
-CONNECTION.once("open", () => {
-  console.log("db connection!");
-});
 
 APP.use("/", routes);
 
