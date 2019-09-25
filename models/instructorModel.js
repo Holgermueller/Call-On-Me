@@ -1,4 +1,7 @@
-const Instructor = sequelize.define("instructor", {
+const Sequelize = require("sequelize");
+const db = require("../config/config");
+
+const Instructor = db.define("Instructor", {
   instructor_name: { type: Sequelize.STRING, allowNull: false },
   email: {
     type: Sequelize.STRING,
@@ -7,10 +10,12 @@ const Instructor = sequelize.define("instructor", {
     match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
   },
   password: { type: Sequelize.STRING, allowNull: false },
-  classes: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Class"
-    }
-  ]
+  // Courses: [
+  //   {
+  //     type: Sequelize.STRING,
+  //     ref: "Course"
+  //   }
+  // ]
 });
+
+module.exports = Instructor;

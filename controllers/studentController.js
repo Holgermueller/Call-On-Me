@@ -1,6 +1,5 @@
 const Student = require("../models/studentsModel");
-const mongoose = require("mongoose");
-const Class = require("../models/classesModel");
+const Class = require("../models/courseModel");
 
 module.exports = {
   get_all_students: (req, res) => {
@@ -20,7 +19,6 @@ module.exports = {
 
   add_student: (req, res) => {
     const student = new Student({
-      _id: new mongoose.Types.ObjectId(),
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       preferred_name: req.body.preferred_name

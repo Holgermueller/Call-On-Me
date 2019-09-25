@@ -3,7 +3,6 @@ const Course = require("../models/courseModel");
 module.exports = {
   add_course: (req, res) => {
     const newCourse = new Course({
-      _id: mongoose.Types.ObjectId(),
       course_name: req.body.course_name,
       students: [req.body.studentId],
       created_by: created_by
@@ -26,7 +25,7 @@ module.exports = {
       });
   },
 
-  get_all_classes: (req, res) => {
+  get_all_courses: (req, res) => {
     Course.find()
       .then(dbModel => {
         res.status(200).json({
@@ -40,7 +39,7 @@ module.exports = {
       });
   },
 
-  get_one_class: (req, res) => {
+  get_one_course: (req, res) => {
     Course.findById(req.params.classId)
       .then(dbModel => {
         if (!dbModel) {
@@ -53,7 +52,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-  remove_class: (req, res) => {
+  remove_course: (req, res) => {
     Course.findById({ _id: req.params.classId })
       .then(dbModel => dbModel.remove())
       .then(dbModel => {

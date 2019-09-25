@@ -22,6 +22,11 @@ APP.use(COMPRESSION());
 
 APP.use("/", routes);
 
+const db = require("./config/config");
+db.authenticate()
+  .then(() => console.log("Database connected!"))
+  .catch(err => console.log("Error" + err));
+
 APP.use((req, res, next) => {
   const error = new Error("Not found");
   error.status = 404;

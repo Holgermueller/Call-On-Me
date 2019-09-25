@@ -1,5 +1,4 @@
 const Instructor = require("../models/instructorModel");
-const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -20,7 +19,6 @@ module.exports = {
               });
             } else {
               const instructor = new Instructor({
-                _id: mongoose.Types.ObjectId(),
                 instructor_name: req.body.instructor_name,
                 email: req.body.email,
                 password: hash,

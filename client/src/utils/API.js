@@ -10,19 +10,19 @@ const API = {
   removeUser: function() {},
 
   addClass: function(new_class) {
-    return axios.post("/classapi/class/", new_class);
+    return axios.post("/courseapi/course/", new_class);
   },
 
   getRosterForOneClass: function(id) {
-    return axios.get("/classapi/class/" + id);
+    return axios.get("/courseapi/course/" + id);
   },
 
   getAllClasses: function() {
-    return axios.get("/classapi/class");
+    return axios.get("/courseapi/course");
   },
 
   deleteClass: function(id) {
-    return axios.delete("/classapi/class/" + id);
+    return axios.delete("/courseapi/course/" + id);
   },
 
   getAllStudentsForClass: function() {
