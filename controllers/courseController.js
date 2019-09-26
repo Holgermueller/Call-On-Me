@@ -26,7 +26,7 @@ module.exports = {
   },
 
   get_all_courses: (req, res) => {
-    Course.find()
+    Course.findAll()
       .then(dbModel => {
         res.status(200).json({
           message: "Course list retrieved.",

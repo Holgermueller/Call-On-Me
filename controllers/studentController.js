@@ -3,7 +3,7 @@ const Class = require("../models/courseModel");
 
 module.exports = {
   get_all_students: (req, res) => {
-    Student.find({ _classId: req.params.studentId })
+    Student.findAll({ _classId: req.params.studentId })
       .sort({ date: -1 })
       .then(dbModel => {
         res.status(200).json({

@@ -5,6 +5,7 @@ const CORS = require("cors");
 const PATH = require("path");
 const MORGAN = require("morgan");
 const routes = require("./routes");
+const db = require("./config/config");
 
 const APP = EXPRESS();
 const PORT = process.env.PORT || 8081;
@@ -22,7 +23,6 @@ APP.use(COMPRESSION());
 
 APP.use("/", routes);
 
-const db = require("./config/config");
 db.authenticate()
   .then(() => console.log("Database connected!"))
   .catch(err => console.log("Error" + err));

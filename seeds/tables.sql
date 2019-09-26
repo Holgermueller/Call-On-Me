@@ -1,0 +1,24 @@
+DROP DATABASE IF EXISTS call_on_me;
+CREATE DATABASE call_on_me;
+
+use call_on_me;
+
+CREATE TABLE IF NOT EXISTS "instructors" (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  instructor_name VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS "courses" (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    class_name VARCHAR(50) NOT NULL, 
+);
+
+CREATE TABLE IF NOT EXISTS "students" (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    preferred_name VARCHAR(50) NOT NULL,
+    times_called INT AUTO_INCREMENT
+);

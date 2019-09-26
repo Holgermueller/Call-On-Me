@@ -15,4 +15,6 @@ const Student = db.define("student", {
   // }
 });
 
+//Student.belongsTo(Course);
+
 module.exports = Student;

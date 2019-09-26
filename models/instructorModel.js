@@ -18,4 +18,6 @@ const Instructor = db.define("Instructor", {
   // ]
 });
 
+//Instructor.hasMany(Course);
+
 module.exports = Instructor;
