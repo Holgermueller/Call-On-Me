@@ -22,7 +22,7 @@
           </div>
 
           <v-form ref="form">
-            <v-flex xs12 sm6 md4>
+            <v-flex xs12 sm12 md12 lg12 xl12>
               <v-text-field
                 prepend-icon="mdi-account-circle"
                 type="text"
@@ -31,11 +31,11 @@
               ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md4>
+            <v-flex xs12 sm12 md12 lg12 xl12>
               <v-text-field v-model="email_input" label="E-mail*" prepend-icon="mdi-email"></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md4>
+            <v-flex xs12 sm12 md12 lg12 xl12>
               <v-text-field
                 :type="show_password ? 'text' : 'password'"
                 v-model="password_input"
@@ -48,7 +48,7 @@
               ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md4>
+            <v-flex xs12 sm12 md12 lg12 xl12>
               <v-text-field
                 :type="show_confirm_password ? 'text' : 'password'"
                 v-model="password_check_input"

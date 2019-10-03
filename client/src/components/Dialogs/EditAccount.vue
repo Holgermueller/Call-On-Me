@@ -23,7 +23,7 @@
 
           <v-container grid-list-md>
             <v-layout wrap>
-              <v-flex xs-12>
+              <v-flex xs12 sm12 md12 lg12 xl12>
                 <v-text-field
                   prepend-icon="mdi-account-circle"
                   type="text"
@@ -32,7 +32,7 @@
                 ></v-text-field>
               </v-flex>
 
-              <v-flex xs-12>
+              <v-flex xs12 sm12 md12 lg12 xl12>
                 <v-text-field
                   prepend-icon="mdi-email"
                   type="email"
