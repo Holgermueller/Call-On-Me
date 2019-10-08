@@ -27,21 +27,6 @@ db.authenticate()
   .then(() => console.log("Database connected!"))
   .catch(err => console.log("Error" + err));
 
-APP.use((req, res, next) => {
-  const error = new Error("Not found");
-  error.status = 404;
-  next(error);
-});
-
-APP.use((error, req, res, next) => {
-  res.status(error.status || 500);
-  res.json({
-    error: {
-      message: error.message
-    }
-  });
-});
-
 APP.get("*", (req, res) => {
   res.sendFile(PATH.resolve(__dirname, "./client/build", "index.html"));
 });
