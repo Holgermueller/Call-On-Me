@@ -1,8 +1,8 @@
 const Sequelize = require("sequelize");
 
-module.exports = new Sequelize('call_on_me', 'root', 'Kafka#976', {
-  host: 'localhost',
-  dialect: 'mysql',
+module.exports = new Sequelize("call_on_me", "root", "Kafka#678", {
+  host: "localhost",
+  dialect: "mysql",
   operatorAliases: false,
 
   pool: {
@@ -11,4 +11,4 @@ module.exports = new Sequelize('call_on_me', 'root', 'Kafka#976', {
     acquire: 30000,
     idle: 10000
   }
-});
+})

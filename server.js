@@ -25,7 +25,7 @@ APP.use("/", routes);
 
 db.authenticate()
   .then(() => console.log("Database connected!"))
-  .catch(err => console.log("Error" + err));
+  .catch(err => console.log("Error: " + err));
 
 APP.get("*", (req, res) => {
   res.sendFile(PATH.resolve(__dirname, "./client/build", "index.html"));
