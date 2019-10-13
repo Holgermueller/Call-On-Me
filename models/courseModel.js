@@ -2,22 +2,12 @@ const Sequelize = require("sequelize");
 const db = require("../config/config");
 
 const Course = db.define("course", {
-  class_name: { type: Sequelize.STRING, allowNull: false },
-  // created_by: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: Instructor,
-  //     key: "id",
-  //   }
-  // },
-  // students: [
-  //   {
-  //     type: Sequelize.STRING,
-  //     ref: "Student"
-  //   }
-  // ]
+  course_name: { type: Sequelize.STRING },
+  student_id: {
+    model: Student,
+    key: "id",
+    onDelete: "cascade"
+  }
 });
-
-//Course.belongsTo(Instructor);
 
 module.exports = Course;

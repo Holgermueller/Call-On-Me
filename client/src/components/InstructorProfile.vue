@@ -79,6 +79,7 @@ export default {
 
     API.getAllClasses()
       .then(res => {
+        console.log(res);
         let classesArray = res.data.class_list.map(classInfo => {
           this.classesArray.push(classInfo);
         });

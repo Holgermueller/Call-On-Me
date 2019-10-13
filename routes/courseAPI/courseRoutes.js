@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const courseController = require("../../controllers/courseController");
-const checkAuth = require("../../auth/checkAuth");
+//const checkAuth = require("../../auth/checkAuth");
 
 router
   .route("/")

@@ -1,11 +1,11 @@
 const path = require("path");
 const router = require("express").Router();
 const instructorRoutes = require("./instructorAPI");
-const classRoutes = require("./courseAPI");
+const courseRoutes = require("./courseAPI");
 const studentRoutes = require("./studentAPI");
 
 router.use("/instructorapi", instructorRoutes);
-router.use("/courseapi", classRoutes);
+router.use("/courseapi", courseRoutes);
 router.use("/studentapi", studentRoutes);
 
 router.use((req, res) => {
