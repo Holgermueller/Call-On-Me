@@ -25,7 +25,7 @@
   "homepage": "https://github.com/Holgermueller/student-manager-app#readme",
   "devDependencies": {
     "concurrently": "^5.2.0",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.20"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
